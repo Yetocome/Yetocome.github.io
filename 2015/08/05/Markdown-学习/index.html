@@ -5,17 +5,17 @@
   
   <title>Markdown 学习 | Xie&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="刚建好自己的小窝，第一篇正式的博文记录了自己学习的Markdown语法，毕竟以后都要使用它来写博客，不好好学习一下写出来的东西想必也不能看吧，欢迎大家在评论区和我交流。">
+  <meta name="description" content="刚建好自己的小窝，第一篇正式的博文记录了自己学习的Markdown语法，毕竟以后都要使用它来写博客，大家多多指教。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Markdown 学习">
 <meta property="og:url" content="http://xmhtech.me/2015/08/05/Markdown-学习/index.html">
 <meta property="og:site_name" content="Xie's blog">
-<meta property="og:description" content="刚建好自己的小窝，第一篇正式的博文记录了自己学习的Markdown语法，毕竟以后都要使用它来写博客，不好好学习一下写出来的东西想必也不能看吧，欢迎大家在评论区和我交流。">
+<meta property="og:description" content="刚建好自己的小窝，第一篇正式的博文记录了自己学习的Markdown语法，毕竟以后都要使用它来写博客，大家多多指教。">
 <meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/doge_sleep_icon.png">
-<meta property="og:updated_time" content="2015-08-06T12:28:02.000Z">
+<meta property="og:updated_time" content="2015-08-08T08:11:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Markdown 学习">
-<meta name="twitter:description" content="刚建好自己的小窝，第一篇正式的博文记录了自己学习的Markdown语法，毕竟以后都要使用它来写博客，不好好学习一下写出来的东西想必也不能看吧，欢迎大家在评论区和我交流。">
+<meta name="twitter:description" content="刚建好自己的小窝，第一篇正式的博文记录了自己学习的Markdown语法，毕竟以后都要使用它来写博客，大家多多指教。">
   
     <link rel="alternative" href="/atom.xml" title="Xie&#39;s blog" type="application/atom+xml">
   
@@ -129,7 +129,7 @@ var _hmt = _hmt || [];
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/web/" style="font-size: 10px;">web</a>
+						<a href="/tags/Google/" style="font-size: 10px;">Google</a> <a href="/tags/Resource/" style="font-size: 20px;">Resource</a> <a href="/tags/book/" style="font-size: 10px;">book</a> <a href="/tags/inf/" style="font-size: 10px;">inf</a> <a href="/tags/info/" style="font-size: 20px;">info</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
 					</div>
 				</section>
 				
@@ -238,7 +238,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>刚建好自己的小窝，第一篇正式的博文记录了自己学习的Markdown语法，毕竟以后都要使用它来写博客，不好好学习一下写出来的东西想必也不能看吧，欢迎大家在评论区和我交流。<br><a id="more"></a></p>
+        <p>刚建好自己的小窝，第一篇正式的博文记录了自己学习的Markdown语法，毕竟以后都要使用它来写博客，大家多多指教。<br><a id="more"></a></p>
 <h3 id="斜体设置">斜体设置</h3><p>你需要在需要斜体的部分前后加上一个underscore（下划线），像<em>这样</em>。</p>
 <h3 id="粗体设置">粗体设置</h3><p>你需要在需要粗体的部分都加上两个asterisks（星号）,像<strong>这样</strong>。<br>这里有个小插曲，我发现加一个asterisks是<em>这样</em>，也是斜体。</p>
 <p><strong>以上两种语法的组合不分先后.</strong></p>
@@ -307,6 +307,38 @@ var _hmt = _hmt || [];
 </ul>
 </li>
 </ul>
+<h3 id="创建表格">创建表格</h3><p>这个并不是<strong>Markdown</strong>的标准语法，似乎需要解释器，先看看能不能发上来。<br>示例：</p>
+<pre><code>H1 |H2 |H3
+---|---|---
+<span class="number">0</span>,<span class="number">0</span>|<span class="number">0</span>,<span class="number">1</span>|<span class="number">0</span>,<span class="number">2</span>
+<span class="number">1</span>,<span class="number">0</span>|<span class="number">1</span>,<span class="number">1</span>|<span class="number">1</span>,<span class="number">2</span>
+<span class="number">2</span>,<span class="number">0</span>|<span class="number">2</span>,<span class="number">1</span>|<span class="number">2</span>,<span class="number">2</span>
+</code></pre><table>
+<thead>
+<tr>
+<th>H1</th>
+<th>H2</th>
+<th>H3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0,0</td>
+<td>0,1</td>
+<td>0,2</td>
+</tr>
+<tr>
+<td>1,0</td>
+<td>1,1</td>
+<td>1,2</td>
+</tr>
+<tr>
+<td>2,0</td>
+<td>2,1</td>
+<td>2,2</td>
+</tr>
+</tbody>
+</table>
 <h3 id="段落和换行">段落和换行</h3><p>你在实际操作中会发现，即使你在编辑时输入return（回车），显示出来的仍旧是一行，在Marhdown语法里也有两种方式来实现换行：</p>
 <h5 id="Hard_Break">Hard Break</h5><p>直接再输入一个return（回车），这样段落的间距比较大。</p>
 <h5 id="Soft_Break">Soft Break</h5><p>在段末输两个连续的space（空格），这样段落的间距会比较小。</p>
@@ -320,9 +352,18 @@ var _hmt = _hmt || [];
     
 <nav id="article-nav">
   
+    <a href="/2015/08/07/从搜索引擎谈起/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          从搜索引擎谈起
+        
+      </div>
+    </a>
   
-    <a href="/2015/08/05/Searching-Art/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Searching Art</div>
+  
+    <a href="/2015/08/04/Cat-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Cat_2</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
