@@ -62,7 +62,7 @@
     <link href="http://xmhtech.me/2015/08/07/%E4%BB%8E%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E8%B0%88%E8%B5%B7/"/>
     <id>http://xmhtech.me/2015/08/07/从搜索引擎谈起/</id>
     <published>2015-08-07T12:31:08.000Z</published>
-    <updated>2015-08-08T14:27:13.000Z</updated>
+    <updated>2015-08-19T14:23:33.000Z</updated>
     <content type="html"><![CDATA[<p>心血来潮想整理下一些关于搜索的奇技淫巧。在这个信息爆炸的时代不会用搜索不仅仅是一件令人遗憾的事情，可能会对你的生活都造成影响。能够快速、准确地利用搜索引擎找到自己想要的信息和资源，也是一件令人骄傲的事。</p>
 <p>不过搜出来的很多技巧倒是让我大吃一惊，在这里分享出来。</p>
 <a id="more"></a>
@@ -109,7 +109,7 @@
 </li>
 <li>找出<strong>背后</strong>的脸——灵活使用此技巧,你可以过滤Google的图片搜索,使之只出现人的图像.这有什么用?这么说吧,如果你要找一个有名的人的图片,但是与之同名的产品,公司或者地理位置什么的会使你困扰,这个小技巧能让你更得心应手.想使用这个方法,你只需要在标准图片搜索之后在URL地址后面加上后缀&amp;imgtype=face  </li>
 <li>浏览全球范围内的公开摄像头——你可以通过搜索Google随机地浏览全球范围内的摄像头流媒体.这可能不是最有效的Google技巧,但却是最有趣的!(作者:你可能需要立即安装一个ActiveX控件或者Java运行环境,以允许你的浏览器获取这些视频流格式)</li>
-<li>在谷歌/必应里搜索百度网盘(<strong>网站积累</strong>)——加site:pan.baidu.com，将这个技巧泛化可以得到很多应用，但是首先你得知道site:后面要填什么，所以平时要注意网站的积累，这个博客也会不定期更新，我会把我所知道最新最有用的网站贴给大家。</li>
+<li>在谷歌/必应里搜索百度网盘(<strong>网站积累</strong>)——加site:pan.baidu.com，将这个技巧泛化可以得到很多应用，但是首先你得知道site:后面要填什么，所以平时要注意网站的积累，这个博客也会不定期更新，我会把我所知道最新最有用的网站贴给大家。(也可以是<code>关键字 + &quot;(网址)&quot;</code>的形式)<br> (1) site:evernote.com/pub/——利用这种方法可以搜索到无私贡献出自己高质量笔记本的大牛们的私活，绝赞好评！！！（site:evernote.com/shard/——单个笔记）<br> (2) </li>
 </ol>
 <h2 id="反思">反思</h2><p>回到最初的问题，滥用搜索引擎真的好吗？且不说搜索引擎带给我们的答案是否正确，作为工具，它确实给我们带来了许多的便利，但同时我们也要注意使用这个工具所带来的潜在风险。</p>
 <ul>
@@ -206,7 +206,7 @@
     
       <category term="Resource" scheme="http://xmhtech.me/tags/Resource/"/>
     
-      <category term="inf" scheme="http://xmhtech.me/tags/inf/"/>
+      <category term="info" scheme="http://xmhtech.me/tags/info/"/>
     
       <category term="Others" scheme="http://xmhtech.me/categories/Others/"/>
     
@@ -347,21 +347,6 @@
     </summary>
     
       <category term="Sci" scheme="http://xmhtech.me/categories/Sci/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Cat_1]]></title>
-    <link href="http://xmhtech.me/2015/08/04/Cat-1/"/>
-    <id>http://xmhtech.me/2015/08/04/Cat-1/</id>
-    <published>2015-08-04T15:13:45.000Z</published>
-    <updated>2015-08-04T15:14:18.000Z</updated>
-    <content type="html"></content>
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
     
   </entry>
   
