@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>网络信息的检索与利用 | Xie&#39;s blog</title>
+  <title>TL-WR703N v1.7 刷OpenWrt（译） | Xie&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
+  <meta name="description" content="买了一台TP-Link wr703n准备刷OpenWrt用作开发，怎料官方挖了个大坑等我去跳——最新的官方固件封死网页刷机的渠道（据说是加了签名），又不会焊TTL的。。。幸好国外的大神已经给出了解决方案，亲测可行，替大家把原文翻译一下（有改动）。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网络信息的检索与利用">
-<meta property="og:url" content="http://xmhtech.me/2015/08/08/网络信息的检索与利用/index.html">
+<meta property="og:title" content="TL-WR703N v1.7 刷OpenWrt（译）">
+<meta property="og:url" content="http://xmhtech.me/2015/09/06/TL-WR703N v1.7 刷OpenWrt（译）/index.html">
 <meta property="og:site_name" content="Xie's blog">
-<meta property="og:description">
-<meta property="og:updated_time" content="2015-08-08T14:03:48.000Z">
+<meta property="og:description" content="买了一台TP-Link wr703n准备刷OpenWrt用作开发，怎料官方挖了个大坑等我去跳——最新的官方固件封死网页刷机的渠道（据说是加了签名），又不会焊TTL的。。。幸好国外的大神已经给出了解决方案，亲测可行，替大家把原文翻译一下（有改动）。">
+<meta property="og:updated_time" content="2015-09-06T03:04:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="网络信息的检索与利用">
-<meta name="twitter:description">
+<meta name="twitter:title" content="TL-WR703N v1.7 刷OpenWrt（译）">
+<meta name="twitter:description" content="买了一台TP-Link wr703n准备刷OpenWrt用作开发，怎料官方挖了个大坑等我去跳——最新的官方固件封死网页刷机的渠道（据说是加了签名），又不会焊TTL的。。。幸好国外的大神已经给出了解决方案，亲测可行，替大家把原文翻译一下（有改动）。">
   
     <link rel="alternative" href="/atom.xml" title="Xie&#39;s blog" type="application/atom+xml">
   
@@ -196,11 +196,11 @@ var _hmt = _hmt || [];
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-网络信息的检索与利用" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="tl-wr703n-TL-WR703N v1.7 刷OpenWrt（译）" class="article article-type-tl-wr703n" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/08/08/网络信息的检索与利用/" class="article-date">
-  	<time datetime="2015-08-08T14:01:35.000Z" itemprop="datePublished">2015-08-08</time>
+      <a href="/2015/09/06/TL-WR703N v1.7 刷OpenWrt（译）/" class="article-date">
+  	<time datetime="2015-09-06T03:00:54.000Z" itemprop="datePublished">2015-09-06</time>
 </a>
     </div>
   
@@ -213,7 +213,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      网络信息的检索与利用
+      TL-WR703N v1.7 刷OpenWrt（译）
     </h1>
   
 
@@ -222,7 +222,7 @@ var _hmt = _hmt || [];
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/book/">book</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/info/">info</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenWrt/">OpenWrt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Translation/">Translation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/router/">router</a></li></ul>
 	</div>
 
         
@@ -237,7 +237,61 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
+        <p>买了一台TP-Link wr703n准备刷OpenWrt用作开发，怎料官方挖了个大坑等我去跳——最新的官方固件封死网页刷机的渠道（据说是加了签名），又不会焊TTL的。。。幸好国外的大神已经给出了解决方案，亲测可行，替大家把原文翻译一下（有改动）。</p>
+<a id="more"></a>
+<p>原文出处：<a href="http://www.shadowandy.net/2015/03/flashing-tp-link-tl-wr703n-v1-7-to-openwrt.htm" target="_blank" rel="external">http://www.shadowandy.net/2015/03/flashing-tp-link-tl-wr703n-v1-7-to-openwrt.htm</a></p>
+<h2 id="翻译水平有限大家将就看看哈，刷坏概不负责。">翻译水平有限大家将就看看哈，刷坏概不负责。</h2><h3 id="获得必要的材料">获得必要的材料</h3><p>将v1.7的TL-WR703N刷到OpenWrt，你需要：</p>
+<ol>
+<li>固件版本为3.17.1 Build 140120 Rel.56593n的TL-WR703N v1.7 </li>
+<li>OpenWrt为TL-WR703N定制的固件 <a href="http://downloads.openwrt.org/barrier_breaker/14.07/ar71xx/generic/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin" target="_blank" rel="external">Download</a></li>
+<li>cURL以发送 crafted http 请求 <a href="http://curl.haxx.se/download.html" target="_blank" rel="external">Download</a></li>
+<li>dd 以拆分 OpenWrt 为 kernel 和 rootfs 镜像 <a href="http://www.chrysocome.net/dd" target="_blank" rel="external">Download</a></li>
+<li>TFTP 服务器（建议32位）<a href="http://tftpd32.jounin.net/" target="_blank" rel="external">Download</a></li>
+<li>一个命令行脚本来指导路由器执行刷机.你需要一个编辑器 (e.g. Notepad++) 来创建一个Unix风格的脚本</li>
+<li>busybox 1.16.1 for mips <a href="http://www.busybox.net/downloads/binaries/1.16.1/" target="_blank" rel="external">Download</a></li>
+</ol>
+<h3 id="准备开发wr703n的材料">准备开发wr703n的材料</h3><ol>
+<li><p>拆分 OpenWrt 为 kernel 和 rootfs 镜像</p>
+<pre><code><span class="tag">dd</span> <span class="keyword">if</span>=openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory<span class="class">.bin</span> of=i1 bs=<span class="number">1</span> count=<span class="number">1048576</span>
+<span class="tag">dd</span> <span class="keyword">if</span>=openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory<span class="class">.bin</span> of=i2 bs=<span class="number">1</span> skip=<span class="number">1048576</span>
+</code></pre></li>
+<li><p>在你的电脑上设置局域网接口</p>
+</li>
+</ol>
+<p>命令行脚本(aa)是在和IP地址192.168.1.9沟通。你可以修改电脑的静态IP也可以修改命令行脚本里的地址，这取决于你！</p>
+<h3 id="开始刷机">开始刷机</h3><ol>
+<li><p>用必要的文件设置TFTP<br>现在你有以下四个文件：</p>
+<ul>
+<li>aa</li>
+<li>i1</li>
+<li>i2</li>
+<li>busybox<br><strong>解压并执行</strong>TFTP服务器并且将操作根目录指向含有这四个文件的地方</li>
+</ul>
+</li>
+<li><p>连接设备并且还原出厂设置（点击恢复出厂设置就好，不要干多余的事）</p>
+</li>
+<li><p>执行开发并升级<br> 在此之前，确认你电脑的静态IP为192.168.1.9</p>
+<ol>
+<li>将你的在命令行下的操作目录指向含有cURL的地方</li>
+<li><p>依次执行以下三条命令</p>
+<pre><code>curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization=Basic<span class="variable">%20YWRtaW46YWRtaW40Mg</span><span class="variable">%3D</span><span class="variable">%3D</span>; ChgPwdSubTag=true"</span> <span class="string">"http://192.168.1.1/"</span>
+curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization=Basic<span class="variable">%20YWRtaW46YWRtaW40Mg</span><span class="variable">%3D</span><span class="variable">%3D</span>; ChgPwdSubTag="</span> --referer <span class="string">"http://192.168.1.1/userRpm/ParentCtrlRpm.htm"</span> <span class="string">"http://192.168.1.1/userRpm/ParentCtrlRpm.htm?ctrl_enable=1&amp;parent_mac_addr=00-00-00-00-00-02&amp;Page=1"</span>
+curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization=Basic<span class="variable">%20YWRtaW46YWRtaW40Mg</span><span class="variable">%3D</span><span class="variable">%3D</span>; ChgPwdSubTag="</span> --referer <span class="string">"http://192.168.1.1/userRpm/ParentCtrlRpm.htm?Modify=0&amp;Page=1"</span> <span class="string">"http://192.168.1.1/userRpm/ParentCtrlRpm.htm?child_mac=00-00-00-00-00-01&amp;lan_lists=888&amp;url_comment=test&amp;url_0=;cd<span class="variable">%20</span>/tmp;&amp;url_1=;tftp<span class="variable">%20</span>-gl<span class="variable">%20aa</span><span class="variable">%20192</span>.168.1.9;&amp;url_2=;sh<span class="variable">%20aa</span>;&amp;url_3=&amp;url_4=&amp;url_5=&amp;url_6=&amp;url_7=&amp;scheds_lists=255&amp;enable=1&amp;Changed=1&amp;SelIndex=0&amp;Page=1&amp;rule_mode=0&amp;Save=<span class="variable">%B1</span><span class="variable">%A3</span>+<span class="variable">%B4</span><span class="variable">%E6</span>"</span>
+</code></pre><p>判断命令是否执行成功：</p>
+</li>
+</ol>
+<ul>
+<li>如果命令一成功，登陆密码被修改为”admin42”</li>
+<li>如果命令二成功，I can see the new parental item is added and enabled.(没看懂orz)</li>
+<li><p>但是如果命令三成功，看起来没有任何事情发生（命令三有些慢，请不要慌）</p>
+<p>备注：在过程中千万不要断开路由器的电源，否则你的路由器很有可能变砖！！！</p>
+</li>
+</ul>
+</li>
+<li>当路由器不再闪烁时，在浏览器输入192.168.1.1登陆Openwrt。</li>
+<li>享受你的 TL-WR703N v1.7 吧</li>
+</ol>
+<p>这里是我刷机用过的工具和做好的材料，解压后使用——<a href="http://pan.baidu.com/share/link?shareid=3048068689&amp;uk=3694274917" target="_blank" rel="external">度盘</a></p>
 
       
     </div>
@@ -247,18 +301,9 @@ var _hmt = _hmt || [];
     
 <nav id="article-nav">
   
-    <a href="/2015/09/05/初识SDN/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          初识SDN
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/08/08/搜索进阶/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">搜索进阶</div>
+    <a href="/2015/09/05/初识SDN/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">初识SDN</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -287,7 +332,7 @@ var _hmt = _hmt || [];
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="网络信息的检索与利用" data-title="网络信息的检索与利用" data-url="http://xmhtech.me/2015/08/08/网络信息的检索与利用/"></div>
+	<div class="ds-thread" data-thread-key="TL-WR703N v1.7 刷OpenWrt（译）" data-title="TL-WR703N v1.7 刷OpenWrt（译）" data-url="http://xmhtech.me/2015/09/06/TL-WR703N v1.7 刷OpenWrt（译）/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
