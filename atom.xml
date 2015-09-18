@@ -5,7 +5,7 @@
   <subtitle><![CDATA[Any idea or discussion is highly welcomed.250745820@qq.com]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://xmhtech.me//"/>
-  <updated>2015-09-06T03:04:03.000Z</updated>
+  <updated>2015-09-18T13:50:45.000Z</updated>
   <id>http://xmhtech.me//</id>
   
   <author>
@@ -14,6 +14,88 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Prolog学习笔记（一）]]></title>
+    <link href="http://xmhtech.me/2015/09/18/Prolog%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://xmhtech.me/2015/09/18/Prolog学习笔记（一）/</id>
+    <published>2015-09-18T13:46:10.000Z</published>
+    <updated>2015-09-18T13:50:45.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="前言：">前言：</h3><p>这学期选修了一门人工智能导论，来自罗马的老师要求的语言就是prolog（似乎是欧洲人的偏好），上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，在这里整理一下自己初步的学习。</p>
+<a id="more"></a>
+<h3 id="Prolog简介：">Prolog简介：</h3><p>有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。</p>
+<p>配置环境（macbook air）：  </p>
+<ol>
+<li><p>直接用homebrew安装swi-prolog（没有安装的参见另一篇博文：<a href="">Homebrew 安装使用总结</a>）</p>
+<blockquote>
+<p>What is swim-prolog?<br>它是一个prolog的解释器</p>
+</blockquote>
+<pre><code><span class="keyword">brew </span>install homebrew/x11/<span class="keyword">swi-prolog</span>
+</code></pre></li>
+<li><p>常用命令</p>
+<pre><code>swipl <span class="comment">//调出主界面</span>
+halt. <span class="comment">//退出，Control+D </span>
+consult<span class="params">('’)</span>. <span class="comment">//编译代码</span>
+reconsult<span class="params">()</span>.<span class="comment">//重新编译</span>
+</code></pre></li>
+</ol>
+<p>基本语法</p>
+<ol>
+<li>谓词(predicate)：Prolog的基本组成元素，可以是一段程序、一个数据类型或是一种关系，由谓词名和参数组成，名称相同、参数不同的谓词是不同的谓词；</li>
+<li>参数(argument)：<ul>
+<li>变量(variables)<ul>
+<li>总是以大写字母或者下划线开始</li>
+<li>对于变量没有类型而言，它能选用任何值</li>
+<li>变量有它自己的作用域，其他子句的同名变量不会继承上一子句的值</li>
+<li>变量可以被看做是全称量词，读作“任给”</li>
+</ul>
+</li>
+<li>原子(atom)：<ul>
+<li>常量(constants)：由小写字母开头的字符串，可以有数字</li>
+<li>整数(integer)：绝对值小于某数的正数或负数</li>
+</ul>
+</li>
+<li>结构(structure)：后面介绍</li>
+</ul>
+</li>
+<li>规则(rules)<ul>
+<li>结论(子句头)：由条件决定是否为真</li>
+<li>条件(子句体)：一系列用逗号隔离的目标，逗号被认作为“与”</li>
+</ul>
+</li>
+<li>事实(facts)：可以看做只有头的规则</li>
+<li>问题(questions)：可以看做只有体的规则</li>
+<li>注释(comment)  <ul>
+<li>单行：%</li>
+<li>多行：/<em>开始</em>/结束</li>
+</ul>
+</li>
+</ol>
+<p>其他：  </p>
+<ol>
+<li>询问时，分号的作用：使当前子句无效，继续搜索答案。</li>
+</ol>
+<p><strong>Prolog是如何回答问题的?</strong>  </p>
+<p>Prolog寻找证据的顺序正好与我们的推理相反，即执果索因，使用目标、规则、代换和当前目标来推导出新的目标，直到新目标恰好是简单事实时，给出答案。</p>
+<p><em>Reference:</em></p>
+<ol>
+<li><em>Prolog Programming for Artificial Intelligence 4th edition - chapter 1</em></li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="前言：">前言：</h3><p>这学期选修了一门人工智能导论，来自罗马的老师要求的语言就是prolog（似乎是欧洲人的偏好），上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，在这里整理一下自己初步的学习。</p>]]>
+    
+    </summary>
+    
+      <category term="AI" scheme="http://xmhtech.me/tags/AI/"/>
+    
+      <category term="Prolog" scheme="http://xmhtech.me/tags/Prolog/"/>
+    
+      <category term="language" scheme="http://xmhtech.me/tags/language/"/>
+    
+      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[TL-WR703N v1.7 刷OpenWrt（译）]]></title>
