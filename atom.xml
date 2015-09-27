@@ -5,7 +5,7 @@
   <subtitle><![CDATA[Any idea or discussion is highly welcomed.250745820@qq.com]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://xmhtech.me//"/>
-  <updated>2015-09-19T14:33:36.000Z</updated>
+  <updated>2015-09-27T09:45:08.000Z</updated>
   <id>http://xmhtech.me//</id>
   
   <author>
@@ -14,6 +14,106 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Prolog学习笔记（二）]]></title>
+    <link href="http://xmhtech.me/2015/09/27/Prolog%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>http://xmhtech.me/2015/09/27/Prolog学习笔记（二）/</id>
+    <published>2015-09-27T09:29:00.000Z</published>
+    <updated>2015-09-27T09:45:08.000Z</updated>
+    <content type="html"><![CDATA[<p>第三周：这周的主要内容是算数操作符，合一的概念还有跟踪和调试的方法。</p>
+<p>这是第一个版本，时间仓促，没有怎么看书就发了出来，如有出错还请见谅，之后会对错误和遗漏进行修改。</p>
+<a id="more"></a>
+<h3 id="算数操作符(Arithmetic_Operators)">算数操作符(Arithmetic Operators)</h3><ol>
+<li>操作符种类：<ul>
+<li>运算操作符：+, -, *, /,^,mod（还可以使用div代表/，但是有所不同，/是实数除法，div是整数除法）</li>
+<li>比较操作符：&lt;, &gt;, =&lt;, &gt;=, =:= (equals), =\= (not equals)</li>
+</ul>
+</li>
+<li>操作符使用：表达式的返回值（可以这么解释吗）就是结果。<ul>
+<li>前缀(prefix)：像用谓词一样使用即可；+(2,3)表达的就是2+3，还可以嵌套，这可以直观的用操作符树来表示；</li>
+<li>中缀(infix)：和普通的计算公式相同相同；</li>
+<li>后缀(postfix)：用的比较少；</li>
+<li>自定义：可以通过自定义谓词来进行一些不同的计算过程，这周比较忙，这里就不再展开，先挖个坑<pre><code><span class="tag">&lt;我是坑&gt;</span>
+</code></pre></li>
+</ul>
+</li>
+<li>操作符优先级：^before mod before /, *, before +,-(和平时使用相同，括号的优先级最高)</li>
+<li>计算结果：使用is才能够得到计算结果，不然只是一个表达式。<br> 对比：<pre><code>?- X = <span class="number">2</span> + <span class="number">3.</span>
+X = <span class="number">2</span>+<span class="number">3.</span>
+?- X is <span class="number">2</span> + <span class="number">3.</span>
+X = <span class="number">5.</span>
+</code></pre></li>
+</ol>
+<h3 id="合一(Unification)">合一(Unification)</h3><p>同一(Unify)概念是在 Prolog 背后的主要想法，它是逻辑学当中的一个的重要概念。《Prolog Programming for Artificial Intelligence》一书强调了出于效能的原因，在Prolog里用unification是不准确的，应该使用匹配(matching)，<br>    比如我们问Prolog：</p>
+<pre><code> ?- X = f<span class="params">(X)</span>.
+ 这句匹配请求应该是成功还是失败？在逻辑中的合一<span class="params">(Unification)</span>，它应该是失败的，然而在prolog里就能实现。大家可以通过下面的跟踪感受一下：
+ [trace]  ?- X = f<span class="params">(X)</span>, Y = X.
+   Call: <span class="params">(<span class="number">8</span>)</span> _G951=f<span class="params">(_G951)</span> ? creep
+   Exit: <span class="params">(<span class="number">8</span>)</span> f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(...)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>=f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(...)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span> ? creep
+   Call: <span class="params">(<span class="number">8</span>)</span> _G956=f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(...)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span> ? creep
+   Exit: <span class="params">(<span class="number">8</span>)</span> f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(...)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>=f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(...)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span> ? creep
+X = Y, Y = f<span class="params">(Y)</span>.
+
+[trace]  ?- X = f<span class="params">(X)</span>, Y =f<span class="params">(X)</span>.
+   Call: <span class="params">(<span class="number">8</span>)</span> _G951=f<span class="params">(_G951)</span> ? creep
+   Exit: <span class="params">(<span class="number">8</span>)</span> f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(...)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>=f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(...)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span> ? creep
+   Call: <span class="params">(<span class="number">8</span>)</span> _G958=f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(...)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span> ? creep
+   Exit: <span class="params">(<span class="number">8</span>)</span> f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(...)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>=f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(...)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span> ? creep
+X = Y, Y = f<span class="params">(_S1)</span>, <span class="built_in">%</span> where
+_S1 = f<span class="params">(_S1)</span>.
+</code></pre><p>总而言之，它表示绑定变量的内容的机制并可以看作为一种只一次的(one-time)赋值。在 Prolog 中，这种操作用符号 “=” 来指示。</p>
+<ol>
+<li>在传统 Prolog 中，未实例化的变量 X —— 就是说在它上面以前没有进行合一，可以合一于一个原子、一个项、或另一个未实例化的变量，因此在效果上变成了它的别名。在很多现代 Prolog 方言和一阶逻辑演算中，变量<em>不能合一于包含它的项</em>；这叫做出现检查。</li>
+<li>Prolog 原子只能合一于同一个原子。</li>
+<li>类似的，项只能合一于另一个项，如果顶部函数符号和项的元数(arity)和这个项是一样的，并且参数可以同时合一。注意这是递归行为。<br>由于它的声明本性，一序列合一的次序(通常)是不重要的。</li>
+</ol>
+<p>注意： 在一阶逻辑的术语中，原子是基本命题而且其合一同 Prolog 项一样。<br>example:</p>
+<pre><code><span class="number">1</span>. 这些是合一的：
+     red = fred.         true
+     ‘Hey you’ = ‘Hey you’.    true
+     fred=X.            X=fred.
+     X=Y.            Y=X. 
+     <span class="function"><span class="title">foo</span><span class="params">(X)</span></span> = <span class="function"><span class="title">foo</span><span class="params">(bar)</span></span>.        X=bar.
+     <span class="function"><span class="title">foo</span><span class="params">(N,N)</span></span> = <span class="function"><span class="title">foo</span><span class="params">(bar, X)</span></span>.        N=X, X=bar.
+     <span class="function"><span class="title">foo</span><span class="params">(foo(bar)</span></span>) = <span class="function"><span class="title">foo</span><span class="params">(X)</span></span>        X=<span class="function"><span class="title">foo</span><span class="params">(bar)</span></span>
+<span class="number">2</span>. 这些不是合一的：
+     <span class="number">1</span> = <span class="function"><span class="title">sin</span><span class="params">(pi/<span class="number">2</span>)</span></span>.     <span class="comment">//1 is sin(pi/2).也是false，然而1 =:= sin(pi/2)是true</span>
+     fred = jim.
+     ‘Hey you’ = ‘Hey me’.
+     <span class="function"><span class="title">frou</span><span class="params">(frou)</span></span> = <span class="function"><span class="title">f</span><span class="params">(frou)</span></span>.
+     <span class="function"><span class="title">foo</span><span class="params">(bar)</span></span> = <span class="function"><span class="title">foo</span><span class="params">(bar,bar)</span></span>.
+     <span class="function"><span class="title">foo</span><span class="params">(N,N)</span></span> = <span class="function"><span class="title">foo</span><span class="params">(bar,rab)</span></span>.
+</code></pre><h3 id="其他命令：">其他命令：</h3><ul>
+<li>跟踪(Trace)：<pre><code>?- <span class="keyword">trace</span>.<span class="comment">//开始</span>
+[<span class="keyword">trace</span>] ?- notrace.<span class="comment">//结束</span>
+</code></pre></li>
+<li>调试(Debug)：<pre><code><span class="attr_selector">[trace]</span> ?<span class="tag">-</span> <span class="tag">notrace</span>.<span class="comment">//从跟踪结束</span>
+<span class="attr_selector">[debug]</span> ?<span class="tag">-</span> <span class="tag">nodebug</span>.<span class="comment">//结束调试</span>
+</code></pre></li>
+</ul>
+<p><em>Reference:</em></p>
+<ol>
+<li><em><a href="https://zh.wikipedia.org/wiki/合一" target="_blank" rel="external">https://zh.wikipedia.org/wiki/合一</a></em></li>
+<li>_<a href="http://www.swi-prolog.org/pldoc/doc_for?object=manual" target="_blank" rel="external">http://www.swi-prolog.org/pldoc/doc_for?object=manual</a>_</li>
+<li><em>Prolog Programming for Artificial Intelligence 4th edition - chapter 2、3</em></li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>第三周：这周的主要内容是算数操作符，合一的概念还有跟踪和调试的方法。</p>
+<p>这是第一个版本，时间仓促，没有怎么看书就发了出来，如有出错还请见谅，之后会对错误和遗漏进行修改。</p>]]>
+    
+    </summary>
+    
+      <category term="AI" scheme="http://xmhtech.me/tags/AI/"/>
+    
+      <category term="Prolog" scheme="http://xmhtech.me/tags/Prolog/"/>
+    
+      <category term="language" scheme="http://xmhtech.me/tags/language/"/>
+    
+      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Homebrew安装使用总结]]></title>
@@ -98,24 +198,24 @@ brew edit//使用 <span class="variable">$EDITOR</span> 编辑!
     <title><![CDATA[Prolog学习笔记（一）]]></title>
     <link href="http://xmhtech.me/2015/09/18/Prolog%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>http://xmhtech.me/2015/09/18/Prolog学习笔记（一）/</id>
-    <published>2015-09-18T13:46:10.000Z</published>
-    <updated>2015-09-18T13:50:45.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="前言：">前言：</h3><p>这学期选修了一门人工智能导论，来自罗马的老师要求的语言就是prolog（似乎是欧洲人的偏好），上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，在这里整理一下自己初步的学习。</p>
-<a id="more"></a>
+    <published>2015-09-18T13:18:00.000Z</published>
+    <updated>2015-09-27T09:43:36.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="前言：">前言：</h3><p>选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。</p>
 <h3 id="Prolog简介：">Prolog简介：</h3><p>有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。</p>
+<a id="more"></a>
 <p>配置环境（macbook air）：  </p>
 <ol>
-<li><p>直接用homebrew安装swi-prolog（没有安装的参见另一篇博文：<a href="">Homebrew 安装使用总结</a>）</p>
+<li><p>直接用homebrew安装swi-prolog（没有安装的参见另一篇博文：<a href="http://xmhtech.me/2015/09/19/Homebrew安装使用总结/">Homebrew 安装使用总结</a>）</p>
 <blockquote>
 <p>What is swim-prolog?<br>它是一个prolog的解释器</p>
 </blockquote>
-<pre><code><span class="keyword">brew </span>install homebrew/x11/<span class="keyword">swi-prolog</span>
-</code></pre></li>
+<p> brew install homebrew/x11/swi-prolog</p>
+</li>
 <li><p>常用命令</p>
 <pre><code>swipl <span class="comment">//调出主界面</span>
 halt. <span class="comment">//退出，Control+D </span>
-consult<span class="params">('’)</span>. <span class="comment">//编译代码</span>
-reconsult<span class="params">()</span>.<span class="comment">//重新编译</span>
+consult<span class="params">('’)</span>. <span class="comment">//</span>
+reconsult<span class="params">()</span>.<span class="comment">//</span>
 </code></pre></li>
 </ol>
 <p>基本语法</p>
@@ -126,15 +226,19 @@ reconsult<span class="params">()</span>.<span class="comment">//重新编译</sp
 <li>总是以大写字母或者下划线开始</li>
 <li>对于变量没有类型而言，它能选用任何值</li>
 <li>变量有它自己的作用域，其他子句的同名变量不会继承上一子句的值</li>
-<li>变量可以被看做是全称量词，读作“任给”</li>
-</ul>
-</li>
+<li>变量可以被看做是全称量词，读作“任给”<br>*常量(constants) :<ul>
 <li>原子(atom)：<ul>
-<li>常量(constants)：由小写字母开头的字符串，可以有数字</li>
-<li>整数(integer)：绝对值小于某数的正数或负数</li>
+<li>以小写字母开头，由字母、数字和下划线组成</li>
+<li>由特殊符号组成</li>
+<li>由单引号围起来的句子</li>
 </ul>
 </li>
-<li>结构(structure)：后面介绍</li>
+<li>数字(number)：绝对值小于某数的正数或负数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>结构体(structure)：后面介绍</li>
 </ul>
 </li>
 <li>规则(rules)<ul>
@@ -151,10 +255,8 @@ reconsult<span class="params">()</span>.<span class="comment">//重新编译</sp
 </li>
 </ol>
 <p>其他：  </p>
-<ol>
-<li>询问时，分号的作用：使当前子句无效，继续搜索答案。</li>
-</ol>
-<p><strong>Prolog是如何回答问题的?</strong>  </p>
+<pre><code><span class="number">1.</span> 询问时，分号的作用：使当前子句无效，继续搜索答案。
+</code></pre><p><strong>Prolog是如何回答问题的?</strong>  </p>
 <p>Prolog寻找证据的顺序正好与我们的推理相反，即执果索因，使用目标、规则、代换和当前目标来推导出新的目标，直到新目标恰好是简单事实时，给出答案。</p>
 <p><em>Reference:</em></p>
 <ol>
@@ -162,7 +264,8 @@ reconsult<span class="params">()</span>.<span class="comment">//重新编译</sp
 </ol>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="前言：">前言：</h3><p>这学期选修了一门人工智能导论，来自罗马的老师要求的语言就是prolog（似乎是欧洲人的偏好），上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，在这里整理一下自己初步的学习。</p>]]>
+    <![CDATA[<h3 id="前言：">前言：</h3><p>选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。</p>
+<h3 id="Prolog简介：">Prolog简介：</h3><p>有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。</p>]]>
     
     </summary>
     

@@ -5,16 +5,19 @@
   
   <title>Prolog学习笔记（一） | Xie&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言：这学期选修了一门人工智能导论，来自罗马的老师要求的语言就是prolog（似乎是欧洲人的偏好），上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，在这里整理一下自己初步的学习。">
+  <meta name="description" content="前言：选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。
+Prolog简介：有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Prolog学习笔记（一）">
 <meta property="og:url" content="http://xmhtech.me/2015/09/18/Prolog学习笔记（一）/index.html">
 <meta property="og:site_name" content="Xie's blog">
-<meta property="og:description" content="前言：这学期选修了一门人工智能导论，来自罗马的老师要求的语言就是prolog（似乎是欧洲人的偏好），上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，在这里整理一下自己初步的学习。">
-<meta property="og:updated_time" content="2015-09-18T13:50:45.000Z">
+<meta property="og:description" content="前言：选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。
+Prolog简介：有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。">
+<meta property="og:updated_time" content="2015-09-27T09:43:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Prolog学习笔记（一）">
-<meta name="twitter:description" content="前言：这学期选修了一门人工智能导论，来自罗马的老师要求的语言就是prolog（似乎是欧洲人的偏好），上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，在这里整理一下自己初步的学习。">
+<meta name="twitter:description" content="前言：选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。
+Prolog简介：有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。">
   
     <link rel="alternative" href="/atom.xml" title="Xie&#39;s blog" type="application/atom+xml">
   
@@ -128,7 +131,7 @@ var _hmt = _hmt || [];
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Google/" style="font-size: 10px;">Google</a> <a href="/tags/Network/" style="font-size: 10px;">Network</a> <a href="/tags/OpenWrt/" style="font-size: 10px;">OpenWrt</a> <a href="/tags/Prolog/" style="font-size: 10px;">Prolog</a> <a href="/tags/Resource/" style="font-size: 15px;">Resource</a> <a href="/tags/SDN/" style="font-size: 10px;">SDN</a> <a href="/tags/Translation/" style="font-size: 10px;">Translation</a> <a href="/tags/book/" style="font-size: 10px;">book</a> <a href="/tags/develop/" style="font-size: 10px;">develop</a> <a href="/tags/info/" style="font-size: 20px;">info</a> <a href="/tags/language/" style="font-size: 10px;">language</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/router/" style="font-size: 10px;">router</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
+						<a href="/tags/AI/" style="font-size: 15px;">AI</a> <a href="/tags/Google/" style="font-size: 10px;">Google</a> <a href="/tags/Network/" style="font-size: 10px;">Network</a> <a href="/tags/OpenWrt/" style="font-size: 10px;">OpenWrt</a> <a href="/tags/Prolog/" style="font-size: 15px;">Prolog</a> <a href="/tags/Resource/" style="font-size: 15px;">Resource</a> <a href="/tags/SDN/" style="font-size: 10px;">SDN</a> <a href="/tags/Translation/" style="font-size: 10px;">Translation</a> <a href="/tags/book/" style="font-size: 10px;">book</a> <a href="/tags/develop/" style="font-size: 10px;">develop</a> <a href="/tags/info/" style="font-size: 20px;">info</a> <a href="/tags/language/" style="font-size: 15px;">language</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/router/" style="font-size: 10px;">router</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
 					</div>
 				</section>
 				
@@ -200,7 +203,7 @@ var _hmt = _hmt || [];
   
     <div class="article-meta">
       <a href="/2015/09/18/Prolog学习笔记（一）/" class="article-date">
-  	<time datetime="2015-09-18T13:46:10.000Z" itemprop="datePublished">2015-09-18</time>
+  	<time datetime="2015-09-18T13:18:00.000Z" itemprop="datePublished">2015-09-18</time>
 </a>
     </div>
   
@@ -237,22 +240,22 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前言：">前言：</h3><p>这学期选修了一门人工智能导论，来自罗马的老师要求的语言就是prolog（似乎是欧洲人的偏好），上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，在这里整理一下自己初步的学习。</p>
-<a id="more"></a>
+        <h3 id="前言：">前言：</h3><p>选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。</p>
 <h3 id="Prolog简介：">Prolog简介：</h3><p>有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。</p>
+<a id="more"></a>
 <p>配置环境（macbook air）：  </p>
 <ol>
-<li><p>直接用homebrew安装swi-prolog（没有安装的参见另一篇博文：<a href="">Homebrew 安装使用总结</a>）</p>
+<li><p>直接用homebrew安装swi-prolog（没有安装的参见另一篇博文：<a href="http://xmhtech.me/2015/09/19/Homebrew安装使用总结/">Homebrew 安装使用总结</a>）</p>
 <blockquote>
 <p>What is swim-prolog?<br>它是一个prolog的解释器</p>
 </blockquote>
-<pre><code><span class="keyword">brew </span>install homebrew/x11/<span class="keyword">swi-prolog</span>
-</code></pre></li>
+<p> brew install homebrew/x11/swi-prolog</p>
+</li>
 <li><p>常用命令</p>
 <pre><code>swipl <span class="comment">//调出主界面</span>
 halt. <span class="comment">//退出，Control+D </span>
-consult<span class="params">('’)</span>. <span class="comment">//编译代码</span>
-reconsult<span class="params">()</span>.<span class="comment">//重新编译</span>
+consult<span class="params">('’)</span>. <span class="comment">//</span>
+reconsult<span class="params">()</span>.<span class="comment">//</span>
 </code></pre></li>
 </ol>
 <p>基本语法</p>
@@ -263,15 +266,19 @@ reconsult<span class="params">()</span>.<span class="comment">//重新编译</sp
 <li>总是以大写字母或者下划线开始</li>
 <li>对于变量没有类型而言，它能选用任何值</li>
 <li>变量有它自己的作用域，其他子句的同名变量不会继承上一子句的值</li>
-<li>变量可以被看做是全称量词，读作“任给”</li>
-</ul>
-</li>
+<li>变量可以被看做是全称量词，读作“任给”<br>*常量(constants) :<ul>
 <li>原子(atom)：<ul>
-<li>常量(constants)：由小写字母开头的字符串，可以有数字</li>
-<li>整数(integer)：绝对值小于某数的正数或负数</li>
+<li>以小写字母开头，由字母、数字和下划线组成</li>
+<li>由特殊符号组成</li>
+<li>由单引号围起来的句子</li>
 </ul>
 </li>
-<li>结构(structure)：后面介绍</li>
+<li>数字(number)：绝对值小于某数的正数或负数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>结构体(structure)：后面介绍</li>
 </ul>
 </li>
 <li>规则(rules)<ul>
@@ -288,10 +295,8 @@ reconsult<span class="params">()</span>.<span class="comment">//重新编译</sp
 </li>
 </ol>
 <p>其他：  </p>
-<ol>
-<li>询问时，分号的作用：使当前子句无效，继续搜索答案。</li>
-</ol>
-<p><strong>Prolog是如何回答问题的?</strong>  </p>
+<pre><code><span class="number">1.</span> 询问时，分号的作用：使当前子句无效，继续搜索答案。
+</code></pre><p><strong>Prolog是如何回答问题的?</strong>  </p>
 <p>Prolog寻找证据的顺序正好与我们的推理相反，即执果索因，使用目标、规则、代换和当前目标来推导出新的目标，直到新目标恰好是简单事实时，给出答案。</p>
 <p><em>Reference:</em></p>
 <ol>
