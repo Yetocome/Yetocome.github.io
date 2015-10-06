@@ -5,7 +5,7 @@
   <subtitle><![CDATA[Any idea or discussion is highly welcomed.250745820@qq.com]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://xmhtech.me//"/>
-  <updated>2015-09-27T09:45:08.000Z</updated>
+  <updated>2015-10-06T08:56:30.000Z</updated>
   <id>http://xmhtech.me//</id>
   
   <author>
@@ -14,6 +14,180 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Prolog学习笔记（三）]]></title>
+    <link href="http://xmhtech.me/2015/10/05/Prolog%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/"/>
+    <id>http://xmhtech.me/2015/10/05/Prolog学习笔记（三）/</id>
+    <published>2015-10-05T07:43:02.000Z</published>
+    <updated>2015-10-06T08:56:30.000Z</updated>
+    <content type="html"><![CDATA[<p>本周的重点是AND/OR树、结构体和表。<br>通过AND/OR树，我们可以很好地理解Prolog的证明策略；<br>结构体是（一）里没有介绍过的类型，要注意与<strong>事实(facts)</strong>的区别；<br>List的构造与使用让我们真正感受到了在prolog里递归的力量，你会感叹设计递归的精妙与艰辛:p</p>
+<a id="more"></a>
+<h3 id="Representing_Proofs_using_Trees">Representing Proofs using Trees</h3><p>为了更好地理解Prolog的证明策略，我们可以用AND/OR树来表示它的行为，利用下图来理解：</p>
+<p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/prologAND%3AOR%20Tree.png" alt=""></p>
+<p>对应：<br>P :- Q, R.<br>P :- S.</p>
+<p>Q :- T.<br>Q :- U.</p>
+<p><strong>特征</strong></p>
+<ol>
+<li>询问是自顶向下(Top-Bottom)的</li>
+<li>树向下生长</li>
+<li>每一个分支表示一个子目标<ol>
+<li>左边的数字表示序号</li>
+<li>右边的表示变量以及其实例化</li>
+</ol>
+</li>
+<li>每个分支结束于：<ol>
+<li>成功的匹配用空心圆圈表示</li>
+<li>不成功则在圆圈里加上叉或</li>
+<li>另一个子目标（backtracking）</li>
+</ol>
+</li>
+</ol>
+<h3 id="Structures">Structures</h3><h5 id="简介">简介</h5><p>结构体就是一个拥有一个或几个组成成分的对象，组成成分其本身也可以是结构体，这种嵌套的定义使得树的意义再一次在prolog里体现。</p>
+<h5 id="使用">使用</h5><p>比方说1983年五月一日可以写成：</p>
+<pre><code><span class="function"><span class="title">date</span><span class="params">(<span class="number">1</span>,May,<span class="number">1983</span>)</span></span>
+</code></pre><p>在这里date被称为functor（函数子？），这个结构的组成都是常数，实际上它可以是变量：</p>
+<pre><code><span class="function"><span class="title">date</span><span class="params">(Day,may,<span class="number">1983</span>)</span></span>
+</code></pre><p>它表示的是1983年五月的某一天（其实只是我们这么认为，当然可以有别的解释）</p>
+<h5 id="匹配">匹配</h5><p>结构体的匹配原则与在（二）里有较详尽介绍的合一一致。</p>
+<h5 id="与事实的区别">与事实的区别</h5><p>语法形式上结构和事实很像，但它们不是一个东西：</p>
+<ol>
+<li>当结构未被存储在数据库里时，它不是事实（需要以句号结尾）；</li>
+<li>结构通常只被用在组织数据上；</li>
+<li>它们的functors不需要去匹配谓词。</li>
+</ol>
+<p>但是谓词却能够以结构形式存储…</p>
+<p>eg: <strong>command(X) :- X.</strong></p>
+<pre><code>?- X = <span class="built_in">write</span>(<span class="string">'Passing a command'</span>), <span class="command"><span class="keyword">command</span>(<span class="title">X</span>).</span>
+Passing <span class="operator">a</span> <span class="command"><span class="keyword">command</span></span>
+X = <span class="built_in">write</span>(<span class="string">'Passing a command'</span>) ?
+<span class="constant">true</span>
+</code></pre><p>是不是感觉有些混乱？关于facts、predicates、functors和terms，大家可以参考stackoverflow下的一个问答：<br><a href="http://stackoverflow.com/questions/19115712/in-prolog-is-a-fact-the-same-as-a-functor" target="_blank" rel="external">http://stackoverflow.com/questions/19115712/in-prolog-is-a-fact-the-same-as-a-functor</a></p>
+<p>里面的问题是：</p>
+<blockquote>
+<p>If you have for instance next line of Prolog declaration:</p>
+<pre><code>move(<span class="keyword">state</span>(middle, onbox, middle, hasnot),
+      grasp,
+      <span class="keyword">state</span>(middle, onbox, middle, has)).
+</code></pre><p>Are both move and state functors?</p>
+<p>I’m kind off confused by facts, functors, terms, …</p>
+</blockquote>
+<p>这里截取一位热心网友的回答（太长就不翻译了）：</p>
+<blockquote>
+<p>In Prolog functors are syntactic elements we use to build structures (compound terms) from simpler ones.</p>
+<p>Think of a hierarchy of bound Prolog terms, with the base containing the simplest “atomic” cases, i.e. atoms and numbers. Add to these Prolog variables, which may be bound or not depending on context. The rules for Prolog functor names (identifiers) are the same as for Prolog atoms</p>
+<p>Functors are syntactic units that have a finite number of arguments (“arity”), and if a functor is supplied with terms for those arguments, then we get a compound term. In your example there is a principal functor move with three arguments, so its arity is 3. The functor name and arity are often combined, since technically Prolog treats the same functor name with two distinct arities as different functors, and so we might refer to move/3 as the outer functor of your compound term.</p>
+<p>Note that the first and third arguments in your example of a term are themselves compound terms, built using functor state/4…</p>
+</blockquote>
+<p>更多的自己去原文链接看吧，个人觉得说的还是挺有道理的。</p>
+<h3 id="List">List</h3><p>表(list)是一系列数据(包括表自己)的集合，由方括号包着，内部通过逗号(commmas)分隔。</p>
+<p>eg：[ann, tennis, tom, skiing]<br>还可以是空的：[]</p>
+<h5 id="不同的表示形式">不同的表示形式</h5><p>第一个元素，我们称之为表头(<em>head</em>)，剩下的部分统称为尾(<em>tail</em>),所以在prolog里表又有不同的表示形式（喂喂，这里的因果关系有问题吧”(ºДº*)）。<br>.(Head, Tail)</p>
+<p>所以上面的表可以表示为(可以用树来理解)：<br>.(ann,.(tennis,.(tom,.(sking,[]))))</p>
+<p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/prologlist_tree.png" alt=""></p>
+<p>更为直观地表示为：<br>[Head | Tail]</p>
+<p>这其实是list的递归表示，在polog里，它的存在让许多表的操作可以优雅地以<strong><em>递归</em></strong>方式实现，应用的例子直接从下面的List操作中体现。</p>
+<h5 id="List_操作">List 操作</h5><ol>
+<li><p>concatenation（连接操作）<br> 实现：</p>
+<pre><code><span class="function"><span class="title">conc</span><span class="params">([], L2, L2)</span></span>.
+<span class="function"><span class="title">conc</span><span class="params">([H|T1],L2,[H|T])</span></span> :-
+    <span class="function"><span class="title">conc</span><span class="params">(T1, L2, T)</span></span>.
+</code></pre><p> 使用</p>
+<pre><code>?- <span class="atom">conc</span>([<span class="atom">a</span>,<span class="atom">b</span>], [<span class="atom">c</span>,<span class="atom">d</span>], <span class="name">P</span>).
+    <span class="name">P</span> = [<span class="atom">a</span>, <span class="atom">b</span>, <span class="atom">c</span>, <span class="atom">d</span>].
+</code></pre><p> 实际上你还可以把它当删除用，在query时在List1或者List2的位置用变量就可以了。<br> 某种意义上可以用它实现接下来所有操作，但是有些操作还是重写比较简洁，也不容易出现问题，conc在连接单个元素时要注意加上[]，因为它并没有定义单个元素的base case，直接用常量会出现问题，prolog将不会认为那是一个list然后得出false的结论。</p>
+</li>
+<li><p>删除<br> 实现：</p>
+<pre><code><span class="function"><span class="title">delete</span><span class="params">(A,[A|X],X)</span></span>.
+<span class="function"><span class="title">delete</span><span class="params">(A,[B|X],[B|Y])</span></span> :-
+    <span class="function"><span class="title">delete</span><span class="params">(A,X,Y)</span></span>.
+</code></pre><p> 使用：</p>
+<pre><code>?- delete(<span class="literal">a</span>, [<span class="literal">a</span>,b,e,<span class="literal">a</span>], L).
+L = [b, e, <span class="literal">a</span>] <span class="comment">;</span>
+L = [<span class="literal">a</span>, b, e] <span class="comment">;</span>
+<span class="literal">false</span>.
+</code></pre><p> 注意这种删除只支持删除一个元素，如果重复的话，它输出的是删除一次的不同情况。</p>
+</li>
+<li><p>头部添加<br> 实现：</p>
+<pre><code><span class="function"><span class="title">add_front</span><span class="params">(X, L , [X|L])</span></span>.
+</code></pre><p> 使用：</p>
+<pre><code>?- <span class="atom">add</span>(<span class="atom">a</span>,[<span class="atom">b</span>,<span class="atom">c</span>,<span class="atom">d</span>],<span class="name">L</span>).
+<span class="name">L</span> = [<span class="atom">a</span>, <span class="atom">b</span>, <span class="atom">c</span>, <span class="atom">d</span>].
+</code></pre></li>
+<li><p>是否成员<br> 实现：</p>
+<pre><code><span class="function"><span class="title">mem</span><span class="params">(T,[T|_])</span></span>.
+<span class="function"><span class="title">mem</span><span class="params">(A,[_|T])</span></span> :-
+    <span class="function"><span class="title">mem</span><span class="params">(A, T)</span></span>.
+</code></pre><p> 不写使用了，累了。</p>
+<p> 这里的下划线(underscore)代表它只是个无用的变量，内容是什么无关紧要，prolog在查阅时会跳过它。</p>
+</li>
+<li><p>子表(sublist)<br> 实现：</p>
+<pre><code><span class="function"><span class="title">sublist</span><span class="params">(S, L)</span></span> :-
+    <span class="function"><span class="title">conc</span><span class="params">(_, L2, L)</span></span>,
+    <span class="function"><span class="title">conc</span><span class="params">(S, _, L2)</span></span>.
+</code></pre><p> 使用：</p>
+<pre><code>?- <span class="atom">sublist</span>(<span class="name">S</span>, [<span class="atom">a</span>,<span class="atom">b</span>,<span class="atom">c</span>]).
+<span class="name">S</span> = [] ;
+<span class="name">S</span> = [<span class="atom">a</span>] ;
+<span class="name">S</span> = [<span class="atom">a</span>, <span class="atom">b</span>] ;
+<span class="name">S</span> = [<span class="atom">a</span>, <span class="atom">b</span>, <span class="atom">c</span>] ;
+<span class="name">S</span> = [] ;
+<span class="name">S</span> = [<span class="atom">b</span>] ;
+<span class="name">S</span> = [<span class="atom">b</span>, <span class="atom">c</span>] ;
+<span class="name">S</span> = [] ;
+<span class="name">S</span> = [<span class="atom">c</span>] ;
+<span class="name">S</span> = [] ;
+<span class="atom">false</span>.
+</code></pre><p> 这个使用conc比较好理解，你将会得到输入表的所有子表（注意左边的是子表，用反就没完没了了）。</p>
+</li>
+<li><p>插入<br> 实现：</p>
+<pre><code><span class="operator"><span class="keyword">insert</span>(X, <span class="keyword">L</span>, <span class="keyword">D</span>) :-
+    <span class="keyword">delete</span>(X, <span class="keyword">D</span>, <span class="keyword">L</span>).</span>
+</code></pre></li>
+<li><p>计数<br> 实现：</p>
+<pre><code><span class="function"><span class="title">len</span><span class="params">([], <span class="number">0</span>)</span></span>.
+<span class="function"><span class="title">len</span><span class="params">([_|L], N)</span></span> :-
+    <span class="function"><span class="title">len</span><span class="params">(L, N_)</span></span>,
+    N is N_ + <span class="number">1</span>.
+</code></pre></li>
+<li><p>prolog里自带的list操作</p>
+<p> 上面的的操作其实很多prolog已经写好了，直接调来用就可以了，这里给出我用的swi-prolog里的原生操作：</p>
+<p> <img src="http://7xkwu7.com1.z0.glb.clouddn.com/prologlist.png" alt=""><br> 有点多，请读者自行在prolog下用help(谓词名)来获取实用信息。</p>
+</li>
+</ol>
+<h5 id="list应用——全排列">list应用——全排列</h5><ul>
+<li><p>方法一</p>
+<pre><code><span class="function"><span class="title">permutation</span><span class="params">([], [])</span></span>.
+<span class="function"><span class="title">permutation</span><span class="params">([X|L], P)</span></span> :-
+    <span class="function"><span class="title">permutation</span><span class="params">(L, L1)</span></span>,
+    <span class="function"><span class="title">insert</span><span class="params">(X, L1, P)</span></span>.
+</code></pre></li>
+<li><p>方法二</p>
+<pre><code><span class="function"><span class="title">permutation</span><span class="params">([], [])</span></span>.
+<span class="function"><span class="title">permutation_</span><span class="params">(L, [X|P])</span></span> :-
+    <span class="function"><span class="title">delete</span><span class="params">(X, L, L1)</span></span>,
+    <span class="function"><span class="title">permutation</span><span class="params">(L1,P)</span></span>
+</code></pre></li>
+</ul>
+<p><em>Reference:</em></p>
+<ol>
+<li><em>Prolog Programming for Artificial Intelligence 4th edition - chapter 2/3</em> </li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>本周的重点是AND/OR树、结构体和表。<br>通过AND/OR树，我们可以很好地理解Prolog的证明策略；<br>结构体是（一）里没有介绍过的类型，要注意与<strong>事实(facts)</strong>的区别；<br>List的构造与使用让我们真正感受到了在prolog里递归的力量，你会感叹设计递归的精妙与艰辛:p</p>]]>
+    
+    </summary>
+    
+      <category term="AI" scheme="http://xmhtech.me/tags/AI/"/>
+    
+      <category term="Prolog" scheme="http://xmhtech.me/tags/Prolog/"/>
+    
+      <category term="language" scheme="http://xmhtech.me/tags/language/"/>
+    
+      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Prolog学习笔记（二）]]></title>
@@ -199,11 +373,11 @@ brew edit//使用 <span class="variable">$EDITOR</span> 编辑!
     <link href="http://xmhtech.me/2015/09/18/Prolog%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>http://xmhtech.me/2015/09/18/Prolog学习笔记（一）/</id>
     <published>2015-09-18T13:18:00.000Z</published>
-    <updated>2015-09-27T09:43:36.000Z</updated>
+    <updated>2015-10-06T08:58:44.000Z</updated>
     <content type="html"><![CDATA[<h3 id="前言：">前言：</h3><p>选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。</p>
 <h3 id="Prolog简介：">Prolog简介：</h3><p>有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。</p>
 <a id="more"></a>
-<p>配置环境（macbook air）：  </p>
+<p>配置环境（macbook air）：</p>
 <ol>
 <li><p>直接用homebrew安装swi-prolog（没有安装的参见另一篇博文：<a href="http://xmhtech.me/2015/09/19/Homebrew安装使用总结/">Homebrew 安装使用总结</a>）</p>
 <blockquote>
@@ -213,7 +387,7 @@ brew edit//使用 <span class="variable">$EDITOR</span> 编辑!
 </li>
 <li><p>常用命令</p>
 <pre><code>swipl <span class="comment">//调出主界面</span>
-halt. <span class="comment">//退出，Control+D </span>
+halt. <span class="comment">//退出，Control+D</span>
 consult<span class="params">('’)</span>. <span class="comment">//</span>
 reconsult<span class="params">()</span>.<span class="comment">//</span>
 </code></pre></li>
@@ -247,16 +421,16 @@ reconsult<span class="params">()</span>.<span class="comment">//</span>
 </ul>
 </li>
 <li>事实(facts)：可以看做只有头的规则</li>
-<li>问题(questions)：可以看做只有体的规则</li>
-<li>注释(comment)  <ul>
+<li>问题(query)：可以看做只有体的规则</li>
+<li>注释(comment)<ul>
 <li>单行：%</li>
 <li>多行：/<em>开始</em>/结束</li>
 </ul>
 </li>
 </ol>
-<p>其他：  </p>
+<p>其他：</p>
 <pre><code><span class="number">1.</span> 询问时，分号的作用：使当前子句无效，继续搜索答案。
-</code></pre><p><strong>Prolog是如何回答问题的?</strong>  </p>
+</code></pre><p><strong>Prolog是如何回答问题的?</strong></p>
 <p>Prolog寻找证据的顺序正好与我们的推理相反，即执果索因，使用目标、规则、代换和当前目标来推导出新的目标，直到新目标恰好是简单事实时，给出答案。</p>
 <p><em>Reference:</em></p>
 <ol>
@@ -361,7 +535,7 @@ curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization
     <link href="http://xmhtech.me/2015/09/05/%E5%88%9D%E8%AF%86SDN/"/>
     <id>http://xmhtech.me/2015/09/05/初识SDN/</id>
     <published>2015-09-05T02:51:23.000Z</published>
-    <updated>2015-09-05T02:56:03.000Z</updated>
+    <updated>2015-10-06T04:23:10.000Z</updated>
     <content type="html"><![CDATA[<p><strong>SDN</strong>是一种为了解决传统网络中各种问题，比如管理困难、维护困难、拓展性差、灵活性差等，而出现的<strong>新型</strong>的<em><strong>网络架构</strong></em>。它的核心特征是实现了控制平面和数据平面的分离、控制逻辑集中和网络可编程。它的意义在于淡化底层设备的作用，让网络硬件的设计更加简单通用，打破“<strong>厂商锁定</strong>”，并且在这之上建立一个开放的网络操作系统，让开发者进入网络服务开发的门槛更低，建立起一个大三层网络生态系统，激发网络<em><strong>创新</strong></em>，给用户带来更好的使用体验。</p>
 <a id="more"></a>
 <h3 id="架构">架构</h3><p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/sdnsdn-3layers-2.gif" alt=""><br><em>图片出自ONF</em></p>
@@ -459,7 +633,7 @@ curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization
     <link href="http://xmhtech.me/2015/08/08/%E6%90%9C%E7%B4%A2%E8%BF%9B%E9%98%B6/"/>
     <id>http://xmhtech.me/2015/08/08/搜索进阶/</id>
     <published>2015-08-08T14:00:50.000Z</published>
-    <updated>2015-08-08T14:04:17.000Z</updated>
+    <updated>2015-10-06T04:20:31.000Z</updated>
     <content type="html"><![CDATA[<a id="more"></a>
 ]]></content>
     <summary type="html">

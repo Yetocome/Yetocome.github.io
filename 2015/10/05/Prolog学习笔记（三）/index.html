@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Prolog学习笔记（三） | Xie&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本周的重点是AND/OR树、结构体和表。通过AND/OR树，我们可以很好地理解Prolog的证明策略；结构体是（一）里没有介绍过的类型，要注意与事实(facts)的区别；List的构造与使用让我们真正感受到了在prolog里递归的力量，你会感叹设计递归的精妙与艰辛:p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Prolog学习笔记（三）">
+<meta property="og:url" content="http://xmhtech.me/2015/10/05/Prolog学习笔记（三）/index.html">
+<meta property="og:site_name" content="Xie's blog">
+<meta property="og:description" content="本周的重点是AND/OR树、结构体和表。通过AND/OR树，我们可以很好地理解Prolog的证明策略；结构体是（一）里没有介绍过的类型，要注意与事实(facts)的区别；List的构造与使用让我们真正感受到了在prolog里递归的力量，你会感叹设计递归的精妙与艰辛:p">
+<meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/prologAND%3AOR%20Tree.png">
+<meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/prologlist_tree.png">
+<meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/prologlist.png">
+<meta property="og:updated_time" content="2015-10-06T08:56:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Prolog学习笔记（三）">
+<meta name="twitter:description" content="本周的重点是AND/OR树、结构体和表。通过AND/OR树，我们可以很好地理解Prolog的证明策略；结构体是（一）里没有介绍过的类型，要注意与事实(facts)的区别；List的构造与使用让我们真正感受到了在prolog里递归的力量，你会感叹设计递归的精妙与艰辛:p">
+  
+    <link rel="alternative" href="/atom.xml" title="Xie&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+<script type="text/javascript">
+#申请的百度统计代码
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?1f5823e44d3dbf23c03aa37d06b3f419";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</script>
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/daodao.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Xie Minghao</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Any idea or discussion is highly welcomed.250745820@qq.com</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">All</a></li>
+				        
+							<li><a href="/categories/Tech">Tech</a></li>
+				        
+							<li><a href="/categories/Sci">Sci</a></li>
+				        
+							<li><a href="/categories/Others">Others</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yetocome" title="github">github</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/61cd864864d3f8a1dee10862c79d4e32" title="zhihu">zhihu</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="mail" target="_blank" href="/<250745820@qq.com>" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/Google/" style="font-size: 10px;">Google</a> <a href="/tags/Network/" style="font-size: 10px;">Network</a> <a href="/tags/OpenWrt/" style="font-size: 10px;">OpenWrt</a> <a href="/tags/Prolog/" style="font-size: 20px;">Prolog</a> <a href="/tags/Resource/" style="font-size: 15px;">Resource</a> <a href="/tags/SDN/" style="font-size: 10px;">SDN</a> <a href="/tags/Translation/" style="font-size: 10px;">Translation</a> <a href="/tags/book/" style="font-size: 10px;">book</a> <a href="/tags/develop/" style="font-size: 10px;">develop</a> <a href="/tags/info/" style="font-size: 20px;">info</a> <a href="/tags/language/" style="font-size: 20px;">language</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/router/" style="font-size: 10px;">router</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">四川大学2014级计算机科学专业在读</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Xie Minghao</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/daodao.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Xie Minghao</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Any idea or discussion is highly welcomed.250745820@qq.com</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">All</a></li>
+		        
+					<li><a href="/categories/Tech">Tech</a></li>
+		        
+					<li><a href="/categories/Sci">Sci</a></li>
+		        
+					<li><a href="/categories/Others">Others</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yetocome" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/61cd864864d3f8a1dee10862c79d4e32" title="zhihu">zhihu</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/<250745820@qq.com>" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Prolog学习笔记（三）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/05/Prolog学习笔记（三）/" class="article-date">
+  	<time datetime="2015-10-05T07:43:02.000Z" itemprop="datePublished">2015-10-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Prolog学习笔记（三）
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Prolog/">Prolog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/language/">language</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Tech/">Tech</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本周的重点是AND/OR树、结构体和表。<br>通过AND/OR树，我们可以很好地理解Prolog的证明策略；<br>结构体是（一）里没有介绍过的类型，要注意与<strong>事实(facts)</strong>的区别；<br>List的构造与使用让我们真正感受到了在prolog里递归的力量，你会感叹设计递归的精妙与艰辛:p</p>
+<a id="more"></a>
+<h3 id="Representing_Proofs_using_Trees">Representing Proofs using Trees</h3><p>为了更好地理解Prolog的证明策略，我们可以用AND/OR树来表示它的行为，利用下图来理解：</p>
+<p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/prologAND%3AOR%20Tree.png" alt=""></p>
+<p>对应：<br>P :- Q, R.<br>P :- S.</p>
+<p>Q :- T.<br>Q :- U.</p>
+<p><strong>特征</strong></p>
+<ol>
+<li>询问是自顶向下(Top-Bottom)的</li>
+<li>树向下生长</li>
+<li>每一个分支表示一个子目标<ol>
+<li>左边的数字表示序号</li>
+<li>右边的表示变量以及其实例化</li>
+</ol>
+</li>
+<li>每个分支结束于：<ol>
+<li>成功的匹配用空心圆圈表示</li>
+<li>不成功则在圆圈里加上叉或</li>
+<li>另一个子目标（backtracking）</li>
+</ol>
+</li>
+</ol>
+<h3 id="Structures">Structures</h3><h5 id="简介">简介</h5><p>结构体就是一个拥有一个或几个组成成分的对象，组成成分其本身也可以是结构体，这种嵌套的定义使得树的意义再一次在prolog里体现。</p>
+<h5 id="使用">使用</h5><p>比方说1983年五月一日可以写成：</p>
+<pre><code><span class="function"><span class="title">date</span><span class="params">(<span class="number">1</span>,May,<span class="number">1983</span>)</span></span>
+</code></pre><p>在这里date被称为functor（函数子？），这个结构的组成都是常数，实际上它可以是变量：</p>
+<pre><code><span class="function"><span class="title">date</span><span class="params">(Day,may,<span class="number">1983</span>)</span></span>
+</code></pre><p>它表示的是1983年五月的某一天（其实只是我们这么认为，当然可以有别的解释）</p>
+<h5 id="匹配">匹配</h5><p>结构体的匹配原则与在（二）里有较详尽介绍的合一一致。</p>
+<h5 id="与事实的区别">与事实的区别</h5><p>语法形式上结构和事实很像，但它们不是一个东西：</p>
+<ol>
+<li>当结构未被存储在数据库里时，它不是事实（需要以句号结尾）；</li>
+<li>结构通常只被用在组织数据上；</li>
+<li>它们的functors不需要去匹配谓词。</li>
+</ol>
+<p>但是谓词却能够以结构形式存储…</p>
+<p>eg: <strong>command(X) :- X.</strong></p>
+<pre><code>?- X = <span class="built_in">write</span>(<span class="string">'Passing a command'</span>), <span class="command"><span class="keyword">command</span>(<span class="title">X</span>).</span>
+Passing <span class="operator">a</span> <span class="command"><span class="keyword">command</span></span>
+X = <span class="built_in">write</span>(<span class="string">'Passing a command'</span>) ?
+<span class="constant">true</span>
+</code></pre><p>是不是感觉有些混乱？关于facts、predicates、functors和terms，大家可以参考stackoverflow下的一个问答：<br><a href="http://stackoverflow.com/questions/19115712/in-prolog-is-a-fact-the-same-as-a-functor" target="_blank" rel="external">http://stackoverflow.com/questions/19115712/in-prolog-is-a-fact-the-same-as-a-functor</a></p>
+<p>里面的问题是：</p>
+<blockquote>
+<p>If you have for instance next line of Prolog declaration:</p>
+<pre><code>move(<span class="keyword">state</span>(middle, onbox, middle, hasnot),
+      grasp,
+      <span class="keyword">state</span>(middle, onbox, middle, has)).
+</code></pre><p>Are both move and state functors?</p>
+<p>I’m kind off confused by facts, functors, terms, …</p>
+</blockquote>
+<p>这里截取一位热心网友的回答（太长就不翻译了）：</p>
+<blockquote>
+<p>In Prolog functors are syntactic elements we use to build structures (compound terms) from simpler ones.</p>
+<p>Think of a hierarchy of bound Prolog terms, with the base containing the simplest “atomic” cases, i.e. atoms and numbers. Add to these Prolog variables, which may be bound or not depending on context. The rules for Prolog functor names (identifiers) are the same as for Prolog atoms</p>
+<p>Functors are syntactic units that have a finite number of arguments (“arity”), and if a functor is supplied with terms for those arguments, then we get a compound term. In your example there is a principal functor move with three arguments, so its arity is 3. The functor name and arity are often combined, since technically Prolog treats the same functor name with two distinct arities as different functors, and so we might refer to move/3 as the outer functor of your compound term.</p>
+<p>Note that the first and third arguments in your example of a term are themselves compound terms, built using functor state/4…</p>
+</blockquote>
+<p>更多的自己去原文链接看吧，个人觉得说的还是挺有道理的。</p>
+<h3 id="List">List</h3><p>表(list)是一系列数据(包括表自己)的集合，由方括号包着，内部通过逗号(commmas)分隔。</p>
+<p>eg：[ann, tennis, tom, skiing]<br>还可以是空的：[]</p>
+<h5 id="不同的表示形式">不同的表示形式</h5><p>第一个元素，我们称之为表头(<em>head</em>)，剩下的部分统称为尾(<em>tail</em>),所以在prolog里表又有不同的表示形式（喂喂，这里的因果关系有问题吧”(ºДº*)）。<br>.(Head, Tail)</p>
+<p>所以上面的表可以表示为(可以用树来理解)：<br>.(ann,.(tennis,.(tom,.(sking,[]))))</p>
+<p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/prologlist_tree.png" alt=""></p>
+<p>更为直观地表示为：<br>[Head | Tail]</p>
+<p>这其实是list的递归表示，在polog里，它的存在让许多表的操作可以优雅地以<strong><em>递归</em></strong>方式实现，应用的例子直接从下面的List操作中体现。</p>
+<h5 id="List_操作">List 操作</h5><ol>
+<li><p>concatenation（连接操作）<br> 实现：</p>
+<pre><code><span class="function"><span class="title">conc</span><span class="params">([], L2, L2)</span></span>.
+<span class="function"><span class="title">conc</span><span class="params">([H|T1],L2,[H|T])</span></span> :-
+    <span class="function"><span class="title">conc</span><span class="params">(T1, L2, T)</span></span>.
+</code></pre><p> 使用</p>
+<pre><code>?- <span class="atom">conc</span>([<span class="atom">a</span>,<span class="atom">b</span>], [<span class="atom">c</span>,<span class="atom">d</span>], <span class="name">P</span>).
+    <span class="name">P</span> = [<span class="atom">a</span>, <span class="atom">b</span>, <span class="atom">c</span>, <span class="atom">d</span>].
+</code></pre><p> 实际上你还可以把它当删除用，在query时在List1或者List2的位置用变量就可以了。<br> 某种意义上可以用它实现接下来所有操作，但是有些操作还是重写比较简洁，也不容易出现问题，conc在连接单个元素时要注意加上[]，因为它并没有定义单个元素的base case，直接用常量会出现问题，prolog将不会认为那是一个list然后得出false的结论。</p>
+</li>
+<li><p>删除<br> 实现：</p>
+<pre><code><span class="function"><span class="title">delete</span><span class="params">(A,[A|X],X)</span></span>.
+<span class="function"><span class="title">delete</span><span class="params">(A,[B|X],[B|Y])</span></span> :-
+    <span class="function"><span class="title">delete</span><span class="params">(A,X,Y)</span></span>.
+</code></pre><p> 使用：</p>
+<pre><code>?- delete(<span class="literal">a</span>, [<span class="literal">a</span>,b,e,<span class="literal">a</span>], L).
+L = [b, e, <span class="literal">a</span>] <span class="comment">;</span>
+L = [<span class="literal">a</span>, b, e] <span class="comment">;</span>
+<span class="literal">false</span>.
+</code></pre><p> 注意这种删除只支持删除一个元素，如果重复的话，它输出的是删除一次的不同情况。</p>
+</li>
+<li><p>头部添加<br> 实现：</p>
+<pre><code><span class="function"><span class="title">add_front</span><span class="params">(X, L , [X|L])</span></span>.
+</code></pre><p> 使用：</p>
+<pre><code>?- <span class="atom">add</span>(<span class="atom">a</span>,[<span class="atom">b</span>,<span class="atom">c</span>,<span class="atom">d</span>],<span class="name">L</span>).
+<span class="name">L</span> = [<span class="atom">a</span>, <span class="atom">b</span>, <span class="atom">c</span>, <span class="atom">d</span>].
+</code></pre></li>
+<li><p>是否成员<br> 实现：</p>
+<pre><code><span class="function"><span class="title">mem</span><span class="params">(T,[T|_])</span></span>.
+<span class="function"><span class="title">mem</span><span class="params">(A,[_|T])</span></span> :-
+    <span class="function"><span class="title">mem</span><span class="params">(A, T)</span></span>.
+</code></pre><p> 不写使用了，累了。</p>
+<p> 这里的下划线(underscore)代表它只是个无用的变量，内容是什么无关紧要，prolog在查阅时会跳过它。</p>
+</li>
+<li><p>子表(sublist)<br> 实现：</p>
+<pre><code><span class="function"><span class="title">sublist</span><span class="params">(S, L)</span></span> :-
+    <span class="function"><span class="title">conc</span><span class="params">(_, L2, L)</span></span>,
+    <span class="function"><span class="title">conc</span><span class="params">(S, _, L2)</span></span>.
+</code></pre><p> 使用：</p>
+<pre><code>?- <span class="atom">sublist</span>(<span class="name">S</span>, [<span class="atom">a</span>,<span class="atom">b</span>,<span class="atom">c</span>]).
+<span class="name">S</span> = [] ;
+<span class="name">S</span> = [<span class="atom">a</span>] ;
+<span class="name">S</span> = [<span class="atom">a</span>, <span class="atom">b</span>] ;
+<span class="name">S</span> = [<span class="atom">a</span>, <span class="atom">b</span>, <span class="atom">c</span>] ;
+<span class="name">S</span> = [] ;
+<span class="name">S</span> = [<span class="atom">b</span>] ;
+<span class="name">S</span> = [<span class="atom">b</span>, <span class="atom">c</span>] ;
+<span class="name">S</span> = [] ;
+<span class="name">S</span> = [<span class="atom">c</span>] ;
+<span class="name">S</span> = [] ;
+<span class="atom">false</span>.
+</code></pre><p> 这个使用conc比较好理解，你将会得到输入表的所有子表（注意左边的是子表，用反就没完没了了）。</p>
+</li>
+<li><p>插入<br> 实现：</p>
+<pre><code><span class="operator"><span class="keyword">insert</span>(X, <span class="keyword">L</span>, <span class="keyword">D</span>) :-
+    <span class="keyword">delete</span>(X, <span class="keyword">D</span>, <span class="keyword">L</span>).</span>
+</code></pre></li>
+<li><p>计数<br> 实现：</p>
+<pre><code><span class="function"><span class="title">len</span><span class="params">([], <span class="number">0</span>)</span></span>.
+<span class="function"><span class="title">len</span><span class="params">([_|L], N)</span></span> :-
+    <span class="function"><span class="title">len</span><span class="params">(L, N_)</span></span>,
+    N is N_ + <span class="number">1</span>.
+</code></pre></li>
+<li><p>prolog里自带的list操作</p>
+<p> 上面的的操作其实很多prolog已经写好了，直接调来用就可以了，这里给出我用的swi-prolog里的原生操作：</p>
+<p> <img src="http://7xkwu7.com1.z0.glb.clouddn.com/prologlist.png" alt=""><br> 有点多，请读者自行在prolog下用help(谓词名)来获取实用信息。</p>
+</li>
+</ol>
+<h5 id="list应用——全排列">list应用——全排列</h5><ul>
+<li><p>方法一</p>
+<pre><code><span class="function"><span class="title">permutation</span><span class="params">([], [])</span></span>.
+<span class="function"><span class="title">permutation</span><span class="params">([X|L], P)</span></span> :-
+    <span class="function"><span class="title">permutation</span><span class="params">(L, L1)</span></span>,
+    <span class="function"><span class="title">insert</span><span class="params">(X, L1, P)</span></span>.
+</code></pre></li>
+<li><p>方法二</p>
+<pre><code><span class="function"><span class="title">permutation</span><span class="params">([], [])</span></span>.
+<span class="function"><span class="title">permutation_</span><span class="params">(L, [X|P])</span></span> :-
+    <span class="function"><span class="title">delete</span><span class="params">(X, L, L1)</span></span>,
+    <span class="function"><span class="title">permutation</span><span class="params">(L1,P)</span></span>
+</code></pre></li>
+</ul>
+<p><em>Reference:</em></p>
+<ol>
+<li><em>Prolog Programming for Artificial Intelligence 4th edition - chapter 2/3</em> </li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/09/27/Prolog学习笔记（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Prolog学习笔记（二）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Prolog学习笔记（三）" data-title="Prolog学习笔记（三）" data-url="http://xmhtech.me/2015/10/05/Prolog学习笔记（三）/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"xmhtech"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Xie Minghao
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
