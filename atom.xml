@@ -5,7 +5,7 @@
   <subtitle><![CDATA[Any idea or discussion is highly welcomed.250745820@qq.com]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://xmhtech.me//"/>
-  <updated>2015-10-06T08:56:30.000Z</updated>
+  <updated>2015-10-18T12:37:48.000Z</updated>
   <id>http://xmhtech.me//</id>
   
   <author>
@@ -14,6 +14,174 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Prolog学习笔记（四）]]></title>
+    <link href="http://xmhtech.me/2015/10/18/Prolog%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
+    <id>http://xmhtech.me/2015/10/18/Prolog学习笔记（四）/</id>
+    <published>2015-10-18T07:30:36.000Z</published>
+    <updated>2015-10-18T12:37:48.000Z</updated>
+    <content type="html"><![CDATA[<p>这周的主要内容是<strong>递归之于表</strong>以及<strong>内建谓词介绍</strong></p>
+<a id="more"></a>
+<h2 id="递归&amp;表">递归&amp;表</h2><h3 id="引入——辨别一个表">引入——辨别一个表</h3><p>我们说表是递归定义的，那么是否为表也可以用下面的一个递归规则来测试：</p>
+<pre><code><span class="atom">is_a_list</span>([]).
+<span class="atom">is_a_list</span>([<span class="name">_</span>|<span class="name">T</span>]) :-    
+    <span class="atom">is_a_list</span>(<span class="name">T</span>). <span class="comment">%Head is replaced with an underscore as we don’t want to use it.</span>
+</code></pre><h3 id="为什么使用递归">为什么使用递归</h3><ul>
+<li>它能让我们使用非常清晰和优雅的代码</li>
+<li>关系也许是递归的</li>
+<li>数据是递归定义的，最好的办法是迭代地处理</li>
+<li>允许prolog在一个问题空间里进行一些复杂的搜索而不需要使用专用的算法</li>
+</ul>
+<h3 id="递归的形式">递归的形式</h3><p>在Prolog里，递归的定义和其他语言是差不多的：</p>
+<ol>
+<li>首先，需要定义得到终止的条件</li>
+<li>然后，就是定义怎样来使一个较大的问题分解成一个相似但是较小的wen<h3 id="递归的三种使用方法">递归的三种使用方法</h3></li>
+</ol>
+<ol>
+<li><p>先在<strong>base case</strong>中计算出结果，然后使用这个结果在程序中<strong>回溯</strong>；</p>
+<pre><code><span class="function"><span class="title">listlength</span><span class="params">([],<span class="number">0</span>)</span></span>.
+<span class="function"><span class="title">listlength</span><span class="params">([_|T],N1)</span></span>:-
+      <span class="function"><span class="title">listlength</span><span class="params">(T,N)</span></span>,
+      N1 is N+<span class="number">1</span>.
+</code></pre></li>
+<li><p>在<strong>递归</strong>进入程序时收集结果，最终结束于<strong>base case</strong>；</p>
+<pre><code>listlength([],<span class="type">Acc</span>,<span class="type">Acc</span>).% final <span class="literal">result</span>
+listlength([_|T],<span class="type">Acc</span>,<span class="type">Out</span>) :-
+    <span class="type">Acc1</span> <span class="keyword">is</span> <span class="type">Acc</span>+<span class="number">1</span>,    % 当递归时累加器加一
+    listlength(T,<span class="type">Acc1</span>,<span class="type">Out</span>).
+</code></pre></li>
+<li><p>使用<strong>未实例化</strong>的变量递归，然后在回溯时收集结果</p>
+<pre><code>listlength() :-
+    listlenthlistless(List,<span class="operator">0,<span class="keyword">Length</span>).
+listlength2([], <span class="keyword">Acc</span>, <span class="keyword">Acc</span>). %利用了辅助谓词
+listlength2([_|<span class="keyword">T</span>], <span class="keyword">Acc</span>, <span class="keyword">Out</span>) :-
+    <span class="keyword">Acc</span> <span class="keyword">is</span> <span class="keyword">Acc</span>+<span class="number">1</span>,
+    listlength(<span class="keyword">T</span>,Accede,<span class="keyword">Out</span>).</span>
+</code></pre></li>
+</ol>
+<h2 id="内建谓词">内建谓词</h2><p>按功能来分，内建谓词有以下三类</p>
+<h3 id="一、识别术语">一、识别术语</h3><p>以下的均为一元谓词，参数即需要判断的术语。</p>
+<ul>
+<li>var/1 判断变量</li>
+<li>nonvar/1 判断非变量或已经实例化的变量</li>
+<li>atom/1 判断原子</li>
+<li>atomic/1 判断数或原子</li>
+<li>number/1 判断数</li>
+<li>integer/1 判断整数</li>
+<li>float/1 判断浮点数</li>
+<li>compound/1 判断结构</li>
+<li>ground/1 判断是否包含未实例化的变量</li>
+</ul>
+<h3 id="二、分解结构">二、分解结构</h3><ol>
+<li><p>=../2</p>
+<p> <strong>Term =.. L</strong><br> 当L是一个以Term中的主函数子为首，后面跟着它的变量为尾的<strong>表</strong>时为真。<br> ex:</p>
+<pre><code>?- <span class="atom">term</span>(<span class="atom">a</span>,<span class="atom">b</span>,<span class="atom">c</span>) =.. <span class="name">L</span>.
+<span class="name">L</span> = [<span class="atom">term</span>, <span class="atom">a</span>, <span class="atom">b</span>, <span class="atom">c</span>].
+</code></pre></li>
+<li><p>functor/3  </p>
+<p> <strong>fuctor(Term,F,N)</strong><br> 当F是Term当的fuctor且N是F的参数数量时为真。<br> ex:</p>
+<pre><code>?- functor(term(a,b,c),<span class="variable">F</span>,<span class="variable">N</span>).
+<span class="variable">F</span> = term,
+<span class="variable">N</span> = <span class="number">3</span>.
+</code></pre></li>
+<li><p>arg/3</p>
+<p> <strong>arg(N,Term,A)</strong><br> 当A是Term的第N个参数时为真<br> ex:</p>
+<pre><code>?- arg<span class="params">(<span class="number">3</span>,term<span class="params">(a,b,c)</span>,c)</span>.    
+<span class="literal">true</span>.
+</code></pre></li>
+</ol>
+<p>上面三个内建谓词通常用于组合使用。</p>
+<h3 id="三、收集解答">三、收集解答</h3><p>举个例子，当你想要找到一个目标的所有结果时，你通常会去这么使用谓词：<br>以member/2为例：</p>
+<pre><code>?- member<span class="comment">(X, [a,b,c,d])</span>.
+</code></pre><p>回车，得到结果，然后不断敲击分号得到所有结果直至false（有的直接结束）。</p>
+<pre><code><span class="setting">X = <span class="value">a ;</span></span>
+<span class="setting">X = <span class="value">b ;</span></span>
+<span class="setting">X = <span class="value">c ;</span></span>
+<span class="setting">X = <span class="value">d.</span></span>
+</code></pre><p>然而，现在我们用一个谓词搞定这些。</p>
+<ol>
+<li><p>fingall/3<br> ex1:</p>
+<pre><code>?- <span class="atom">findall</span>(<span class="name">X</span>, <span class="atom">member</span>(<span class="name">X</span>, [<span class="atom">a</span>,<span class="atom">b</span>,<span class="atom">c</span>,<span class="atom">d</span>]), <span class="name">Results</span>).
+<span class="name">Results</span> = [<span class="atom">a</span>, <span class="atom">b</span>, <span class="atom">c</span>, <span class="atom">d</span>].<span class="comment">%输出的结果是列表形式的</span>
+</code></pre><p> ex2:</p>
+<pre><code>?- findall(X, (member(X, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]),X &gt; <span class="number">2</span>), Results).
+Results = [<span class="number">3</span>, <span class="number">4</span>].%第二个参数可以是一个目标，也可以是复合目标
+</code></pre><p> ex3:</p>
+<pre><code>?- findall(X/Y, (member(X, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]), Y is X*X), Results).
+Results = [<span class="number">1</span>/<span class="number">1</span>, <span class="number">2</span>/<span class="number">4</span>, <span class="number">3</span>/<span class="number">9</span>, <span class="number">4</span>/<span class="number">16</span>].%第一个参数可以是一个复杂的集合，用合一的思想就很好理解
+</code></pre><p> 其他用法：</p>
+<ul>
+<li>变量的灵活使用</li>
+<li>允许嵌套</li>
+<li>^|等逻辑操作符在第二个参数中的使用    </li>
+</ul>
+</li>
+<li><p>setof/3</p>
+<p> 和findall/3基本一致，差别就是它容许结果出现<strong>重复</strong>而且是<strong>升序排列</strong>的(不仅仅是数字)。</p>
+</li>
+<li><p>bagof/3</p>
+<p> bagof/3和findall/3的区别就是bagof/3会输出第一个参数位置变量的结果，匹配第三个参数依次输出(意味着需要输入分号)，然而findall/3只关心第三个参数的结果，并将他们全部堆在一个表里输出。</p>
+</li>
+</ol>
+<p>上面的三个谓词被统称为<strong>meta-predicates</strong>(元谓词)<br>    ——因为它们能够操纵Prolog的证明策略</p>
+<hr>
+<h3 id="Remark:">Remark:</h3><p>学习的过程中产生了在prolog中<strong><em>双引号</em></strong>使用的疑惑，在<a href="http://stackoverflow.com" target="_blank" rel="external">stack overflow</a>上找到一个不错的<a href="http://stackoverflow.com/questions/8264699/what-is-the-difference-between-and-in-prolog" target="_blank" rel="external">回答</a></p>
+<p>时间原因就不翻译了，贴出来给大家学习：</p>
+<blockquote>
+<p>Single quoted items are always atoms.</p>
+<p>The meaning of double quotes depends on the Prolog flag double_quotes:</p>
+<p><strong>atom</strong> — with this value <code>&quot;a&quot; = a</code>. Nowadays, this is rarely used. But you will find Prolog books where <code>[&quot;abc.pl&quot;]</code> is written.</p>
+<p><strong>codes</strong> — a list of character codes. This is frequently the default, but it leads to very unreadable answers like</p>
+<pre><code>   ?- phrase((<span class="string">"Ja tvoi "</span>,(<span class="string">"sluga"</span>|<span class="string">"rabotnik"</span>),<span class="string">"!"</span>), Satz).
+Satz = [<span class="number">74</span>,<span class="number">97</span>,<span class="number">32</span>,<span class="number">116</span>,<span class="number">118</span>,<span class="number">111</span>,<span class="number">105</span>,<span class="number">32</span>,<span class="number">115</span>,<span class="number">108</span>,<span class="number">117</span>,<span class="number">103</span>,<span class="number">97</span>,<span class="number">33</span>] ;
+Satz = [<span class="number">74</span>,<span class="number">97</span>,<span class="number">32</span>,<span class="number">116</span>,<span class="number">118</span>,<span class="number">111</span>,<span class="number">105</span>,<span class="number">32</span>,<span class="number">114</span>,<span class="number">97</span>,<span class="number">98</span>,<span class="number">111</span>,<span class="number">116</span>,<span class="number">110</span>,<span class="number">105</span>,<span class="number">107</span>,<span class="number">33</span>].
+</code></pre><p>Even worse, if you use characters beyond ASCII:</p>
+<pre><code>   ?- phrase((<span class="string">"Я твой "</span>,(<span class="string">"слуга"</span>|<span class="string">"работник"</span>),<span class="string">"!"</span>), Satz).
+Satz = [<span class="number">1071</span>,<span class="number">32</span>,<span class="number">1090</span>,<span class="number">1074</span>,<span class="number">1086</span>,<span class="number">1081</span>,<span class="number">32</span>,<span class="number">1089</span>,<span class="number">1083</span>,<span class="number">1091</span>,<span class="number">1075</span>,<span class="number">1072</span>,<span class="number">33</span>] ;
+Satz = [<span class="number">1071</span>,<span class="number">32</span>,<span class="number">1090</span>,<span class="number">1074</span>,<span class="number">1086</span>,<span class="number">1081</span>,<span class="number">32</span>,<span class="number">1088</span>,<span class="number">1072</span>,<span class="number">1073</span>,<span class="number">1086</span>,<span class="number">1090</span>,<span class="number">1085</span>,<span class="number">1080</span>,<span class="number">1082</span>,<span class="number">33</span>].
+</code></pre><p><strong>chars</strong> — a list of one-char atoms.</p>
+<pre><code>   ?- <span class="atom">set_prolog_flag</span>(<span class="atom">double_quotes</span>,<span class="atom">chars</span>).
+<span class="atom">true</span>.
+
+   ?- <span class="atom">phrase</span>((<span class="string">"Ja tvoi "</span>,(<span class="string">"sluga"</span>|<span class="string">"rabotnik"</span>),<span class="string">"!"</span>), <span class="name">Satz</span>).
+<span class="name">Satz</span> = [<span class="string">'J'</span>,<span class="atom">a</span>,<span class="string">' '</span>,<span class="atom">t</span>,<span class="atom">v</span>,<span class="atom">o</span>,<span class="atom">i</span>,<span class="string">' '</span>,<span class="atom">s</span>,<span class="atom">l</span>,<span class="atom">u</span>,<span class="atom">g</span>,<span class="atom">a</span>,!] ;
+<span class="name">Satz</span> = [<span class="string">'J'</span>,<span class="atom">a</span>,<span class="string">' '</span>,<span class="atom">t</span>,<span class="atom">v</span>,<span class="atom">o</span>,<span class="atom">i</span>,<span class="string">' '</span>,<span class="atom">r</span>,<span class="atom">a</span>,<span class="atom">b</span>,<span class="atom">o</span>,<span class="atom">t</span>,<span class="atom">n</span>,<span class="atom">i</span>,<span class="atom">k</span>,!].
+
+   ?- <span class="atom">phrase</span>((<span class="string">"Я твой "</span>,(<span class="string">"слуга"</span>|<span class="string">"работник"</span>),<span class="string">"!"</span>), <span class="name">Satz</span>).
+<span class="name">Satz</span> = [<span class="string">'Я'</span>,<span class="string">' '</span>,т,в,о,й,<span class="string">' '</span>,с,л,у,г,а,!] ;
+<span class="name">Satz</span> = [<span class="string">'Я'</span>,<span class="string">' '</span>,т,в,о,й,<span class="string">' '</span>,р,а,б,о,т,н,и,к,!].
+</code></pre><p>This notation gives more readable answers. It can be even more compactly displayed since the double quote notation can be used for printing any list of one-char atoms. For SWI, there is <a href="http://www.complang.tuwien.ac.at/ulrich/Prolog-inedit/double_quotes.pl" target="_blank" rel="external">library(double_quotes)</a>.</p>
+<pre><code>   ?- use_module<span class="params">(library<span class="params">(double_quotes)</span>)</span>.
+<span class="literal">true</span>.
+
+   ?- phrase<span class="params">(<span class="params">(<span class="string">"Ja tvoi "</span>,<span class="params">(<span class="string">"sluga"</span>|<span class="string">"rabotnik"</span>)</span>,<span class="string">"!"</span>)</span>, Satz)</span>.
+Satz = <span class="string">"Ja tvoi sluga!"</span> ;
+Satz = <span class="string">"Ja tvoi rabotnik!"</span>.
+
+   ?- phrase<span class="params">(<span class="params">(<span class="string">"Я твой "</span>,<span class="params">(<span class="string">"слуга"</span>|<span class="string">"работник"</span>)</span>,<span class="string">"!"</span>)</span>, Satz)</span>.
+Satz = <span class="string">"Я твой слуга!"</span> ;
+Satz = <span class="string">"Я твой работник!"</span>.
+</code></pre></blockquote>
+<p><em>Reference:</em></p>
+<ol>
+<li><em>Prolog Programming for Artificial Intelligence 4th edition - chapter 6</em></li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>这周的主要内容是<strong>递归之于表</strong>以及<strong>内建谓词介绍</strong></p>]]>
+    
+    </summary>
+    
+      <category term="AI" scheme="http://xmhtech.me/tags/AI/"/>
+    
+      <category term="Prolog" scheme="http://xmhtech.me/tags/Prolog/"/>
+    
+      <category term="language" scheme="http://xmhtech.me/tags/language/"/>
+    
+      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Prolog学习笔记（三）]]></title>
