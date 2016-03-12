@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Homebrew安装使用总结 | Xie&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="homebrew是一个小型的，非商业性质的套件管理器。它能够自动化安装库或者软件，并且自动安装其所需要的依赖（不同于MacPorts，尽量使用系统自带的库），定制简单，上手容易，更新及时，而且是直接装在 /usr/local 下，减少很多各种 PATH 环境变量的定义（简直是开发必备啊）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Homebrew安装使用总结">
+<meta property="og:url" content="http://xmhtech.me/2015/09/19/Homebrew安装使用总结/index.html">
+<meta property="og:site_name" content="Xie's blog">
+<meta property="og:description" content="homebrew是一个小型的，非商业性质的套件管理器。它能够自动化安装库或者软件，并且自动安装其所需要的依赖（不同于MacPorts，尽量使用系统自带的库），定制简单，上手容易，更新及时，而且是直接装在 /usr/local 下，减少很多各种 PATH 环境变量的定义（简直是开发必备啊）。">
+<meta property="og:updated_time" content="2015-09-19T14:33:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Homebrew安装使用总结">
+<meta name="twitter:description" content="homebrew是一个小型的，非商业性质的套件管理器。它能够自动化安装库或者软件，并且自动安装其所需要的依赖（不同于MacPorts，尽量使用系统自带的库），定制简单，上手容易，更新及时，而且是直接装在 /usr/local 下，减少很多各种 PATH 环境变量的定义（简直是开发必备啊）。">
+  
+    <link rel="alternative" href="/atom.xml" title="Xie&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+<script type="text/javascript">
+#申请的百度统计代码
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?1f5823e44d3dbf23c03aa37d06b3f419";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</script>
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/daodao.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Xie Minghao</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Any idea or discussion is highly welcomed.250745820@qq.com</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">All</a></li>
+				        
+							<li><a href="/categories/Tech">Tech</a></li>
+				        
+							<li><a href="/categories/Sci">Sci</a></li>
+				        
+							<li><a href="/categories/Others">Others</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yetocome" title="github">github</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/61cd864864d3f8a1dee10862c79d4e32" title="zhihu">zhihu</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="mail" target="_blank" href="/<250745820@qq.com>" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/Google/" style="font-size: 10px;">Google</a> <a href="/tags/Network/" style="font-size: 10px;">Network</a> <a href="/tags/OpenWrt/" style="font-size: 10px;">OpenWrt</a> <a href="/tags/Prolog/" style="font-size: 20px;">Prolog</a> <a href="/tags/Resource/" style="font-size: 13.33px;">Resource</a> <a href="/tags/SDN/" style="font-size: 10px;">SDN</a> <a href="/tags/Translation/" style="font-size: 10px;">Translation</a> <a href="/tags/book/" style="font-size: 10px;">book</a> <a href="/tags/develop/" style="font-size: 10px;">develop</a> <a href="/tags/info/" style="font-size: 16.67px;">info</a> <a href="/tags/language/" style="font-size: 20px;">language</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/router/" style="font-size: 10px;">router</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">四川大学2014级计算机科学专业在读</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Xie Minghao</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/daodao.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Xie Minghao</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Any idea or discussion is highly welcomed.250745820@qq.com</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">All</a></li>
+		        
+					<li><a href="/categories/Tech">Tech</a></li>
+		        
+					<li><a href="/categories/Sci">Sci</a></li>
+		        
+					<li><a href="/categories/Others">Others</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yetocome" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/61cd864864d3f8a1dee10862c79d4e32" title="zhihu">zhihu</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/<250745820@qq.com>" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Homebrew安装使用总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/09/19/Homebrew安装使用总结/" class="article-date">
+  	<time datetime="2015-09-19T14:29:16.000Z" itemprop="datePublished">2015-09-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Homebrew安装使用总结
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/develop/">develop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/">mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Tech/">Tech</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>homebrew是一个小型的，非商业性质的套件管理器。<br>它能够自动化安装库或者软件，并且自动安装其所需要的依赖（不同于MacPorts，尽量使用系统自带的库），定制简单，上手容易，更新及时，而且是直接装在 /usr/local 下，减少很多各种 PATH 环境变量的定义（简直是开发必备啊）。</p>
+<a id="more"></a>
+<h3 id="安装">安装</h3><p>终端输入</p>
+<pre><code>ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/<span class="operator"><span class="keyword">install</span>/<span class="keyword">master</span>/<span class="keyword">install</span>)”//请去<span class="keyword">reference</span>中的官网去更新最新脚本</span>
+</code></pre><p>若安装失败，请检查安装条件：</p>
+<ol>
+<li>Intel的芯片</li>
+<li>系统是OS X 10.6及以上</li>
+<li>Xcode开发工具（xcode-select –install）</li>
+<li>已安装Bourne shell</li>
+</ol>
+<h3 id="卸载">卸载</h3><p>终端输入</p>
+<pre><code>ruby <span class="operator">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)</span>"</span>
+</code></pre><h3 id="常用命令">常用命令</h3><pre><code>brew <span class="keyword">help</span><span class="comment">//查看帮助信息</span>
+brew <span class="keyword">search</span><span class="comment">//加要寻找的关键字</span>
+brew install<span class="comment">//加要安装的包名称,安装最新的包及其依赖</span>
+brew uninstall<span class="comment">//加要卸载的包名称，卸载它</span>
+brew <span class="keyword">update</span><span class="comment">//升级自身</span>
+brew <span class="keyword">list</span><span class="comment">//列出所有已安装的包名称</span>
+brew outdated<span class="comment">//列出所有过时的包名称</span>
+brew upgrade<span class="comment">//升级所有，加包名升级对应包（注意旧版本会保留）</span>
+brew cleanup<span class="comment">//清除所有旧版本，-n用以查看信息，加包名清除对应包旧版本</span>
+brew doctor<span class="comment">//诊断Homebrew存在的问题并给出建议</span>
+brew info<span class="comment">//加包名查询对应信息，不加查询已安装的包的存储信息</span>
+brew deps<span class="comment">//加包名查询对应依赖</span>
+brew pin<span class="comment">//固定某一包的版本</span>
+brew upin<span class="comment">//解除固定</span>
+</code></pre><h3 id="二阶命令——brew_cask使用">二阶命令——brew cask使用</h3><p>安装cask</p>
+<pre><code><span class="keyword">brew </span>install cask
+</code></pre><p>之后就可以用brew cask 尽情地享受了~</p>
+<pre><code>brew cask <span class="keyword">help</span><span class="comment">//查看帮助信息</span>
+</code></pre><p>懒得一个个写了，这里粘贴出来，很多都和brew命令相同，不同的是用cask是用来安装.app的</p>
+<pre><code>alfred     displays note about <span class="built_in">new</span> built-<span class="operator">in</span> alfred support
+audit      verifies installability <span class="operator">of</span> Casks
+cat        dump raw source <span class="operator">of</span> <span class="operator">the</span> given Cask <span class="built_in">to</span> <span class="operator">the</span> standard output
+cleanup    cleans up cached downloads <span class="operator">and</span> tracker symlinks
+<span class="built_in">create</span>     creates <span class="operator">the</span> given Cask <span class="operator">and</span> opens <span class="keyword">it</span> <span class="operator">in</span> <span class="operator">an</span> editor
+doctor     checks <span class="keyword">for</span> configuration issues
+edit       edits <span class="operator">the</span> given Cask
+fetch      downloads Cask resources <span class="built_in">to</span> <span class="built_in">local</span> cache
+home       opens <span class="operator">the</span> homepage <span class="operator">of</span> <span class="operator">the</span> given Cask
+info       displays information about <span class="operator">the</span> given Cask
+install    installs <span class="operator">the</span> given Cask
+list       <span class="operator">with</span> no args, lists installed Casks; given installed Casks, lists staged <span class="built_in">files</span>
+search     searches all known Casks
+uninstall  uninstalls <span class="operator">the</span> given Cask
+update     <span class="operator">a</span> synonym <span class="keyword">for</span> <span class="string">'brew update'</span>
+zap        zaps all <span class="built_in">files</span> associated <span class="operator">with</span> <span class="operator">the</span> given Cask
+</code></pre><h3 id="高阶用法">高阶用法</h3><pre><code>brew create//创建自己的Homebrew程式
+brew edit//使用 <span class="variable">$EDITOR</span> 编辑!
+</code></pre><p>详细用法可以参考：<a href="http://linfan.info/blog/2012/02/25/homebrew-installation-and-usage/" target="_blank" rel="external">http://linfan.info/blog/2012/02/25/homebrew-installation-and-usage/</a></p>
+<p><em>Reference:</em></p>
+<ol>
+<li>官网地址： <a href="http://brew.sh" target="_blank" rel="external">http://brew.sh</a> </li>
+<li>命令说明： <a href="https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Formula-Cookbook.md" target="_blank" rel="external">https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Formula-Cookbook.md</a></li>
+<li>官方文档： <a href="https://github.com/Homebrew/homebrew/tree/master/share/doc" target="_blank" rel="external">https://github.com/Homebrew/homebrew/tree/master/share/doc</a></li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/09/27/Prolog学习笔记（二）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Prolog学习笔记（二）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/09/18/Prolog学习笔记（一）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Prolog学习笔记（一）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Homebrew安装使用总结" data-title="Homebrew安装使用总结" data-url="http://xmhtech.me/2015/09/19/Homebrew安装使用总结/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"xmhtech"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Xie Minghao
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
