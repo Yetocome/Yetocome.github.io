@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>《C++并发编程》学习笔记（一） | Xie&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="因为一些棘手的效率问题，手头的项目必须要引入并发编程。这里整理下我学习的《C++并发编程》的笔记，尽可能地记录下了重难点以及我练习的例程代码，作为自己学习的备忘，也供想要快速学习的人参考。不过还是建议直接去阅读原书，中英文版本的网盘链接我放在文章后面，请读者自取。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《C++并发编程》学习笔记（一）">
+<meta property="og:url" content="http://xmhtech.me/2016/03/19/《C-并发编程》学习笔记（一）/index.html">
+<meta property="og:site_name" content="Xie's blog">
+<meta property="og:description" content="因为一些棘手的效率问题，手头的项目必须要引入并发编程。这里整理下我学习的《C++并发编程》的笔记，尽可能地记录下了重难点以及我练习的例程代码，作为自己学习的备忘，也供想要快速学习的人参考。不过还是建议直接去阅读原书，中英文版本的网盘链接我放在文章后面，请读者自取。">
+<meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F.png">
+<meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/%E5%9B%9B%E4%BB%BB%E5%8A%A1%E4%B8%A4%E6%A0%B8%E5%BF%83.png">
+<meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/%E5%B9%B6%E5%8F%91%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1.png">
+<meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/%E8%BF%9B%E7%A8%8B%E5%86%85%E5%B9%B6%E5%8F%91%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1.png">
+<meta property="og:updated_time" content="2016-03-19T14:24:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《C++并发编程》学习笔记（一）">
+<meta name="twitter:description" content="因为一些棘手的效率问题，手头的项目必须要引入并发编程。这里整理下我学习的《C++并发编程》的笔记，尽可能地记录下了重难点以及我练习的例程代码，作为自己学习的备忘，也供想要快速学习的人参考。不过还是建议直接去阅读原书，中英文版本的网盘链接我放在文章后面，请读者自取。">
+  
+    <link rel="alternative" href="/atom.xml" title="Xie&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+<script type="text/javascript">
+#申请的百度统计代码
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?1f5823e44d3dbf23c03aa37d06b3f419";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</script>
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/daodao.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Xie Minghao</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Any idea or discussion is highly welcomed.250745820@qq.com</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">All</a></li>
+				        
+							<li><a href="/categories/Tech">Tech</a></li>
+				        
+							<li><a href="/categories/Sci">Sci</a></li>
+				        
+							<li><a href="/categories/Others">Others</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yetocome" title="github">github</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/61cd864864d3f8a1dee10862c79d4e32" title="zhihu">zhihu</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="mail" target="_blank" href="/<250745820@qq.com>" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/Concurrency/" style="font-size: 10px;">Concurrency</a> <a href="/tags/Google/" style="font-size: 10px;">Google</a> <a href="/tags/Network/" style="font-size: 10px;">Network</a> <a href="/tags/OpenWrt/" style="font-size: 10px;">OpenWrt</a> <a href="/tags/Prolog/" style="font-size: 20px;">Prolog</a> <a href="/tags/Resource/" style="font-size: 13.33px;">Resource</a> <a href="/tags/SDN/" style="font-size: 10px;">SDN</a> <a href="/tags/Translation/" style="font-size: 10px;">Translation</a> <a href="/tags/book/" style="font-size: 10px;">book</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/develop/" style="font-size: 10px;">develop</a> <a href="/tags/info/" style="font-size: 16.67px;">info</a> <a href="/tags/language/" style="font-size: 20px;">language</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/router/" style="font-size: 10px;">router</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">四川大学2014级计算机科学专业在读</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Xie Minghao</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/daodao.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Xie Minghao</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Any idea or discussion is highly welcomed.250745820@qq.com</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">All</a></li>
+		        
+					<li><a href="/categories/Tech">Tech</a></li>
+		        
+					<li><a href="/categories/Sci">Sci</a></li>
+		        
+					<li><a href="/categories/Others">Others</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yetocome" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/61cd864864d3f8a1dee10862c79d4e32" title="zhihu">zhihu</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/<250745820@qq.com>" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-《C-并发编程》学习笔记（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/19/《C-并发编程》学习笔记（一）/" class="article-date">
+  	<time datetime="2016-03-19T14:14:56.000Z" itemprop="datePublished">2016-03-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      《C++并发编程》学习笔记（一）
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Concurrency/">Concurrency</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Tech/">Tech</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>因为一些棘手的效率问题，手头的项目必须要引入并发编程。这里整理下我学习的《C++并发编程》的笔记，尽可能地记录下了重难点以及我练习的例程代码，作为自己学习的备忘，也供想要快速学习的人参考。不过还是建议直接去阅读原书，中英文版本的网盘链接我放在文章后面，请读者自取。</p>
+<a id="more"></a>
+<h3 id="第一章_你好，C++的并发世界">第一章 你好，C++的并发世界</h3><h4 id="何为并发">何为并发</h4><ul>
+<li>任务切换(task switching)：<br>单核机 - 某一时刻下只能执行一个任务，通过任务切换达成并发效果，任务切换时需要切换上下文(context switch)；</li>
+<li>硬件并发(hardware concurrency)：<br>多核机 - 真正的多任务同时执行，但是核心数仍然供不应求。</li>
+</ul>
+<p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F.png" alt="并发的两种方式"></p>
+<p>并发的两种方式</p>
+<p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/%E5%9B%9B%E4%BB%BB%E5%8A%A1%E4%B8%A4%E6%A0%B8%E5%BF%83.png" alt="四任务两核心"></p>
+<p>四任务两核心</p>
+<h4 id="并发的途径">并发的途径</h4><ul>
+<li>多进程并发<br> <img src="http://7xkwu7.com1.z0.glb.clouddn.com/%E5%B9%B6%E5%8F%91%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1.png" alt=""></li>
+<li>多线程并发<br> <img src="http://7xkwu7.com1.z0.glb.clouddn.com/%E8%BF%9B%E7%A8%8B%E5%86%85%E5%B9%B6%E5%8F%91%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1.png" alt=""></li>
+</ul>
+<h4 id="为什么使用并发">为什么使用并发</h4><ul>
+<li>为了分离关注点</li>
+<li>为了性能提升</li>
+</ul>
+<h4 id="什么时候不能用并发">什么时候不能用并发</h4><blockquote>
+<p>知道何时不使用并发与知道何时使用它一样重要。基本上，不使用并发的唯一原因就是，收益比不上成本。使用并发的代码在很多情况下难以理解，因此编写和维护的多线程代码就会产生直接的脑力成本，同时额外的复杂性也可能引起更多的错误。除非潜在的性能增益足够大或关注点分离地足够清晰，能抵消所需的额外的开发时间以及与维护多线程代码相关的额外成本(代码正确的前提下)；否则，别用并发。</p>
+</blockquote>
+<h3 id="第二章_线程管理">第二章 线程管理</h3><h4 id="线程管理基础">线程管理基础</h4><ol>
+<li><p>启动线程  </p>
+<ul>
+<li>线程在<code>std::thread</code>对象创建时启动。</li>
+<li>为了让编译器识别<code>std::thread</code>类，需将<code>&lt;thread&gt;</code>头文件包含进去。</li>
+<li><p><code>std::thread</code>可以用可调用(callable)类型构造</p>
+<pre><code><span class="keyword">class</span> background_task
+{
+<span class="keyword">public</span>:
+      <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">()</span> <span class="keyword">const</span>
+      </span>{
+       do_something();
+       do_something_else();
+      }
+};
+
+background_task f;
+<span class="built_in">std</span>::<span class="function">thread <span class="title">my_thread</span><span class="params">(f)</span></span>;
+</code></pre></li>
+<li><p>启动线程后需要明确是要等待线程结束(加入式)还是让其自主运行(分离式)，必须在对象销毁之前做出决定。</p>
+<pre><code>清单<span class="number">2.1</span> 函数已经结束，线程依旧访问局部变量
+<span class="keyword">struct</span> func
+{
+      <span class="keyword">int</span>&amp; i;
+      func(<span class="keyword">int</span>&amp; i_) : i(i_) {}
+      <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span> <span class="params">()</span>
+      </span>{
+           <span class="keyword">for</span> (<span class="keyword">unsigned</span> j=<span class="number">0</span> ; j&lt;<span class="number">1000000</span> ; ++j)
+            {
+          do_something(i);           <span class="comment">// 1. 潜在访问隐患：悬空引用</span>
+            }
+      }
+};
+
+<span class="function"><span class="keyword">void</span> <span class="title">oops</span><span class="params">()</span>
+</span>{
+      <span class="keyword">int</span> some_local_state=<span class="number">0</span>;
+      <span class="function">func <span class="title">my_func</span><span class="params">(some_local_state)</span></span>;
+      <span class="built_in">std</span>::<span class="function">thread <span class="title">my_thread</span><span class="params">(my_func)</span></span>;
+      my_thread.detach();          <span class="comment">// 2. 不等待线程结束</span>
+}                              <span class="comment">// 3. 新线程可能还在运行</span>
+</code></pre><p>  调用清单2.1中的<code>oops()</code>后，如果没有什么操作，看上去能够完美运行，可是一旦进行了某些操作，<code>i</code>引用地址的值就会发生改变，引发不想要的结果。</p>
+</li>
+</ul>
+</li>
+<li>等待线程完成<br> 如果需要等待线程，相关的<code>std::thread</code>实例需要使用<strong>join()</strong>，在清单2.1中将<code>my_thread.detach()</code>替换为<code>my_thread.join()</code>就可以确保局部变量在线程完成后才被销毁。<ul>
+<li><strong>join()</strong>等待线程完成或不等待；</li>
+<li><strong>join()</strong>清理了线程相关的存储部分，<code>std::thread</code>对象将不再与已经完成的线程有任何关联；</li>
+<li>只能对一个线程使用一次<strong>join()</strong>，一旦用过，其<strong>joinable()</strong>将会返回false，表示不能再次加入。</li>
+</ul>
+</li>
+<li><p>特殊情况下的等待<br> 如果打算等待对应线程，却因为线程运行后产生异常，在<strong>join()</strong>调用前被抛出，就意味着这次调用会被跳过。</p>
+<ul>
+<li>考虑用<code>try/catch</code>语句块在异常处理过程中调用<strong>join()</strong>，从而避免生命周期的问题</li>
+<li><p>另一种方式是使用RALL(Resource Acquisition Is Initialization)，并提供一个类，在析构函数中调用<strong>join()</strong>。</p>
+<pre><code>清单<span class="number">2.2</span> 使用RAII等待线程完成
+<span class="keyword">class</span> thread_guard
+{
+  <span class="built_in">std</span>::thread&amp; t;
+<span class="keyword">public</span>:
+  <span class="function"><span class="keyword">explicit</span> <span class="title">thread_guard</span><span class="params">(<span class="built_in">std</span>::thread&amp; t_)</span>:
+    <span class="title">t</span><span class="params">(t_)</span>
+  </span>{}
+  ~thread_guard()
+  {
+    <span class="keyword">if</span>(t.joinable()) <span class="comment">// ①</span>
+    {
+      t.join();      <span class="comment">// ②</span>
+    }
+  }
+  thread_guard(thread_guard <span class="keyword">const</span>&amp;)=<span class="keyword">delete</span>;   <span class="comment">// ③</span>
+  thread_guard&amp; <span class="keyword">operator</span>=(thread_guard <span class="keyword">const</span>&amp;)=<span class="keyword">delete</span>;
+};
+
+<span class="keyword">struct</span> func; <span class="comment">// 定义在清单2.1中</span>
+
+<span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span>
+</span>{
+  <span class="keyword">int</span> some_local_state=<span class="number">0</span>;
+  <span class="function">func <span class="title">my_func</span><span class="params">(some_local_state)</span></span>;
+  <span class="built_in">std</span>::<span class="function">thread <span class="title">t</span><span class="params">(my_func)</span></span>;
+  <span class="function">thread_guard <span class="title">g</span><span class="params">(t)</span></span>;
+  do_something_in_current_thread();
+}    <span class="comment">// ④</span>
+</code></pre><p>  解析：当线程执行到④时，局部变量即将被逆序销毁，然而<code>thread_guard</code>的对象<strong>g</strong>是第一个被销毁的，这时会调用其析构函数，被加入到原始线程中。注意：析构函数中的<strong>joinable()</strong>判断很重要，因为<strong>join()</strong>只能对给定的对象调用一次；</p>
+<blockquote>
+<p>拷贝构造函数和拷贝赋值操作被标记为=delete③，是为了不让编译器自动生成它们。直接对一个对象进行拷贝或赋值是危险的，因为这可能会弄丢已经加入的线程。通过删除声明，任何尝试给thread_guard对象赋值的操作都会引发一个编译错误。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>后台运行线程<br> 通常称分离线程为守护线程(<em>daemon threads</em>)，由<strong>detach()</strong>引发，c++运行库将会保证线程退出时现相关资源的正确回收，其归属和控制也由其处理。</p>
+<ul>
+<li>守护线程的特点是长时间运行，它没有任何用户接口，生命周期可能会从某一个应用起始到结束；</li>
+<li>Fire and forget：分离线程只能确定什么时候会结束；</li>
+<li>调用<strong>detach()</strong>后<strong>joinable()</strong>将会返回false；</li>
+</ul>
+</li>
+</ol>
+<p>这周就先学习到这里，欢迎大家留言交流。</p>
+<p>中英文书籍：</p>
+<ol>
+<li><a href="http://pan.baidu.com/s/1qXxyxuk" target="_blank" rel="external"><em>英文版 - 网盘</em></a></li>
+<li><a href="https://www.gitbook.com/book/chenxiaowei/cpp_concurrency_in_action/details" target="_blank" rel="external"><em>中文版 - GitBook</em></a></li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/10/18/Prolog学习笔记（四）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Prolog学习笔记（四）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="《C-并发编程》学习笔记（一）" data-title="《C++并发编程》学习笔记（一）" data-url="http://xmhtech.me/2016/03/19/《C-并发编程》学习笔记（一）/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"xmhtech"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Xie Minghao
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

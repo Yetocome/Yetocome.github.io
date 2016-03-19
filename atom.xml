@@ -5,7 +5,7 @@
   <subtitle><![CDATA[Any idea or discussion is highly welcomed.250745820@qq.com]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://xmhtech.me//"/>
-  <updated>2015-10-18T12:37:48.000Z</updated>
+  <updated>2016-03-19T14:24:53.000Z</updated>
   <id>http://xmhtech.me//</id>
   
   <author>
@@ -14,6 +14,152 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[《C++并发编程》学习笔记（一）]]></title>
+    <link href="http://xmhtech.me/2016/03/19/%E3%80%8AC-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://xmhtech.me/2016/03/19/《C-并发编程》学习笔记（一）/</id>
+    <published>2016-03-19T14:14:56.000Z</published>
+    <updated>2016-03-19T14:24:53.000Z</updated>
+    <content type="html"><![CDATA[<p>因为一些棘手的效率问题，手头的项目必须要引入并发编程。这里整理下我学习的《C++并发编程》的笔记，尽可能地记录下了重难点以及我练习的例程代码，作为自己学习的备忘，也供想要快速学习的人参考。不过还是建议直接去阅读原书，中英文版本的网盘链接我放在文章后面，请读者自取。</p>
+<a id="more"></a>
+<h3 id="第一章_你好，C++的并发世界">第一章 你好，C++的并发世界</h3><h4 id="何为并发">何为并发</h4><ul>
+<li>任务切换(task switching)：<br>单核机 - 某一时刻下只能执行一个任务，通过任务切换达成并发效果，任务切换时需要切换上下文(context switch)；</li>
+<li>硬件并发(hardware concurrency)：<br>多核机 - 真正的多任务同时执行，但是核心数仍然供不应求。</li>
+</ul>
+<p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F.png" alt="并发的两种方式"></p>
+<p>并发的两种方式</p>
+<p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/%E5%9B%9B%E4%BB%BB%E5%8A%A1%E4%B8%A4%E6%A0%B8%E5%BF%83.png" alt="四任务两核心"></p>
+<p>四任务两核心</p>
+<h4 id="并发的途径">并发的途径</h4><ul>
+<li>多进程并发<br> <img src="http://7xkwu7.com1.z0.glb.clouddn.com/%E5%B9%B6%E5%8F%91%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1.png" alt=""></li>
+<li>多线程并发<br> <img src="http://7xkwu7.com1.z0.glb.clouddn.com/%E8%BF%9B%E7%A8%8B%E5%86%85%E5%B9%B6%E5%8F%91%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1.png" alt=""></li>
+</ul>
+<h4 id="为什么使用并发">为什么使用并发</h4><ul>
+<li>为了分离关注点</li>
+<li>为了性能提升</li>
+</ul>
+<h4 id="什么时候不能用并发">什么时候不能用并发</h4><blockquote>
+<p>知道何时不使用并发与知道何时使用它一样重要。基本上，不使用并发的唯一原因就是，收益比不上成本。使用并发的代码在很多情况下难以理解，因此编写和维护的多线程代码就会产生直接的脑力成本，同时额外的复杂性也可能引起更多的错误。除非潜在的性能增益足够大或关注点分离地足够清晰，能抵消所需的额外的开发时间以及与维护多线程代码相关的额外成本(代码正确的前提下)；否则，别用并发。</p>
+</blockquote>
+<h3 id="第二章_线程管理">第二章 线程管理</h3><h4 id="线程管理基础">线程管理基础</h4><ol>
+<li><p>启动线程  </p>
+<ul>
+<li>线程在<code>std::thread</code>对象创建时启动。</li>
+<li>为了让编译器识别<code>std::thread</code>类，需将<code>&lt;thread&gt;</code>头文件包含进去。</li>
+<li><p><code>std::thread</code>可以用可调用(callable)类型构造</p>
+<pre><code><span class="keyword">class</span> background_task
+{
+<span class="keyword">public</span>:
+      <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">()</span> <span class="keyword">const</span>
+      </span>{
+       do_something();
+       do_something_else();
+      }
+};
+
+background_task f;
+<span class="built_in">std</span>::<span class="function">thread <span class="title">my_thread</span><span class="params">(f)</span></span>;
+</code></pre></li>
+<li><p>启动线程后需要明确是要等待线程结束(加入式)还是让其自主运行(分离式)，必须在对象销毁之前做出决定。</p>
+<pre><code>清单<span class="number">2.1</span> 函数已经结束，线程依旧访问局部变量
+<span class="keyword">struct</span> func
+{
+      <span class="keyword">int</span>&amp; i;
+      func(<span class="keyword">int</span>&amp; i_) : i(i_) {}
+      <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span> <span class="params">()</span>
+      </span>{
+           <span class="keyword">for</span> (<span class="keyword">unsigned</span> j=<span class="number">0</span> ; j&lt;<span class="number">1000000</span> ; ++j)
+            {
+          do_something(i);           <span class="comment">// 1. 潜在访问隐患：悬空引用</span>
+            }
+      }
+};
+
+<span class="function"><span class="keyword">void</span> <span class="title">oops</span><span class="params">()</span>
+</span>{
+      <span class="keyword">int</span> some_local_state=<span class="number">0</span>;
+      <span class="function">func <span class="title">my_func</span><span class="params">(some_local_state)</span></span>;
+      <span class="built_in">std</span>::<span class="function">thread <span class="title">my_thread</span><span class="params">(my_func)</span></span>;
+      my_thread.detach();          <span class="comment">// 2. 不等待线程结束</span>
+}                              <span class="comment">// 3. 新线程可能还在运行</span>
+</code></pre><p>  调用清单2.1中的<code>oops()</code>后，如果没有什么操作，看上去能够完美运行，可是一旦进行了某些操作，<code>i</code>引用地址的值就会发生改变，引发不想要的结果。</p>
+</li>
+</ul>
+</li>
+<li>等待线程完成<br> 如果需要等待线程，相关的<code>std::thread</code>实例需要使用<strong>join()</strong>，在清单2.1中将<code>my_thread.detach()</code>替换为<code>my_thread.join()</code>就可以确保局部变量在线程完成后才被销毁。<ul>
+<li><strong>join()</strong>等待线程完成或不等待；</li>
+<li><strong>join()</strong>清理了线程相关的存储部分，<code>std::thread</code>对象将不再与已经完成的线程有任何关联；</li>
+<li>只能对一个线程使用一次<strong>join()</strong>，一旦用过，其<strong>joinable()</strong>将会返回false，表示不能再次加入。</li>
+</ul>
+</li>
+<li><p>特殊情况下的等待<br> 如果打算等待对应线程，却因为线程运行后产生异常，在<strong>join()</strong>调用前被抛出，就意味着这次调用会被跳过。</p>
+<ul>
+<li>考虑用<code>try/catch</code>语句块在异常处理过程中调用<strong>join()</strong>，从而避免生命周期的问题</li>
+<li><p>另一种方式是使用RALL(Resource Acquisition Is Initialization)，并提供一个类，在析构函数中调用<strong>join()</strong>。</p>
+<pre><code>清单<span class="number">2.2</span> 使用RAII等待线程完成
+<span class="keyword">class</span> thread_guard
+{
+  <span class="built_in">std</span>::thread&amp; t;
+<span class="keyword">public</span>:
+  <span class="function"><span class="keyword">explicit</span> <span class="title">thread_guard</span><span class="params">(<span class="built_in">std</span>::thread&amp; t_)</span>:
+    <span class="title">t</span><span class="params">(t_)</span>
+  </span>{}
+  ~thread_guard()
+  {
+    <span class="keyword">if</span>(t.joinable()) <span class="comment">// ①</span>
+    {
+      t.join();      <span class="comment">// ②</span>
+    }
+  }
+  thread_guard(thread_guard <span class="keyword">const</span>&amp;)=<span class="keyword">delete</span>;   <span class="comment">// ③</span>
+  thread_guard&amp; <span class="keyword">operator</span>=(thread_guard <span class="keyword">const</span>&amp;)=<span class="keyword">delete</span>;
+};
+
+<span class="keyword">struct</span> func; <span class="comment">// 定义在清单2.1中</span>
+
+<span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span>
+</span>{
+  <span class="keyword">int</span> some_local_state=<span class="number">0</span>;
+  <span class="function">func <span class="title">my_func</span><span class="params">(some_local_state)</span></span>;
+  <span class="built_in">std</span>::<span class="function">thread <span class="title">t</span><span class="params">(my_func)</span></span>;
+  <span class="function">thread_guard <span class="title">g</span><span class="params">(t)</span></span>;
+  do_something_in_current_thread();
+}    <span class="comment">// ④</span>
+</code></pre><p>  解析：当线程执行到④时，局部变量即将被逆序销毁，然而<code>thread_guard</code>的对象<strong>g</strong>是第一个被销毁的，这时会调用其析构函数，被加入到原始线程中。注意：析构函数中的<strong>joinable()</strong>判断很重要，因为<strong>join()</strong>只能对给定的对象调用一次；</p>
+<blockquote>
+<p>拷贝构造函数和拷贝赋值操作被标记为=delete③，是为了不让编译器自动生成它们。直接对一个对象进行拷贝或赋值是危险的，因为这可能会弄丢已经加入的线程。通过删除声明，任何尝试给thread_guard对象赋值的操作都会引发一个编译错误。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>后台运行线程<br> 通常称分离线程为守护线程(<em>daemon threads</em>)，由<strong>detach()</strong>引发，c++运行库将会保证线程退出时现相关资源的正确回收，其归属和控制也由其处理。</p>
+<ul>
+<li>守护线程的特点是长时间运行，它没有任何用户接口，生命周期可能会从某一个应用起始到结束；</li>
+<li>Fire and forget：分离线程只能确定什么时候会结束；</li>
+<li>调用<strong>detach()</strong>后<strong>joinable()</strong>将会返回false；</li>
+</ul>
+</li>
+</ol>
+<p>这周就先学习到这里，欢迎大家留言交流。</p>
+<p>中英文书籍：</p>
+<ol>
+<li><a href="http://pan.baidu.com/s/1qXxyxuk" target="_blank" rel="external"><em>英文版 - 网盘</em></a></li>
+<li><a href="https://www.gitbook.com/book/chenxiaowei/cpp_concurrency_in_action/details" target="_blank" rel="external"><em>中文版 - GitBook</em></a></li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>因为一些棘手的效率问题，手头的项目必须要引入并发编程。这里整理下我学习的《C++并发编程》的笔记，尽可能地记录下了重难点以及我练习的例程代码，作为自己学习的备忘，也供想要快速学习的人参考。不过还是建议直接去阅读原书，中英文版本的网盘链接我放在文章后面，请读者自取。</p>]]>
+    
+    </summary>
+    
+      <category term="Concurrency" scheme="http://xmhtech.me/tags/Concurrency/"/>
+    
+      <category term="c++" scheme="http://xmhtech.me/tags/c/"/>
+    
+      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Prolog学习笔记（四）]]></title>
