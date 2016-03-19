@@ -3,21 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Prolog学习笔记（一） | Xie&#39;s blog</title>
+  <title>了解虚拟机 | Xie&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言：选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。
-Prolog简介：有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。">
+  <meta name="description" content="虚拟机是一款提供跨平台一致性体验的”软件”。虚拟机最初被Popek and Goldberg定义为“an efficient, isolated duplicate of a real machine”。现在通常指与实际硬件不直接相关的虚拟机器。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Prolog学习笔记（一）">
-<meta property="og:url" content="http://xmhtech.me/2015/09/18/Prolog学习笔记（一）/index.html">
+<meta property="og:title" content="了解虚拟机">
+<meta property="og:url" content="http://xmhtech.me/2016/03/12/了解虚拟机/index.html">
 <meta property="og:site_name" content="Xie's blog">
-<meta property="og:description" content="前言：选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。
-Prolog简介：有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。">
-<meta property="og:updated_time" content="2015-10-06T08:58:44.000Z">
+<meta property="og:description" content="虚拟机是一款提供跨平台一致性体验的”软件”。虚拟机最初被Popek and Goldberg定义为“an efficient, isolated duplicate of a real machine”。现在通常指与实际硬件不直接相关的虚拟机器。">
+<meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/Computer_Architecture.png">
+<meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/ProcessVM%201.png">
+<meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/ProcessVM%202.png">
+<meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/SystemVM_1.png">
+<meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/SystemVM_2.png">
+<meta property="og:updated_time" content="2016-03-19T15:55:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Prolog学习笔记（一）">
-<meta name="twitter:description" content="前言：选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。
-Prolog简介：有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。">
+<meta name="twitter:title" content="了解虚拟机">
+<meta name="twitter:description" content="虚拟机是一款提供跨平台一致性体验的”软件”。虚拟机最初被Popek and Goldberg定义为“an efficient, isolated duplicate of a real machine”。现在通常指与实际硬件不直接相关的虚拟机器。">
   
     <link rel="alternative" href="/atom.xml" title="Xie&#39;s blog" type="application/atom+xml">
   
@@ -199,11 +201,11 @@ var _hmt = _hmt || [];
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-Prolog学习笔记（一）" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-了解虚拟机" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/09/18/Prolog学习笔记（一）/" class="article-date">
-  	<time datetime="2015-09-18T13:18:00.000Z" itemprop="datePublished">2015-09-18</time>
+      <a href="/2016/03/12/了解虚拟机/" class="article-date">
+  	<time datetime="2016-03-12T15:53:50.000Z" itemprop="datePublished">2016-03-12</time>
 </a>
     </div>
   
@@ -216,7 +218,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      Prolog学习笔记（一）
+      了解虚拟机
     </h1>
   
 
@@ -225,12 +227,12 @@ var _hmt = _hmt || [];
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Prolog/">Prolog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/language/">language</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OS/">OS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VM/">VM</a></li></ul>
 	</div>
 
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Tech/">Tech</a>
+	<a class="article-category-link" href="/categories/Others/">Others</a>
 	</div>
 
 
@@ -240,67 +242,68 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前言：">前言：</h3><p>选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。</p>
-<h3 id="Prolog简介：">Prolog简介：</h3><p>有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。</p>
+        <p>虚拟机是一款提供跨平台一致性体验的”软件”。<br>虚拟机最初被Popek and Goldberg定义为<em>“an efficient, isolated duplicate of a real machine”</em>。现在通常指与实际硬件不直接相关的虚拟机器。 </p>
 <a id="more"></a>
-<p>配置环境（macbook air）：</p>
-<ol>
-<li><p>直接用homebrew安装swi-prolog（没有安装的参见另一篇博文：<a href="http://xmhtech.me/2015/09/19/Homebrew安装使用总结/">Homebrew 安装使用总结</a>）</p>
-<blockquote>
-<p>What is swim-prolog?<br>它是一个prolog的解释器</p>
-</blockquote>
-<p> brew install homebrew/x11/swi-prolog</p>
-</li>
-<li><p>常用命令</p>
-<pre><code>swipl <span class="comment">//调出主界面</span>
-halt. <span class="comment">//退出，Control+D</span>
-consult<span class="params">('’)</span>. <span class="comment">//</span>
-reconsult<span class="params">()</span>.<span class="comment">//</span>
-</code></pre></li>
+<h3 id="简介">简介</h3><p>在传统意义上，一个应用程序是和特定平台（硬件+OS）所绑定的。用户层面上，这意味着你将无法在不同的平台上获得一致的体验，很多软件都只适配了某些特定的平台；开发者层面，因为不同系统适配的麻烦令许多中小开发者放弃对多平台的开发，这也是用户层面问题产生的重要原因。切换平台后，很多人会对新系统无所适从，发现常用的软件以及熟悉的操作方式不复存在。<br>虚拟机就是为了消除这种现实平台的限制而存在的，提供了一套更加灵活的解决方案。</p>
+<h3 id="虚拟机的必要性">虚拟机的必要性</h3><ol>
+<li>便携性(Portability)在当今的网络计算下至关重要；</li>
+<li>类型安全、面向对象编程、基于VM的语言成为主流；</li>
+<li>CPU的创新往往被旧的接口所限制；</li>
+<li>跨处理器的优化十分困难。</li>
 </ol>
-<p>基本语法</p>
+<h3 id="虚拟机的优点">虚拟机的优点</h3><ol>
+<li>跨平台的兼容性；</li>
+<li>增加安全性；</li>
+<li>提升性能；</li>
+<li>简化软件迁移。</li>
+</ol>
+<h3 id="虚拟机的历史">虚拟机的历史</h3><p>许多年前，IBM出售昂贵的主机给大型组织，并且产生了一个问题：要是组织想要同时在一台机器上运行不同的操作系统该怎么办？一些应用被开发在某个系统上然而有些却在其他系统上。结果IBM以Virtual machine monitor(VMM, also hypervisor)的方式间接实现了它。</p>
+<h3 id="计算机系统的接口">计算机系统的接口</h3><p>在介绍虚拟机之前，先介绍下计算机的结构，计算机系统是通过不同层级的抽象构建起来的，见下图：<br><img src="http://7xkwu7.com1.z0.glb.clouddn.com/Computer_Architecture.png" alt="Computer Architecture"></p>
+<p>其中两类接口至关重要：</p>
 <ol>
-<li>谓词(predicate)：Prolog的基本组成元素，可以是一段程序、一个数据类型或是一种关系，由谓词名和参数组成，名称相同、参数不同的谓词是不同的谓词；</li>
-<li>参数(argument)：<ul>
-<li>变量(variables)<ul>
-<li>总是以大写字母或者下划线开始</li>
-<li>对于变量没有类型而言，它能选用任何值</li>
-<li>变量有它自己的作用域，其他子句的同名变量不会继承上一子句的值</li>
-<li>变量可以被看做是全称量词，读作“任给”<br>*常量(constants) :<ul>
-<li>原子(atom)：<ul>
-<li>以小写字母开头，由字母、数字和下划线组成</li>
-<li>由特殊符号组成</li>
-<li>由单引号围起来的句子</li>
+<li>ISA接口<br> Instruction Set Architecture，又称指令集或指令集体系。连接软硬件。包括用户级ISA（对应用和OS可见）和系统级ISA（仅对OS可见）</li>
+<li>ABI接口<br> Application Binary Interface，是应用与OS间的接口，由用户级ISA和OS系统调用</li>
+</ol>
+<h3 id="虚拟机的分类系统">虚拟机的分类系统</h3><ol>
+<li><p>Process VMs<br>位于ABI层，将独立的进程虚拟化 - 虚拟机随进程终止而终止。<br>进程虚拟机将ABI层虚拟化，<strong>仿真</strong>了用户级ISA和OS系统调用，这里的VM也可以被称作runtime，VMM则被称作runtime system。<br>Runtime将负责管理客户程序，负责其与OS的沟通。客户程序可能会和主程序掺杂在一起。</p>
+<ol>
+<li>Same ISA<ul>
+<li>Multiprogrammed Systems</li>
+<li>Dynamic Binary Optimizers</li>
 </ul>
 </li>
-<li>数字(number)：绝对值小于某数的正数或负数</li>
+<li><p>Different ISA</p>
+<ul>
+<li>Dynamic Translators</li>
+<li>HLL VM - 高级语言虚拟机， 典型代表JVM，赋予了语言跨平台的特性</li>
+</ul>
+<p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/ProcessVM%201.png" alt="ProcessVM_1"><br><img src="http://7xkwu7.com1.z0.glb.clouddn.com/ProcessVM%202.png" alt="ProcessVM_2"></p>
+</li>
+</ol>
+</li>
+<li>System VMs<br>位于ISA层，虚拟出一个完整的系统 - 支持多进程，支持设备I/O，支持GUI界面。<ol>
+<li>Same ISA<ul>
+<li>Classic System VM - VMM直接搭在纯硬件系统上(通常采用私密模式)，为客户系统解释和实现所有私密操作。</li>
+<li>Hosted VM - 直接将VMM搭在常规宿主操作系统上，缺点是效率较低。</li>
 </ul>
 </li>
-</ul>
-</li>
-<li>结构体(structure)：后面介绍</li>
-</ul>
-</li>
-<li>规则(rules)<ul>
-<li>结论(子句头)：由条件决定是否为真</li>
-<li>条件(子句体)：一系列用逗号隔离的目标，逗号被认作为“与”</li>
-</ul>
-</li>
-<li>事实(facts)：可以看做只有头的规则</li>
-<li>问题(query)：可以看做只有体的规则</li>
-<li>注释(comment)<ul>
-<li>单行：%</li>
-<li>多行：/<em>开始</em>/结束</li>
+<li>Different ISA<ul>
+<li>Whole System VM - 客户系统和宿主系统采用不同的ISA。</li>
+<li>Codesigned VM - 为了能够使用一些创新的ISAs和/或硬件实现，从而能够提升性能与能耗<br><img src="http://7xkwu7.com1.z0.glb.clouddn.com/SystemVM_1.png" alt="SystemVM_1"><br><img src="http://7xkwu7.com1.z0.glb.clouddn.com/SystemVM_2.png" alt="SystemVM_2"></li>
 </ul>
 </li>
 </ol>
-<p>其他：</p>
-<pre><code><span class="number">1.</span> 询问时，分号的作用：使当前子句无效，继续搜索答案。
-</code></pre><p><strong>Prolog是如何回答问题的?</strong></p>
-<p>Prolog寻找证据的顺序正好与我们的推理相反，即执果索因，使用目标、规则、代换和当前目标来推导出新的目标，直到新目标恰好是简单事实时，给出答案。</p>
-<p><em>Reference:</em></p>
+</li>
+</ol>
+<h3 id="虚拟化技术">虚拟化技术</h3><h4 id="纯硬件之上的虚拟化（本机执行）">纯硬件之上的虚拟化（本机执行）</h4><p>这种方法被称之为对硬件完全的虚拟化，可以使用type 1或type 2的当时执行管理程序：type 1 管理程序直接跑在硬件上，type 2则跑在另一个操作系统之上。每个虚拟机上可以运行任何一个被底层硬件所支持的操作系统，用户也因此可以同时运行两个甚至更多的”Guest”操作系统，相互之间无法干涉。<br>这种虚拟机甚至可以是recursive的——虚拟机之上可以运行虚拟机。</p>
+<h4 id="非本机系统模拟">非本机系统模拟</h4><p>虚拟机可以承担模拟器的责任，让软件和操作系统为另一个计算机处理器的结构所运行。模拟可以完全是软件层面的，或者可能包含一些硬件的成份比如说微指令。</p>
+<h4 id="操作系统级别的虚拟化">操作系统级别的虚拟化</h4><p>这种虚拟化是在操作系统之上的服务器虚拟化技术。可以这么理解，一个单独的物理服务器被分片成好几个小部分（又称作VE, VPS, guests, zones, etc），每个部分从用户的角度看像是真的服务器一般。</p>
+<p><strong>内容还很简陋，如有错误欢迎指出，不定期更新。</strong></p>
+<p><em>Reference</em></p>
 <ol>
-<li><em>Prolog Programming for Artificial Intelligence 4th edition - chapter 1</em></li>
+<li>Virtual machine monitor, 2014, ARPACI-DUSSEAU， The easy piece</li>
+<li><a href="https://www.wikiwand.com/en/Runtime_system" target="_blank" rel="external">Runtime system - Wikiwand</a></li>
+<li><a href="https://www.wikiwand.com/en/Virtual_machine" target="_blank" rel="external">Vitual machine - Wikiwand</a></li>
 </ol>
 
       
@@ -311,18 +314,18 @@ reconsult<span class="params">()</span>.<span class="comment">//</span>
     
 <nav id="article-nav">
   
-    <a href="/2015/09/19/Homebrew安装使用总结/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/03/19/《C-并发编程》学习笔记（一）/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          Homebrew安装使用总结
+          《C++并发编程》学习笔记（一）
         
       </div>
     </a>
   
   
-    <a href="/2015/09/06/TL-WR703N v1.7 刷OpenWrt（译）/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">TL-WR703N v1.7 刷OpenWrt（译）</div>
+    <a href="/2015/10/18/Prolog学习笔记（四）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Prolog学习笔记（四）</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -351,7 +354,7 @@ reconsult<span class="params">()</span>.<span class="comment">//</span>
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Prolog学习笔记（一）" data-title="Prolog学习笔记（一）" data-url="http://xmhtech.me/2015/09/18/Prolog学习笔记（一）/"></div>
+	<div class="ds-thread" data-thread-key="了解虚拟机" data-title="了解虚拟机" data-url="http://xmhtech.me/2016/03/12/了解虚拟机/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
