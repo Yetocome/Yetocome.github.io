@@ -3,14 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Prolog学习笔记（一） | Xie&#39;s blog</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Prolog学习笔记（一） | Xie&#39;s Exploration</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言：选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。
 Prolog简介：有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Prolog学习笔记（一）">
-<meta property="og:url" content="http://xmhtech.me/2015/09/18/Prolog学习笔记（一）/index.html">
-<meta property="og:site_name" content="Xie's blog">
+<meta property="og:url" content="http://xmhtest.space/2015/09/18/Prolog学习笔记（一）/index.html">
+<meta property="og:site_name" content="Xie's Exploration">
 <meta property="og:description" content="前言：选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。
 Prolog简介：有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。">
 <meta property="og:updated_time" content="2015-10-06T08:58:44.000Z">
@@ -19,36 +20,23 @@ Prolog简介：有别于一般的函数式语言，prolog的程序是基于谓�
 <meta name="twitter:description" content="前言：选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。
 Prolog简介：有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。">
   
-    <link rel="alternative" href="/atom.xml" title="Xie&#39;s blog" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Xie&#39;s Exploration" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="//favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  
-<script type="text/javascript">
-#申请的百度统计代码
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?1f5823e44d3dbf23c03aa37d06b3f419";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-</script>
-
+  <script src="/style.js"></script>
 </head>
+
 <body>
   <div id="container">
     <div class="left-col">
-    <div class="overlay"></div>
+      <div class="overlay"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			
-			<img lazy-src="/img/daodao.jpg" class="js-avatar">
+			<img src="//daodao.jpg" class="js-avatar show">
 			
 		</a>
 
@@ -57,128 +45,88 @@ var _hmt = _hmt || [];
 		</hgroup>
 
 		
-		<p class="header-subtitle">Any idea or discussion is highly welcomed.250745820@qq.com</p>
+		<p class="header-subtitle">Any idea or discussion is highly welcomed.</p>
 		
 
-		
-			<div class="switch-btn">
-				<div class="icon">
-					<div class="icon-ctn">
-						<div class="icon-wrap icon-house" data-idx="0">
-							<div class="birdhouse"></div>
-							<div class="birdhouse_holes"></div>
-						</div>
-						<div class="icon-wrap icon-ribbon hide" data-idx="1">
-							<div class="ribbon"></div>
-						</div>
-						
-						
-						<div class="icon-wrap icon-me hide" data-idx="3">
-							<div class="user"></div>
-							<div class="shoulder"></div>
-						</div>
-						
-					</div>
-					
-				</div>
-				<div class="tips-box hide">
-					<div class="tips-arrow"></div>
-					<ul class="tips-inner">
-						<li>菜单</li>
-						<li>标签</li>
-						
-						
-						<li>关于我</li>
-						
-					</ul>
-				</div>
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="3" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/Yetocome" title="github">github</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/61cd864864d3f8a1dee10862c79d4e32" title="zhihu">zhihu</a>
+		        
+					<a class="mail" target="_blank" href="#" title="mail">mail</a>
+		        
+					<a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+		        
+					<a class="linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+		        
 			</div>
-		
-
-		<div class="switch-area">
-			<div class="switch-wrap">
-				<section class="switch-part switch-part1">
-					<nav class="header-menu">
-						<ul>
-						
-							<li><a href="/">Home</a></li>
-				        
-							<li><a href="/archives">All</a></li>
-				        
-							<li><a href="/categories/Tech">Tech</a></li>
-				        
-							<li><a href="/categories/Sci">Sci</a></li>
-				        
-							<li><a href="/categories/Others">Others</a></li>
-				        
-						</ul>
-					</nav>
-					<nav class="header-nav">
-						<div class="social">
-							
-								<a class="github" target="_blank" href="https://github.com/Yetocome" title="github">github</a>
-					        
-								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/61cd864864d3f8a1dee10862c79d4e32" title="zhihu">zhihu</a>
-					        
-								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
-					        
-								<a class="mail" target="_blank" href="/<250745820@qq.com>" title="mail">mail</a>
-					        
-						</div>
-					</nav>
-				</section>
-				
-				
-				<section class="switch-part switch-part2">
-					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/Concurrency/" style="font-size: 10px;">Concurrency</a> <a href="/tags/Google/" style="font-size: 10px;">Google</a> <a href="/tags/Network/" style="font-size: 10px;">Network</a> <a href="/tags/OS/" style="font-size: 10px;">OS</a> <a href="/tags/OpenWrt/" style="font-size: 10px;">OpenWrt</a> <a href="/tags/Prolog/" style="font-size: 20px;">Prolog</a> <a href="/tags/Resource/" style="font-size: 13.33px;">Resource</a> <a href="/tags/SDN/" style="font-size: 10px;">SDN</a> <a href="/tags/Translation/" style="font-size: 10px;">Translation</a> <a href="/tags/VM/" style="font-size: 10px;">VM</a> <a href="/tags/book/" style="font-size: 10px;">book</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/develop/" style="font-size: 10px;">develop</a> <a href="/tags/info/" style="font-size: 16.67px;">info</a> <a href="/tags/language/" style="font-size: 20px;">language</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/router/" style="font-size: 10px;">router</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
-					</div>
-				</section>
-				
-				
-				
-
-				
-				
-				<section class="switch-part switch-part3">
-				
-					<div id="js-aboutme">四川大学2014级计算机科学专业在读</div>
-				</section>
-				
-			</div>
-		</div>
-	</header>				
+		</nav>
+	</header>		
 </div>
+
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
   	<div class="overlay">
-  		<div class="slider-trigger"></div>
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
   		<h1 class="header-author js-mobile-header hide">Xie Minghao</h1>
   	</div>
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img lazy-src="/img/daodao.jpg" class="js-avatar">
+				
+					<img src="//daodao.jpg" class="js-avatar">
+				
 			</div>
 			<hgroup>
 			  <h1 class="header-author">Xie Minghao</h1>
 			</hgroup>
 			
-			<p class="header-subtitle">Any idea or discussion is highly welcomed.250745820@qq.com</p>
+			<p class="header-subtitle">Any idea or discussion is highly welcomed.</p>
 			
 			<nav class="header-menu">
 				<ul>
 				
-					<li><a href="/">Home</a></li>
+					<li><a href="/">主页</a></li>
 		        
-					<li><a href="/archives">All</a></li>
-		        
-					<li><a href="/categories/Tech">Tech</a></li>
-		        
-					<li><a href="/categories/Sci">Sci</a></li>
-		        
-					<li><a href="/categories/Others">Others</a></li>
+					<li><a href="/tags/随笔">随笔</a></li>
 		        
 		        <div class="clearfix"></div>
 				</ul>
@@ -188,25 +136,24 @@ var _hmt = _hmt || [];
 					
 						<a class="github" target="_blank" href="https://github.com/Yetocome" title="github">github</a>
 			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
 						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/61cd864864d3f8a1dee10862c79d4e32" title="zhihu">zhihu</a>
 			        
-						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+						<a class="mail" target="_blank" href="#" title="mail">mail</a>
 			        
-						<a class="mail" target="_blank" href="/<250745820@qq.com>" title="mail">mail</a>
+						<a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+			        
+						<a class="linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
 			        
 				</div>
 			</nav>
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-Prolog学习笔记（一）" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/09/18/Prolog学习笔记（一）/" class="article-date">
-  	<time datetime="2015-09-18T13:18:00.000Z" itemprop="datePublished">2015-09-18</time>
-</a>
-    </div>
-  
+
+      <div class="body-wrap">
+        <article id="post-Prolog学习笔记（一）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -221,41 +168,25 @@ var _hmt = _hmt || [];
   
 
       </header>
-      
-      <div class="article-info article-info-post">
-        
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Prolog/">Prolog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/language/">language</a></li></ul>
-	</div>
-
-        
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Tech/">Tech</a>
-	</div>
-
-
-        <div class="clearfix"></div>
-      </div>
-      
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前言：">前言：</h3><p>选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。</p>
-<h3 id="Prolog简介：">Prolog简介：</h3><p>有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。</p>
+        <h3 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h3><p>选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。</p>
+<h3 id="Prolog简介："><a href="#Prolog简介：" class="headerlink" title="Prolog简介："></a>Prolog简介：</h3><p>有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。</p>
 <a id="more"></a>
 <p>配置环境（macbook air）：</p>
 <ol>
-<li><p>直接用homebrew安装swi-prolog（没有安装的参见另一篇博文：<a href="http://xmhtech.me/2015/09/19/Homebrew安装使用总结/">Homebrew 安装使用总结</a>）</p>
+<li><p>直接用homebrew安装swi-prolog（没有安装的参见另一篇博文：<a href="http://xmhtech.me/2015/09/19/Homebrew安装使用总结/" target="_blank" rel="external">Homebrew 安装使用总结</a>）</p>
 <blockquote>
 <p>What is swim-prolog?<br>它是一个prolog的解释器</p>
 </blockquote>
 <p> brew install homebrew/x11/swi-prolog</p>
 </li>
 <li><p>常用命令</p>
-<pre><code>swipl <span class="comment">//调出主界面</span>
-halt. <span class="comment">//退出，Control+D</span>
-consult<span class="params">('’)</span>. <span class="comment">//</span>
-reconsult<span class="params">()</span>.<span class="comment">//</span>
+<pre><code>swipl //调出主界面
+halt. //退出，Control+D
+consult(&apos;’). //
+reconsult().//
 </code></pre></li>
 </ol>
 <p>基本语法</p>
@@ -295,7 +226,7 @@ reconsult<span class="params">()</span>.<span class="comment">//</span>
 </li>
 </ol>
 <p>其他：</p>
-<pre><code><span class="number">1.</span> 询问时，分号的作用：使当前子句无效，继续搜索答案。
+<pre><code>1. 询问时，分号的作用：使当前子句无效，继续搜索答案。
 </code></pre><p><strong>Prolog是如何回答问题的?</strong></p>
 <p>Prolog寻找证据的顺序正好与我们的推理相反，即执果索因，使用目标、规则、代换和当前目标来推导出新的目标，直到新目标恰好是简单事实时，给出答案。</p>
 <p><em>Reference:</em></p>
@@ -305,14 +236,34 @@ reconsult<span class="params">()</span>.<span class="comment">//</span>
 
       
     </div>
-    
+    <div class="article-info article-info-index">
+      
+      <a href="/2015/09/18/Prolog学习笔记（一）/" class="archive-article-date">
+  	<time datetime="2015-09-18T13:18:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2015-09-18</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Prolog/">Prolog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/language/">language</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/Tech/">Tech</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
   </div>
+</article>
+
   
-    
 <nav id="article-nav">
   
     <a href="/2015/09/19/Homebrew安装使用总结/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
+      <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
           Homebrew安装使用总结
@@ -323,25 +274,27 @@ reconsult<span class="params">()</span>.<span class="comment">//</span>
   
     <a href="/2015/09/06/TL-WR703N v1.7 刷OpenWrt（译）/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">TL-WR703N v1.7 刷OpenWrt（译）</div>
-      <strong class="article-nav-caption">></strong>
+      <i class="icon-circle-right"></i>
     </a>
   
 </nav>
 
-  
-</article>
 
 
-<div class="share">
+
+<div class="share_jia">
 	<!-- JiaThis Button BEGIN -->
 	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
 		<a class="jiathis_button_cqq"></a>
 		<a class="jiathis_button_douban"></a>
 		<a class="jiathis_button_weixin"></a>
 		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
 	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
 	<!-- JiaThis Button END -->
@@ -349,9 +302,12 @@ reconsult<span class="params">()</span>.<span class="comment">//</span>
 
 
 
+
+
+
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Prolog学习笔记（一）" data-title="Prolog学习笔记（一）" data-url="http://xmhtech.me/2015/09/18/Prolog学习笔记（一）/"></div>
+	<div class="ds-thread" data-thread-key="Prolog学习笔记（一）" data-title="Prolog学习笔记（一）" data-url="http://xmhtest.space/2015/09/18/Prolog学习笔记（一）/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -371,7 +327,8 @@ reconsult<span class="params">()</span>.<span class="comment">//</span>
 
 
 
-</div>
+
+      </div>
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
@@ -385,11 +342,7 @@ reconsult<span class="params">()</span>.<span class="comment">//</span>
   </div>
 </footer>
     </div>
-    
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-
-
-<script>
+    <script>
 	var yiliaConfig = {
 		fancybox: true,
 		mathjax: true,
@@ -399,12 +352,12 @@ reconsult<span class="params">()</span>.<span class="comment">//</span>
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: false
+		open_in_new: false,
+		root: "/"
 	}
 </script>
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
 
+<script src="/main.js"></script>
 
 
 
@@ -431,6 +384,68 @@ MathJax.Hub.Queue(function() {
 </script>
 
 
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/Concurrency/" style="font-size: 10px;">Concurrency</a> <a href="/tags/Google/" style="font-size: 10px;">Google</a> <a href="/tags/Network/" style="font-size: 10px;">Network</a> <a href="/tags/OS/" style="font-size: 10px;">OS</a> <a href="/tags/OpenWrt/" style="font-size: 10px;">OpenWrt</a> <a href="/tags/Prolog/" style="font-size: 20px;">Prolog</a> <a href="/tags/Resource/" style="font-size: 13.33px;">Resource</a> <a href="/tags/SDN/" style="font-size: 10px;">SDN</a> <a href="/tags/Translation/" style="font-size: 10px;">Translation</a> <a href="/tags/VM/" style="font-size: 10px;">VM</a> <a href="/tags/book/" style="font-size: 10px;">book</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/develop/" style="font-size: 10px;">develop</a> <a href="/tags/info/" style="font-size: 16.67px;">info</a> <a href="/tags/language/" style="font-size: 20px;">language</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/router/" style="font-size: 10px;">router</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">四川大学&lt;br&gt;&lt;br&gt;2014级&lt;br&gt;计算机科学专业&lt;br&gt;在读</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
   </div>
 </body>
 </html>
