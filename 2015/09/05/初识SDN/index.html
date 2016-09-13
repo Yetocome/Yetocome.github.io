@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>初识SDN | Xie&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="SDN是一种为了解决传统网络中各种问题，比如管理困难、维护困难、拓展性差、灵活性差等，而出现的新型的网络架构。它的核心特征是实现了控制平面和数据平面的分离、控制逻辑集中和网络可编程。它的意义在于淡化底层设备的作用，让网络硬件的设计更加简单通用，打破“厂商锁定”，并且在这之上建立一个开放的网络操作系统，让开发者进入网络服务开发的门槛更低，建立起一个大三层网络生态系统，激发网络创新，给用户带来更好的使">
@@ -17,16 +16,28 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初识SDN">
 <meta name="twitter:description" content="SDN是一种为了解决传统网络中各种问题，比如管理困难、维护困难、拓展性差、灵活性差等，而出现的新型的网络架构。它的核心特征是实现了控制平面和数据平面的分离、控制逻辑集中和网络可编程。它的意义在于淡化底层设备的作用，让网络硬件的设计更加简单通用，打破“厂商锁定”，并且在这之上建立一个开放的网络操作系统，让开发者进入网络服务开发的门槛更低，建立起一个大三层网络生态系统，激发网络创新，给用户带来更好的使">
-<meta name="twitter:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/sdnsdn-3layers-2.gif">
   
     <link rel="alternative" href="/atom.xml" title="Xie&#39;s blog" type="application/atom+xml">
   
   
-    <link rel="icon" href="//favicon.png">
+    <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css">
-</head>
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+<script type="text/javascript">
+#申请的百度统计代码
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?1f5823e44d3dbf23c03aa37d06b3f419";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</script>
 
+</head>
 <body>
   <div id="container">
     <div class="left-col">
@@ -35,7 +46,7 @@
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			
-			<img lazy-src="//img/daodao.jpg" class="js-avatar">
+			<img lazy-src="/img/daodao.jpg" class="js-avatar">
 			
 		</a>
 
@@ -71,11 +82,11 @@
 				<div class="tips-box hide">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
-						<li>Menu</li>
-						<li>Tags</li>
+						<li>菜单</li>
+						<li>标签</li>
 						
 						
-						<li>Über</li>
+						<li>关于我</li>
 						
 					</ul>
 				</div>
@@ -136,7 +147,6 @@
 		</div>
 	</header>				
 </div>
-
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
@@ -147,9 +157,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				
-					<img lazy-src="//img/daodao.jpg" class="js-avatar">
-				
+				<img lazy-src="/img/daodao.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author">Xie Minghao</h1>
@@ -189,7 +197,6 @@
 		</header>				
 	</div>
 </nav>
-
       <div class="body-wrap"><article id="post-初识SDN" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -233,7 +240,7 @@
       
         <p><strong>SDN</strong>是一种为了解决传统网络中各种问题，比如管理困难、维护困难、拓展性差、灵活性差等，而出现的<strong>新型</strong>的<em><strong>网络架构</strong></em>。它的核心特征是实现了控制平面和数据平面的分离、控制逻辑集中和网络可编程。它的意义在于淡化底层设备的作用，让网络硬件的设计更加简单通用，打破“<strong>厂商锁定</strong>”，并且在这之上建立一个开放的网络操作系统，让开发者进入网络服务开发的门槛更低，建立起一个大三层网络生态系统，激发网络<em><strong>创新</strong></em>，给用户带来更好的使用体验。</p>
 <a id="more"></a>
-<h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/sdnsdn-3layers-2.gif" alt=""><br><em>图片出自ONF</em></p>
+<h3 id="架构">架构</h3><p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/sdnsdn-3layers-2.gif" alt=""><br><em>图片出自ONF</em></p>
 <p><a href="https://www.opennetworking.org" target="_blank" rel="external">ONF</a>提出的典型架构分为三层（从上到下依次是）：</p>
 <ul>
 <li>应用层（应用平面）</li>
@@ -241,7 +248,7 @@
 <li>基础设施层（数据平面）</li>
 </ul>
 <p><em>备注：连接底下两层的被称为南向接口，连接顶上两层则被称为北向接口，控制层内部的连接被称为东西向接口。</em></p>
-<h3 id="核心特征"><a href="#核心特征" class="headerlink" title="核心特征"></a>核心特征</h3><ul>
+<h3 id="核心特征">核心特征</h3><ul>
 <li><p>控制逻辑集中：传统网络中分散的控制在SDN网络中被集中了起来，并且获得了空前的对全网的信息掌控，在此基础上很多复杂的操作都将被简化。</p>
 </li>
 <li><p>网络可编程 (programmability)：SDN网络中的北向接口，屏蔽了下层网络的细节，兼容多种高级语言，降低了开发者进入网络开发领域的门槛。</p>
@@ -249,14 +256,14 @@
 <li><p>数据控制分离：传统网络体系里数据平面和控制平面都是分布式的，相互之间通过协议协作，但是这种分布式的网络控制不可避免地将会带来管理和维护的麻烦，而且出现问题可能也是连动式地，对于故障的定位也是一个大问题。SDN网络在这种分布式网络中分离出了控制部分，让所有上层的控制决策都由一个远端的控制器或者控制集群来下发。</p>
 </li>
 </ul>
-<h3 id="各层简介"><a href="#各层简介" class="headerlink" title="各层简介"></a>各层简介</h3><h4 id="（一）数据平面"><a href="#（一）数据平面" class="headerlink" title="（一）数据平面"></a>（一）数据平面</h4><p>传统交换设备的功能架构包含了控制平面和数据平面，在物理上是紧耦合的，各种转发设备均与协议相关。SDN数据平面的交换设备专注于高速转发数据分组，转发决策由南向接口下发，实现了硬件设计的精简化，提升了效率。</p>
+<h3 id="各层简介">各层简介</h3><h4 id="（一）数据平面">（一）数据平面</h4><p>传统交换设备的功能架构包含了控制平面和数据平面，在物理上是紧耦合的，各种转发设备均与协议相关。SDN数据平面的交换设备专注于高速转发数据分组，转发决策由南向接口下发，实现了硬件设计的精简化，提升了效率。</p>
 <p>SDN交换机设计：</p>
 <ol>
 <li>转发决策(Forwarding Decision)<br>数据分组进入交换机后，先与流表进行匹配查找，匹配成功则执行相应处理动作，失败则上交控制器由之决策，流程依赖于内部的SDN交换芯片，也是设备速率的瓶颈所在。</li>
 <li>背板转发(Backplane)<br>交换机通过背板将各个端口连接，经由背板从输入端口转发到目的端口，为保证顺序，这里有个队列，队列满数据可能会被丢弃。</li>
 <li>输出链路调度(Output Link Scheduling)<br>当数据分组到达SDN交换机的设备出端口后，在队列里等待，直到它被发出到相应的交换机输出链路上。</li>
 </ol>
-<h4 id="（二）控制平面"><a href="#（二）控制平面" class="headerlink" title="（二）控制平面"></a>（二）控制平面</h4><p>控制平面向上提供应用接口，向下指挥硬件转发，是整个SDN架构中最核心的部分。<br>类似于计算机的操作系统，设计SDN控制器的体系可以以之为参考。<br>控制器（Controller）是控制平面的核心组件，它是一个运行在服务器上的软件程序，可以用不同的语言运行在不同的操作系统上。<br>SDN控制器的设计多种多样，但一般要考虑到以下几个方面：</p>
+<h4 id="（二）控制平面">（二）控制平面</h4><p>控制平面向上提供应用接口，向下指挥硬件转发，是整个SDN架构中最核心的部分。<br>类似于计算机的操作系统，设计SDN控制器的体系可以以之为参考。<br>控制器（Controller）是控制平面的核心组件，它是一个运行在服务器上的软件程序，可以用不同的语言运行在不同的操作系统上。<br>SDN控制器的设计多种多样，但一般要考虑到以下几个方面：</p>
 <ol>
 <li>北向接口：不同的控制器北向接口差异可以很大；</li>
 <li>南向接口：不同于OpenFlow控制器，SDN控制器可以是更加灵活的，而已支持其他南向接口甚至私有接口，这也是设备制造商差异化服务的体现；</li>
@@ -266,13 +273,13 @@
 <li>安全性：系统级别的安全防御是很有必要的，在这一层要能够拦截下绝大部分网络攻击；</li>
 <li>可靠性：要考虑到集群某一个或几个控制器故障或者遭受攻击的情况，要立刻启动应急机制，像是备份控制器。</li>
 </ol>
-<h4 id="（三）应用平面"><a href="#（三）应用平面" class="headerlink" title="（三）应用平面"></a>（三）应用平面</h4><p>SDN应用平面正是SDN体现其创新平台作用的地方，与传统网络相比，SDN网络将拥有更强的智能型，动态控制性和可编程性。<br>在当前主流SDN网络应用平面上，主要有以下三种类型的应用：</p>
+<h4 id="（三）应用平面">（三）应用平面</h4><p>SDN应用平面正是SDN体现其创新平台作用的地方，与传统网络相比，SDN网络将拥有更强的智能型，动态控制性和可编程性。<br>在当前主流SDN网络应用平面上，主要有以下三种类型的应用：</p>
 <ol>
 <li>资源管理平台<br>  在资源管理平台上整合SDN交付的网络控制能力是为了满足云计算资源调配自动化的需求，那些由标准步骤构成的流程最适合用专门的脚本来模拟反复，资源管理平台以软件的形式实现了对网络资源包括计算、存储和网络的协同交付。所以，SDN也是助力云计算发展的一大利器；</li>
 <li>软件定义的应用交付<br>  网络上一直存在着改善网络服务的性能和体验的应用，例如Web安全、访问控制、负载均衡、应用加速、WAN优化、入侵检测等。它们在网络安全、管理方面发挥了重要作用，然而随着SDN的发展，这些原本集成在各层硬件上的服务也可以以软件形式被部署在服务器上，还可以是和控制器共用一个服务器，由于控制器具备全网视角，集中化的网络管理能力也从另一个侧面强化了这些网络应用的作用方式和范围。但是也要注意这会增加控制器的工作量以及网络受攻击的风险，同样的道理，这种影响也是全网级别的。</li>
 <li>创新网络业务<br>  这类应用形式并不统一，但它一定是一些传统网络难以胜任而在SDN环境下能获得良好支持的一些软件。这也正是SDN网络未来的发展所在。</li>
 </ol>
-<h3 id="接口技术"><a href="#接口技术" class="headerlink" title="接口技术"></a>接口技术</h3><ul>
+<h3 id="接口技术">接口技术</h3><ul>
 <li><p>南向接口：SDN控制器通过南向接口对SDN交换机进行集中管理，目前OpenFlow协议是由ONF唯一确定的控制器标准南向接口（还有与之配套的OF-CONFIG配置协议，用于远程配置OpenFlow交换机），也有一些其他的接口。</p>
 </li>
 <li><p>北向接口：网络应用开发者可以利用北向接口，以软件编程的形式实现对网络资源的调用，灵活性强。</p>
@@ -316,7 +323,20 @@
 </article>
 
 
-
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
 
@@ -357,7 +377,7 @@
 </footer>
     </div>
     
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
 
 
 <script>
@@ -370,12 +390,11 @@
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: false,
-		root: /
+		open_in_new: false
 	}
 </script>
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
-<script src="/js/main.js"></script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
 
 
 

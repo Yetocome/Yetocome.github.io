@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Prolog学习笔记（一） | Xie&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言：选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。
@@ -23,11 +22,24 @@ Prolog简介：有别于一般的函数式语言，prolog的程序是基于谓�
     <link rel="alternative" href="/atom.xml" title="Xie&#39;s blog" type="application/atom+xml">
   
   
-    <link rel="icon" href="//favicon.png">
+    <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css">
-</head>
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+<script type="text/javascript">
+#申请的百度统计代码
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?1f5823e44d3dbf23c03aa37d06b3f419";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</script>
 
+</head>
 <body>
   <div id="container">
     <div class="left-col">
@@ -36,7 +48,7 @@ Prolog简介：有别于一般的函数式语言，prolog的程序是基于谓�
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			
-			<img lazy-src="//img/daodao.jpg" class="js-avatar">
+			<img lazy-src="/img/daodao.jpg" class="js-avatar">
 			
 		</a>
 
@@ -72,11 +84,11 @@ Prolog简介：有别于一般的函数式语言，prolog的程序是基于谓�
 				<div class="tips-box hide">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
-						<li>Menu</li>
-						<li>Tags</li>
+						<li>菜单</li>
+						<li>标签</li>
 						
 						
-						<li>Über</li>
+						<li>关于我</li>
 						
 					</ul>
 				</div>
@@ -137,7 +149,6 @@ Prolog简介：有别于一般的函数式语言，prolog的程序是基于谓�
 		</div>
 	</header>				
 </div>
-
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
@@ -148,9 +159,7 @@ Prolog简介：有别于一般的函数式语言，prolog的程序是基于谓�
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				
-					<img lazy-src="//img/daodao.jpg" class="js-avatar">
-				
+				<img lazy-src="/img/daodao.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author">Xie Minghao</h1>
@@ -190,7 +199,6 @@ Prolog简介：有别于一般的函数式语言，prolog的程序是基于谓�
 		</header>				
 	</div>
 </nav>
-
       <div class="body-wrap"><article id="post-Prolog学习笔记（一）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -232,8 +240,8 @@ Prolog简介：有别于一般的函数式语言，prolog的程序是基于谓�
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h3><p>选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。</p>
-<h3 id="Prolog简介："><a href="#Prolog简介：" class="headerlink" title="Prolog简介："></a>Prolog简介：</h3><p>有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。</p>
+        <h3 id="前言：">前言：</h3><p>选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。</p>
+<h3 id="Prolog简介：">Prolog简介：</h3><p>有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。</p>
 <a id="more"></a>
 <p>配置环境（macbook air）：</p>
 <ol>
@@ -244,10 +252,10 @@ Prolog简介：有别于一般的函数式语言，prolog的程序是基于谓�
 <p> brew install homebrew/x11/swi-prolog</p>
 </li>
 <li><p>常用命令</p>
-<pre><code>swipl //调出主界面
-halt. //退出，Control+D
-consult(&apos;’). //
-reconsult().//
+<pre><code>swipl <span class="comment">//调出主界面</span>
+halt. <span class="comment">//退出，Control+D</span>
+consult<span class="params">('’)</span>. <span class="comment">//</span>
+reconsult<span class="params">()</span>.<span class="comment">//</span>
 </code></pre></li>
 </ol>
 <p>基本语法</p>
@@ -287,7 +295,7 @@ reconsult().//
 </li>
 </ol>
 <p>其他：</p>
-<pre><code>1. 询问时，分号的作用：使当前子句无效，继续搜索答案。
+<pre><code><span class="number">1.</span> 询问时，分号的作用：使当前子句无效，继续搜索答案。
 </code></pre><p><strong>Prolog是如何回答问题的?</strong></p>
 <p>Prolog寻找证据的顺序正好与我们的推理相反，即执果索因，使用目标、规则、代换和当前目标来推导出新的目标，直到新目标恰好是简单事实时，给出答案。</p>
 <p><em>Reference:</em></p>
@@ -324,7 +332,20 @@ reconsult().//
 </article>
 
 
-
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
 
@@ -365,7 +386,7 @@ reconsult().//
 </footer>
     </div>
     
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
 
 
 <script>
@@ -378,12 +399,11 @@ reconsult().//
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: false,
-		root: /
+		open_in_new: false
 	}
 </script>
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
-<script src="/js/main.js"></script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
 
 
 

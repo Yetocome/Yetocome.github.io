@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>TL-WR703N v1.7 刷OpenWrt（译） | Xie&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="买了一台TP-Link wr703n准备刷OpenWrt用作开发，怎料官方挖了个大坑等我去跳——最新的官方固件封死网页刷机的渠道（据说是加了签名），又不会焊TTL的。。。幸好国外的大神已经给出了解决方案，亲测可行，替大家把原文翻译一下（有改动）。">
@@ -20,11 +19,24 @@
     <link rel="alternative" href="/atom.xml" title="Xie&#39;s blog" type="application/atom+xml">
   
   
-    <link rel="icon" href="//favicon.png">
+    <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css">
-</head>
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+<script type="text/javascript">
+#申请的百度统计代码
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?1f5823e44d3dbf23c03aa37d06b3f419";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</script>
 
+</head>
 <body>
   <div id="container">
     <div class="left-col">
@@ -33,7 +45,7 @@
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			
-			<img lazy-src="//img/daodao.jpg" class="js-avatar">
+			<img lazy-src="/img/daodao.jpg" class="js-avatar">
 			
 		</a>
 
@@ -69,11 +81,11 @@
 				<div class="tips-box hide">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
-						<li>Menu</li>
-						<li>Tags</li>
+						<li>菜单</li>
+						<li>标签</li>
 						
 						
-						<li>Über</li>
+						<li>关于我</li>
 						
 					</ul>
 				</div>
@@ -134,7 +146,6 @@
 		</div>
 	</header>				
 </div>
-
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
@@ -145,9 +156,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				
-					<img lazy-src="//img/daodao.jpg" class="js-avatar">
-				
+				<img lazy-src="/img/daodao.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author">Xie Minghao</h1>
@@ -187,7 +196,6 @@
 		</header>				
 	</div>
 </nav>
-
       <div class="body-wrap"><article id="tl-wr703n-TL-WR703N v1.7 刷OpenWrt（译）" class="article article-type-tl-wr703n" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -232,7 +240,7 @@
         <p>买了一台TP-Link wr703n准备刷OpenWrt用作开发，怎料官方挖了个大坑等我去跳——最新的官方固件封死网页刷机的渠道（据说是加了签名），又不会焊TTL的。。。幸好国外的大神已经给出了解决方案，亲测可行，替大家把原文翻译一下（有改动）。</p>
 <a id="more"></a>
 <p>原文出处：<a href="http://www.shadowandy.net/2015/03/flashing-tp-link-tl-wr703n-v1-7-to-openwrt.htm" target="_blank" rel="external">http://www.shadowandy.net/2015/03/flashing-tp-link-tl-wr703n-v1-7-to-openwrt.htm</a></p>
-<h2 id="翻译水平有限大家将就看看哈，刷坏概不负责。"><a href="#翻译水平有限大家将就看看哈，刷坏概不负责。" class="headerlink" title="翻译水平有限大家将就看看哈，刷坏概不负责。"></a>翻译水平有限大家将就看看哈，刷坏概不负责。</h2><h3 id="获得必要的材料"><a href="#获得必要的材料" class="headerlink" title="获得必要的材料"></a>获得必要的材料</h3><p>将v1.7的TL-WR703N刷到OpenWrt，你需要：</p>
+<h2 id="翻译水平有限大家将就看看哈，刷坏概不负责。">翻译水平有限大家将就看看哈，刷坏概不负责。</h2><h3 id="获得必要的材料">获得必要的材料</h3><p>将v1.7的TL-WR703N刷到OpenWrt，你需要：</p>
 <ol>
 <li>固件版本为3.17.1 Build 140120 Rel.56593n的TL-WR703N v1.7 </li>
 <li>OpenWrt为TL-WR703N定制的固件 <a href="http://downloads.openwrt.org/barrier_breaker/14.07/ar71xx/generic/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin" target="_blank" rel="external">Download</a></li>
@@ -242,16 +250,16 @@
 <li>一个命令行脚本来指导路由器执行刷机.你需要一个编辑器 (e.g. Notepad++) 来创建一个Unix风格的脚本</li>
 <li>busybox 1.16.1 for mips <a href="http://www.busybox.net/downloads/binaries/1.16.1/" target="_blank" rel="external">Download</a></li>
 </ol>
-<h3 id="准备开发wr703n的材料"><a href="#准备开发wr703n的材料" class="headerlink" title="准备开发wr703n的材料"></a>准备开发wr703n的材料</h3><ol>
+<h3 id="准备开发wr703n的材料">准备开发wr703n的材料</h3><ol>
 <li><p>拆分 OpenWrt 为 kernel 和 rootfs 镜像</p>
-<pre><code>dd if=openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin of=i1 bs=1 count=1048576
-dd if=openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin of=i2 bs=1 skip=1048576
+<pre><code><span class="tag">dd</span> <span class="keyword">if</span>=openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory<span class="class">.bin</span> of=i1 bs=<span class="number">1</span> count=<span class="number">1048576</span>
+<span class="tag">dd</span> <span class="keyword">if</span>=openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory<span class="class">.bin</span> of=i2 bs=<span class="number">1</span> skip=<span class="number">1048576</span>
 </code></pre></li>
 <li><p>在你的电脑上设置局域网接口</p>
 </li>
 </ol>
 <p>命令行脚本(aa)是在和IP地址192.168.1.9沟通。你可以修改电脑的静态IP也可以修改命令行脚本里的地址，这取决于你！</p>
-<h3 id="开始刷机"><a href="#开始刷机" class="headerlink" title="开始刷机"></a>开始刷机</h3><ol>
+<h3 id="开始刷机">开始刷机</h3><ol>
 <li><p>用必要的文件设置TFTP<br>现在你有以下四个文件：</p>
 <ul>
 <li>aa</li>
@@ -266,9 +274,9 @@ dd if=openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin of=i2 bs=1 skip=1
 <ol>
 <li>将你的在命令行下的操作目录指向含有cURL的地方</li>
 <li><p>依次执行以下三条命令</p>
-<pre><code>curl -o - -b &quot;tLargeScreenP=1; subType=pcSub; Authorization=Basic%20YWRtaW46YWRtaW40Mg%3D%3D; ChgPwdSubTag=true&quot; &quot;http://192.168.1.1/&quot;
-curl -o - -b &quot;tLargeScreenP=1; subType=pcSub; Authorization=Basic%20YWRtaW46YWRtaW40Mg%3D%3D; ChgPwdSubTag=&quot; --referer &quot;http://192.168.1.1/userRpm/ParentCtrlRpm.htm&quot; &quot;http://192.168.1.1/userRpm/ParentCtrlRpm.htm?ctrl_enable=1&amp;parent_mac_addr=00-00-00-00-00-02&amp;Page=1&quot;
-curl -o - -b &quot;tLargeScreenP=1; subType=pcSub; Authorization=Basic%20YWRtaW46YWRtaW40Mg%3D%3D; ChgPwdSubTag=&quot; --referer &quot;http://192.168.1.1/userRpm/ParentCtrlRpm.htm?Modify=0&amp;Page=1&quot; &quot;http://192.168.1.1/userRpm/ParentCtrlRpm.htm?child_mac=00-00-00-00-00-01&amp;lan_lists=888&amp;url_comment=test&amp;url_0=;cd%20/tmp;&amp;url_1=;tftp%20-gl%20aa%20192.168.1.9;&amp;url_2=;sh%20aa;&amp;url_3=&amp;url_4=&amp;url_5=&amp;url_6=&amp;url_7=&amp;scheds_lists=255&amp;enable=1&amp;Changed=1&amp;SelIndex=0&amp;Page=1&amp;rule_mode=0&amp;Save=%B1%A3+%B4%E6&quot;
+<pre><code>curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization=Basic<span class="variable">%20YWRtaW46YWRtaW40Mg</span><span class="variable">%3D</span><span class="variable">%3D</span>; ChgPwdSubTag=true"</span> <span class="string">"http://192.168.1.1/"</span>
+curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization=Basic<span class="variable">%20YWRtaW46YWRtaW40Mg</span><span class="variable">%3D</span><span class="variable">%3D</span>; ChgPwdSubTag="</span> --referer <span class="string">"http://192.168.1.1/userRpm/ParentCtrlRpm.htm"</span> <span class="string">"http://192.168.1.1/userRpm/ParentCtrlRpm.htm?ctrl_enable=1&amp;parent_mac_addr=00-00-00-00-00-02&amp;Page=1"</span>
+curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization=Basic<span class="variable">%20YWRtaW46YWRtaW40Mg</span><span class="variable">%3D</span><span class="variable">%3D</span>; ChgPwdSubTag="</span> --referer <span class="string">"http://192.168.1.1/userRpm/ParentCtrlRpm.htm?Modify=0&amp;Page=1"</span> <span class="string">"http://192.168.1.1/userRpm/ParentCtrlRpm.htm?child_mac=00-00-00-00-00-01&amp;lan_lists=888&amp;url_comment=test&amp;url_0=;cd<span class="variable">%20</span>/tmp;&amp;url_1=;tftp<span class="variable">%20</span>-gl<span class="variable">%20aa</span><span class="variable">%20192</span>.168.1.9;&amp;url_2=;sh<span class="variable">%20aa</span>;&amp;url_3=&amp;url_4=&amp;url_5=&amp;url_6=&amp;url_7=&amp;scheds_lists=255&amp;enable=1&amp;Changed=1&amp;SelIndex=0&amp;Page=1&amp;rule_mode=0&amp;Save=<span class="variable">%B1</span><span class="variable">%A3</span>+<span class="variable">%B4</span><span class="variable">%E6</span>"</span>
 </code></pre><p>判断命令是否执行成功：</p>
 </li>
 </ol>
@@ -314,7 +322,20 @@ curl -o - -b &quot;tLargeScreenP=1; subType=pcSub; Authorization=Basic%20YWRtaW4
 </article>
 
 
-
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
 
@@ -355,7 +376,7 @@ curl -o - -b &quot;tLargeScreenP=1; subType=pcSub; Authorization=Basic%20YWRtaW4
 </footer>
     </div>
     
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
 
 
 <script>
@@ -368,12 +389,11 @@ curl -o - -b &quot;tLargeScreenP=1; subType=pcSub; Authorization=Basic%20YWRtaW4
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: false,
-		root: /
+		open_in_new: false
 	}
 </script>
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
-<script src="/js/main.js"></script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
 
 
 
