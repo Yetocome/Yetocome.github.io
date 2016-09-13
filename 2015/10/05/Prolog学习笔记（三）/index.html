@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Prolog学习笔记（三） | Xie&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="本周的重点是AND/OR树、结构体和表。通过AND/OR树，我们可以很好地理解Prolog的证明策略；结构体是（一）里没有介绍过的类型，要注意与事实(facts)的区别；List的构造与使用让我们真正感受到了在prolog里递归的力量，你会感叹设计递归的精妙与艰辛:p">
@@ -18,28 +19,16 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Prolog学习笔记（三）">
 <meta name="twitter:description" content="本周的重点是AND/OR树、结构体和表。通过AND/OR树，我们可以很好地理解Prolog的证明策略；结构体是（一）里没有介绍过的类型，要注意与事实(facts)的区别；List的构造与使用让我们真正感受到了在prolog里递归的力量，你会感叹设计递归的精妙与艰辛:p">
+<meta name="twitter:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/prologAND%3AOR%20Tree.png">
   
     <link rel="alternative" href="/atom.xml" title="Xie&#39;s blog" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="//favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  
-<script type="text/javascript">
-#申请的百度统计代码
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?1f5823e44d3dbf23c03aa37d06b3f419";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-</script>
-
+  <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
   <div id="container">
     <div class="left-col">
@@ -48,7 +37,7 @@ var _hmt = _hmt || [];
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			
-			<img lazy-src="/img/daodao.jpg" class="js-avatar">
+			<img lazy-src="//img/daodao.jpg" class="js-avatar">
 			
 		</a>
 
@@ -84,11 +73,11 @@ var _hmt = _hmt || [];
 				<div class="tips-box hide">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
-						<li>菜单</li>
-						<li>标签</li>
+						<li>Menu</li>
+						<li>Tags</li>
 						
 						
-						<li>关于我</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -149,6 +138,7 @@ var _hmt = _hmt || [];
 		</div>
 	</header>				
 </div>
+
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
@@ -159,7 +149,9 @@ var _hmt = _hmt || [];
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img lazy-src="/img/daodao.jpg" class="js-avatar">
+				
+					<img lazy-src="//img/daodao.jpg" class="js-avatar">
+				
 			</div>
 			<hgroup>
 			  <h1 class="header-author">Xie Minghao</h1>
@@ -199,6 +191,7 @@ var _hmt = _hmt || [];
 		</header>				
 	</div>
 </nav>
+
       <div class="body-wrap"><article id="post-Prolog学习笔记（三）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -242,7 +235,7 @@ var _hmt = _hmt || [];
       
         <p>本周的重点是AND/OR树、结构体和表。<br>通过AND/OR树，我们可以很好地理解Prolog的证明策略；<br>结构体是（一）里没有介绍过的类型，要注意与<strong>事实(facts)</strong>的区别；<br>List的构造与使用让我们真正感受到了在prolog里递归的力量，你会感叹设计递归的精妙与艰辛:p</p>
 <a id="more"></a>
-<h3 id="Representing_Proofs_using_Trees">Representing Proofs using Trees</h3><p>为了更好地理解Prolog的证明策略，我们可以用AND/OR树来表示它的行为，利用下图来理解：</p>
+<h3 id="Representing-Proofs-using-Trees"><a href="#Representing-Proofs-using-Trees" class="headerlink" title="Representing Proofs using Trees"></a>Representing Proofs using Trees</h3><p>为了更好地理解Prolog的证明策略，我们可以用AND/OR树来表示它的行为，利用下图来理解：</p>
 <p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/prologAND%3AOR%20Tree.png" alt=""></p>
 <p>对应：<br>P :- Q, R.<br>P :- S.</p>
 <p>Q :- T.<br>Q :- U.</p>
@@ -262,14 +255,14 @@ var _hmt = _hmt || [];
 </ol>
 </li>
 </ol>
-<h3 id="Structures">Structures</h3><h5 id="简介">简介</h5><p>结构体就是一个拥有一个或几个组成成分的对象，组成成分其本身也可以是结构体，这种嵌套的定义使得树的意义再一次在prolog里体现。</p>
-<h5 id="使用">使用</h5><p>比方说1983年五月一日可以写成：</p>
-<pre><code><span class="function"><span class="title">date</span><span class="params">(<span class="number">1</span>,May,<span class="number">1983</span>)</span></span>
+<h3 id="Structures"><a href="#Structures" class="headerlink" title="Structures"></a>Structures</h3><h5 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h5><p>结构体就是一个拥有一个或几个组成成分的对象，组成成分其本身也可以是结构体，这种嵌套的定义使得树的意义再一次在prolog里体现。</p>
+<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><p>比方说1983年五月一日可以写成：</p>
+<pre><code>date(1,May,1983)
 </code></pre><p>在这里date被称为functor（函数子？），这个结构的组成都是常数，实际上它可以是变量：</p>
-<pre><code><span class="function"><span class="title">date</span><span class="params">(Day,may,<span class="number">1983</span>)</span></span>
+<pre><code>date(Day,may,1983)
 </code></pre><p>它表示的是1983年五月的某一天（其实只是我们这么认为，当然可以有别的解释）</p>
-<h5 id="匹配">匹配</h5><p>结构体的匹配原则与在（二）里有较详尽介绍的合一一致。</p>
-<h5 id="与事实的区别">与事实的区别</h5><p>语法形式上结构和事实很像，但它们不是一个东西：</p>
+<h5 id="匹配"><a href="#匹配" class="headerlink" title="匹配"></a>匹配</h5><p>结构体的匹配原则与在（二）里有较详尽介绍的合一一致。</p>
+<h5 id="与事实的区别"><a href="#与事实的区别" class="headerlink" title="与事实的区别"></a>与事实的区别</h5><p>语法形式上结构和事实很像，但它们不是一个东西：</p>
 <ol>
 <li>当结构未被存储在数据库里时，它不是事实（需要以句号结尾）；</li>
 <li>结构通常只被用在组织数据上；</li>
@@ -277,17 +270,17 @@ var _hmt = _hmt || [];
 </ol>
 <p>但是谓词却能够以结构形式存储…</p>
 <p>eg: <strong>command(X) :- X.</strong></p>
-<pre><code>?- X = <span class="built_in">write</span>(<span class="string">'Passing a command'</span>), <span class="command"><span class="keyword">command</span>(<span class="title">X</span>).</span>
-Passing <span class="operator">a</span> <span class="command"><span class="keyword">command</span></span>
-X = <span class="built_in">write</span>(<span class="string">'Passing a command'</span>) ?
-<span class="constant">true</span>
+<pre><code>?- X = write(&apos;Passing a command&apos;), command(X).
+Passing a command
+X = write(&apos;Passing a command&apos;) ?
+true
 </code></pre><p>是不是感觉有些混乱？关于facts、predicates、functors和terms，大家可以参考stackoverflow下的一个问答：<br><a href="http://stackoverflow.com/questions/19115712/in-prolog-is-a-fact-the-same-as-a-functor" target="_blank" rel="external">http://stackoverflow.com/questions/19115712/in-prolog-is-a-fact-the-same-as-a-functor</a></p>
 <p>里面的问题是：</p>
 <blockquote>
 <p>If you have for instance next line of Prolog declaration:</p>
-<pre><code>move(<span class="keyword">state</span>(middle, onbox, middle, hasnot),
+<pre><code>move(state(middle, onbox, middle, hasnot),
       grasp,
-      <span class="keyword">state</span>(middle, onbox, middle, has)).
+      state(middle, onbox, middle, has)).
 </code></pre><p>Are both move and state functors?</p>
 <p>I’m kind off confused by facts, functors, terms, …</p>
 </blockquote>
@@ -299,93 +292,93 @@ X = <span class="built_in">write</span>(<span class="string">'Passing a command'
 <p>Note that the first and third arguments in your example of a term are themselves compound terms, built using functor state/4…</p>
 </blockquote>
 <p>更多的自己去原文链接看吧，个人觉得说的还是挺有道理的。</p>
-<h3 id="List">List</h3><p>表(list)是一系列数据(包括表自己)的集合，由方括号包着，内部通过逗号(commmas)分隔。</p>
+<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p>表(list)是一系列数据(包括表自己)的集合，由方括号包着，内部通过逗号(commmas)分隔。</p>
 <p>eg：[ann, tennis, tom, skiing]<br>还可以是空的：[]</p>
-<h5 id="不同的表示形式">不同的表示形式</h5><p>第一个元素，我们称之为表头(<em>head</em>)，剩下的部分统称为尾(<em>tail</em>),所以在prolog里表又有不同的表示形式（喂喂，这里的因果关系有问题吧”(ºДº*)）。<br>.(Head, Tail)</p>
+<h5 id="不同的表示形式"><a href="#不同的表示形式" class="headerlink" title="不同的表示形式"></a>不同的表示形式</h5><p>第一个元素，我们称之为表头(<em>head</em>)，剩下的部分统称为尾(<em>tail</em>),所以在prolog里表又有不同的表示形式（喂喂，这里的因果关系有问题吧”(ºДº*)）。<br>.(Head, Tail)</p>
 <p>所以上面的表可以表示为(可以用树来理解)：<br>.(ann,.(tennis,.(tom,.(sking,[]))))</p>
 <p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/prologlist_tree.png" alt=""></p>
 <p>更为直观地表示为：<br>[Head | Tail]</p>
 <p>这其实是list的递归表示，在polog里，它的存在让许多表的操作可以优雅地以<strong><em>递归</em></strong>方式实现，应用的例子直接从下面的List操作中体现。</p>
-<h5 id="List_操作">List 操作</h5><ol>
+<h5 id="List-操作"><a href="#List-操作" class="headerlink" title="List 操作"></a>List 操作</h5><ol>
 <li><p>concatenation（连接操作）<br> 实现：</p>
-<pre><code><span class="function"><span class="title">conc</span><span class="params">([], L2, L2)</span></span>.
-<span class="function"><span class="title">conc</span><span class="params">([H|T1],L2,[H|T])</span></span> :-
-    <span class="function"><span class="title">conc</span><span class="params">(T1, L2, T)</span></span>.
+<pre><code>conc([], L2, L2).
+conc([H|T1],L2,[H|T]) :-
+    conc(T1, L2, T).
 </code></pre><p> 使用</p>
-<pre><code>?- <span class="atom">conc</span>([<span class="atom">a</span>,<span class="atom">b</span>], [<span class="atom">c</span>,<span class="atom">d</span>], <span class="name">P</span>).
-    <span class="name">P</span> = [<span class="atom">a</span>, <span class="atom">b</span>, <span class="atom">c</span>, <span class="atom">d</span>].
+<pre><code>?- conc([a,b], [c,d], P).
+    P = [a, b, c, d].
 </code></pre><p> 实际上你还可以把它当删除用，在query时在List1或者List2的位置用变量就可以了。<br> 某种意义上可以用它实现接下来所有操作，但是有些操作还是重写比较简洁，也不容易出现问题，conc在连接单个元素时要注意加上[]，因为它并没有定义单个元素的base case，直接用常量会出现问题，prolog将不会认为那是一个list然后得出false的结论。</p>
 </li>
 <li><p>删除<br> 实现：</p>
-<pre><code><span class="function"><span class="title">delete</span><span class="params">(A,[A|X],X)</span></span>.
-<span class="function"><span class="title">delete</span><span class="params">(A,[B|X],[B|Y])</span></span> :-
-    <span class="function"><span class="title">delete</span><span class="params">(A,X,Y)</span></span>.
+<pre><code>delete(A,[A|X],X).
+delete(A,[B|X],[B|Y]) :-
+    delete(A,X,Y).
 </code></pre><p> 使用：</p>
-<pre><code>?- delete(<span class="literal">a</span>, [<span class="literal">a</span>,b,e,<span class="literal">a</span>], L).
-L = [b, e, <span class="literal">a</span>] <span class="comment">;</span>
-L = [<span class="literal">a</span>, b, e] <span class="comment">;</span>
-<span class="literal">false</span>.
+<pre><code>?- delete(a, [a,b,e,a], L).
+L = [b, e, a] ;
+L = [a, b, e] ;
+false.
 </code></pre><p> 注意这种删除只支持删除一个元素，如果重复的话，它输出的是删除一次的不同情况。</p>
 </li>
 <li><p>头部添加<br> 实现：</p>
-<pre><code><span class="function"><span class="title">add_front</span><span class="params">(X, L , [X|L])</span></span>.
+<pre><code>add_front(X, L , [X|L]).
 </code></pre><p> 使用：</p>
-<pre><code>?- <span class="atom">add</span>(<span class="atom">a</span>,[<span class="atom">b</span>,<span class="atom">c</span>,<span class="atom">d</span>],<span class="name">L</span>).
-<span class="name">L</span> = [<span class="atom">a</span>, <span class="atom">b</span>, <span class="atom">c</span>, <span class="atom">d</span>].
+<pre><code>?- add(a,[b,c,d],L).
+L = [a, b, c, d].
 </code></pre></li>
 <li><p>是否成员<br> 实现：</p>
-<pre><code><span class="function"><span class="title">mem</span><span class="params">(T,[T|_])</span></span>.
-<span class="function"><span class="title">mem</span><span class="params">(A,[_|T])</span></span> :-
-    <span class="function"><span class="title">mem</span><span class="params">(A, T)</span></span>.
+<pre><code>mem(T,[T|_]).
+mem(A,[_|T]) :-
+    mem(A, T).
 </code></pre><p> 不写使用了，累了。</p>
 <p> 这里的下划线(underscore)代表它只是个无用的变量，内容是什么无关紧要，prolog在查阅时会跳过它。</p>
 </li>
 <li><p>子表(sublist)<br> 实现：</p>
-<pre><code><span class="function"><span class="title">sublist</span><span class="params">(S, L)</span></span> :-
-    <span class="function"><span class="title">conc</span><span class="params">(_, L2, L)</span></span>,
-    <span class="function"><span class="title">conc</span><span class="params">(S, _, L2)</span></span>.
+<pre><code>sublist(S, L) :-
+    conc(_, L2, L),
+    conc(S, _, L2).
 </code></pre><p> 使用：</p>
-<pre><code>?- <span class="atom">sublist</span>(<span class="name">S</span>, [<span class="atom">a</span>,<span class="atom">b</span>,<span class="atom">c</span>]).
-<span class="name">S</span> = [] ;
-<span class="name">S</span> = [<span class="atom">a</span>] ;
-<span class="name">S</span> = [<span class="atom">a</span>, <span class="atom">b</span>] ;
-<span class="name">S</span> = [<span class="atom">a</span>, <span class="atom">b</span>, <span class="atom">c</span>] ;
-<span class="name">S</span> = [] ;
-<span class="name">S</span> = [<span class="atom">b</span>] ;
-<span class="name">S</span> = [<span class="atom">b</span>, <span class="atom">c</span>] ;
-<span class="name">S</span> = [] ;
-<span class="name">S</span> = [<span class="atom">c</span>] ;
-<span class="name">S</span> = [] ;
-<span class="atom">false</span>.
+<pre><code>?- sublist(S, [a,b,c]).
+S = [] ;
+S = [a] ;
+S = [a, b] ;
+S = [a, b, c] ;
+S = [] ;
+S = [b] ;
+S = [b, c] ;
+S = [] ;
+S = [c] ;
+S = [] ;
+false.
 </code></pre><p> 这个使用conc比较好理解，你将会得到输入表的所有子表（注意左边的是子表，用反就没完没了了）。</p>
 </li>
 <li><p>插入<br> 实现：</p>
-<pre><code><span class="operator"><span class="keyword">insert</span>(X, <span class="keyword">L</span>, <span class="keyword">D</span>) :-
-    <span class="keyword">delete</span>(X, <span class="keyword">D</span>, <span class="keyword">L</span>).</span>
+<pre><code>insert(X, L, D) :-
+    delete(X, D, L).
 </code></pre></li>
 <li><p>计数<br> 实现：</p>
-<pre><code><span class="function"><span class="title">len</span><span class="params">([], <span class="number">0</span>)</span></span>.
-<span class="function"><span class="title">len</span><span class="params">([_|L], N)</span></span> :-
-    <span class="function"><span class="title">len</span><span class="params">(L, N_)</span></span>,
-    N is N_ + <span class="number">1</span>.
+<pre><code>len([], 0).
+len([_|L], N) :-
+    len(L, N_),
+    N is N_ + 1.
 </code></pre></li>
 <li><p>prolog里自带的list操作</p>
 <p> 上面的的操作其实很多prolog已经写好了，直接调来用就可以了，这里给出我用的swi-prolog里的原生操作：</p>
 <p> <img src="http://7xkwu7.com1.z0.glb.clouddn.com/prologlist.png" alt=""><br> 有点多，请读者自行在prolog下用help(谓词名)来获取实用信息。</p>
 </li>
 </ol>
-<h5 id="list应用——全排列">list应用——全排列</h5><ul>
+<h5 id="list应用——全排列"><a href="#list应用——全排列" class="headerlink" title="list应用——全排列"></a>list应用——全排列</h5><ul>
 <li><p>方法一</p>
-<pre><code><span class="function"><span class="title">permutation</span><span class="params">([], [])</span></span>.
-<span class="function"><span class="title">permutation</span><span class="params">([X|L], P)</span></span> :-
-    <span class="function"><span class="title">permutation</span><span class="params">(L, L1)</span></span>,
-    <span class="function"><span class="title">insert</span><span class="params">(X, L1, P)</span></span>.
+<pre><code>permutation([], []).
+permutation([X|L], P) :-
+    permutation(L, L1),
+    insert(X, L1, P).
 </code></pre></li>
 <li><p>方法二</p>
-<pre><code><span class="function"><span class="title">permutation</span><span class="params">([], [])</span></span>.
-<span class="function"><span class="title">permutation_</span><span class="params">(L, [X|P])</span></span> :-
-    <span class="function"><span class="title">delete</span><span class="params">(X, L, L1)</span></span>,
-    <span class="function"><span class="title">permutation</span><span class="params">(L1,P)</span></span>
+<pre><code>permutation([], []).
+permutation_(L, [X|P]) :-
+    delete(X, L, L1),
+    permutation(L1,P)
 </code></pre></li>
 </ul>
 <p><em>Reference:</em></p>
@@ -422,20 +415,7 @@ L = [<span class="literal">a</span>, b, e] <span class="comment">;</span>
 </article>
 
 
-<div class="share">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
+
 
 
 
@@ -476,7 +456,7 @@ L = [<span class="literal">a</span>, b, e] <span class="comment">;</span>
 </footer>
     </div>
     
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
 
 
 <script>
@@ -489,11 +469,12 @@ L = [<span class="literal">a</span>, b, e] <span class="comment">;</span>
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: false
+		open_in_new: false,
+		root: /
 	}
 </script>
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
 
 
 

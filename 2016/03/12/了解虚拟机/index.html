@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>了解虚拟机 | Xie&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="虚拟机是一款提供跨平台一致性体验的”软件”。虚拟机最初被Popek and Goldberg定义为“an efficient, isolated duplicate of a real machine”。现在通常指与实际硬件不直接相关的虚拟机器。">
@@ -20,28 +21,16 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="了解虚拟机">
 <meta name="twitter:description" content="虚拟机是一款提供跨平台一致性体验的”软件”。虚拟机最初被Popek and Goldberg定义为“an efficient, isolated duplicate of a real machine”。现在通常指与实际硬件不直接相关的虚拟机器。">
+<meta name="twitter:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/Computer_Architecture.png">
   
     <link rel="alternative" href="/atom.xml" title="Xie&#39;s blog" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="//favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  
-<script type="text/javascript">
-#申请的百度统计代码
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?1f5823e44d3dbf23c03aa37d06b3f419";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-</script>
-
+  <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
   <div id="container">
     <div class="left-col">
@@ -50,7 +39,7 @@ var _hmt = _hmt || [];
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			
-			<img lazy-src="/img/daodao.jpg" class="js-avatar">
+			<img lazy-src="//img/daodao.jpg" class="js-avatar">
 			
 		</a>
 
@@ -86,11 +75,11 @@ var _hmt = _hmt || [];
 				<div class="tips-box hide">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
-						<li>菜单</li>
-						<li>标签</li>
+						<li>Menu</li>
+						<li>Tags</li>
 						
 						
-						<li>关于我</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -151,6 +140,7 @@ var _hmt = _hmt || [];
 		</div>
 	</header>				
 </div>
+
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
@@ -161,7 +151,9 @@ var _hmt = _hmt || [];
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img lazy-src="/img/daodao.jpg" class="js-avatar">
+				
+					<img lazy-src="//img/daodao.jpg" class="js-avatar">
+				
 			</div>
 			<hgroup>
 			  <h1 class="header-author">Xie Minghao</h1>
@@ -201,6 +193,7 @@ var _hmt = _hmt || [];
 		</header>				
 	</div>
 </nav>
+
       <div class="body-wrap"><article id="post-了解虚拟机" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -244,27 +237,27 @@ var _hmt = _hmt || [];
       
         <p>虚拟机是一款提供跨平台一致性体验的”软件”。<br>虚拟机最初被Popek and Goldberg定义为<em>“an efficient, isolated duplicate of a real machine”</em>。现在通常指与实际硬件不直接相关的虚拟机器。 </p>
 <a id="more"></a>
-<h3 id="简介">简介</h3><p>在传统意义上，一个应用程序是和特定平台（硬件+OS）所绑定的。用户层面上，这意味着你将无法在不同的平台上获得一致的体验，很多软件都只适配了某些特定的平台；开发者层面，因为不同系统适配的麻烦令许多中小开发者放弃对多平台的开发，这也是用户层面问题产生的重要原因。切换平台后，很多人会对新系统无所适从，发现常用的软件以及熟悉的操作方式不复存在。<br>虚拟机就是为了消除这种现实平台的限制而存在的，提供了一套更加灵活的解决方案。</p>
-<h3 id="虚拟机的必要性">虚拟机的必要性</h3><ol>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>在传统意义上，一个应用程序是和特定平台（硬件+OS）所绑定的。用户层面上，这意味着你将无法在不同的平台上获得一致的体验，很多软件都只适配了某些特定的平台；开发者层面，因为不同系统适配的麻烦令许多中小开发者放弃对多平台的开发，这也是用户层面问题产生的重要原因。切换平台后，很多人会对新系统无所适从，发现常用的软件以及熟悉的操作方式不复存在。<br>虚拟机就是为了消除这种现实平台的限制而存在的，提供了一套更加灵活的解决方案。</p>
+<h3 id="虚拟机的必要性"><a href="#虚拟机的必要性" class="headerlink" title="虚拟机的必要性"></a>虚拟机的必要性</h3><ol>
 <li>便携性(Portability)在当今的网络计算下至关重要；</li>
 <li>类型安全、面向对象编程、基于VM的语言成为主流；</li>
 <li>CPU的创新往往被旧的接口所限制；</li>
 <li>跨处理器的优化十分困难。</li>
 </ol>
-<h3 id="虚拟机的优点">虚拟机的优点</h3><ol>
+<h3 id="虚拟机的优点"><a href="#虚拟机的优点" class="headerlink" title="虚拟机的优点"></a>虚拟机的优点</h3><ol>
 <li>跨平台的兼容性；</li>
 <li>增加安全性；</li>
 <li>提升性能；</li>
 <li>简化软件迁移。</li>
 </ol>
-<h3 id="虚拟机的历史">虚拟机的历史</h3><p>许多年前，IBM出售昂贵的主机给大型组织，并且产生了一个问题：要是组织想要同时在一台机器上运行不同的操作系统该怎么办？一些应用被开发在某个系统上然而有些却在其他系统上。结果IBM以Virtual machine monitor(VMM, also hypervisor)的方式间接实现了它。</p>
-<h3 id="计算机系统的接口">计算机系统的接口</h3><p>在介绍虚拟机之前，先介绍下计算机的结构，计算机系统是通过不同层级的抽象构建起来的，见下图：<br><img src="http://7xkwu7.com1.z0.glb.clouddn.com/Computer_Architecture.png" alt="Computer Architecture"></p>
+<h3 id="虚拟机的历史"><a href="#虚拟机的历史" class="headerlink" title="虚拟机的历史"></a>虚拟机的历史</h3><p>许多年前，IBM出售昂贵的主机给大型组织，并且产生了一个问题：要是组织想要同时在一台机器上运行不同的操作系统该怎么办？一些应用被开发在某个系统上然而有些却在其他系统上。结果IBM以Virtual machine monitor(VMM, also hypervisor)的方式间接实现了它。</p>
+<h3 id="计算机系统的接口"><a href="#计算机系统的接口" class="headerlink" title="计算机系统的接口"></a>计算机系统的接口</h3><p>在介绍虚拟机之前，先介绍下计算机的结构，计算机系统是通过不同层级的抽象构建起来的，见下图：<br><img src="http://7xkwu7.com1.z0.glb.clouddn.com/Computer_Architecture.png" alt="Computer Architecture"></p>
 <p>其中两类接口至关重要：</p>
 <ol>
 <li>ISA接口<br> Instruction Set Architecture，又称指令集或指令集体系。连接软硬件。包括用户级ISA（对应用和OS可见）和系统级ISA（仅对OS可见）</li>
 <li>ABI接口<br> Application Binary Interface，是应用与OS间的接口，由用户级ISA和OS系统调用</li>
 </ol>
-<h3 id="虚拟机的分类系统">虚拟机的分类系统</h3><ol>
+<h3 id="虚拟机的分类系统"><a href="#虚拟机的分类系统" class="headerlink" title="虚拟机的分类系统"></a>虚拟机的分类系统</h3><ol>
 <li><p>Process VMs<br>位于ABI层，将独立的进程虚拟化 - 虚拟机随进程终止而终止。<br>进程虚拟机将ABI层虚拟化，<strong>仿真</strong>了用户级ISA和OS系统调用，这里的VM也可以被称作runtime，VMM则被称作runtime system。<br>Runtime将负责管理客户程序，负责其与OS的沟通。客户程序可能会和主程序掺杂在一起。</p>
 <ol>
 <li>Same ISA<ul>
@@ -295,9 +288,9 @@ var _hmt = _hmt || [];
 </ol>
 </li>
 </ol>
-<h3 id="虚拟化技术">虚拟化技术</h3><h4 id="纯硬件之上的虚拟化（本机执行）">纯硬件之上的虚拟化（本机执行）</h4><p>这种方法被称之为对硬件完全的虚拟化，可以使用type 1或type 2的当时执行管理程序：type 1 管理程序直接跑在硬件上，type 2则跑在另一个操作系统之上。每个虚拟机上可以运行任何一个被底层硬件所支持的操作系统，用户也因此可以同时运行两个甚至更多的”Guest”操作系统，相互之间无法干涉。<br>这种虚拟机甚至可以是recursive的——虚拟机之上可以运行虚拟机。</p>
-<h4 id="非本机系统模拟">非本机系统模拟</h4><p>虚拟机可以承担模拟器的责任，让软件和操作系统为另一个计算机处理器的结构所运行。模拟可以完全是软件层面的，或者可能包含一些硬件的成份比如说微指令。</p>
-<h4 id="操作系统级别的虚拟化">操作系统级别的虚拟化</h4><p>这种虚拟化是在操作系统之上的服务器虚拟化技术。可以这么理解，一个单独的物理服务器被分片成好几个小部分（又称作VE, VPS, guests, zones, etc），每个部分从用户的角度看像是真的服务器一般。</p>
+<h3 id="虚拟化技术"><a href="#虚拟化技术" class="headerlink" title="虚拟化技术"></a>虚拟化技术</h3><h4 id="纯硬件之上的虚拟化（本机执行）"><a href="#纯硬件之上的虚拟化（本机执行）" class="headerlink" title="纯硬件之上的虚拟化（本机执行）"></a>纯硬件之上的虚拟化（本机执行）</h4><p>这种方法被称之为对硬件完全的虚拟化，可以使用type 1或type 2的当时执行管理程序：type 1 管理程序直接跑在硬件上，type 2则跑在另一个操作系统之上。每个虚拟机上可以运行任何一个被底层硬件所支持的操作系统，用户也因此可以同时运行两个甚至更多的”Guest”操作系统，相互之间无法干涉。<br>这种虚拟机甚至可以是recursive的——虚拟机之上可以运行虚拟机。</p>
+<h4 id="非本机系统模拟"><a href="#非本机系统模拟" class="headerlink" title="非本机系统模拟"></a>非本机系统模拟</h4><p>虚拟机可以承担模拟器的责任，让软件和操作系统为另一个计算机处理器的结构所运行。模拟可以完全是软件层面的，或者可能包含一些硬件的成份比如说微指令。</p>
+<h4 id="操作系统级别的虚拟化"><a href="#操作系统级别的虚拟化" class="headerlink" title="操作系统级别的虚拟化"></a>操作系统级别的虚拟化</h4><p>这种虚拟化是在操作系统之上的服务器虚拟化技术。可以这么理解，一个单独的物理服务器被分片成好几个小部分（又称作VE, VPS, guests, zones, etc），每个部分从用户的角度看像是真的服务器一般。</p>
 <p><strong>内容还很简陋，如有错误欢迎指出，不定期更新。</strong></p>
 <p><em>Reference</em></p>
 <ol>
@@ -335,20 +328,7 @@ var _hmt = _hmt || [];
 </article>
 
 
-<div class="share">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
+
 
 
 
@@ -389,7 +369,7 @@ var _hmt = _hmt || [];
 </footer>
     </div>
     
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
 
 
 <script>
@@ -402,11 +382,12 @@ var _hmt = _hmt || [];
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: false
+		open_in_new: false,
+		root: /
 	}
 </script>
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
 
 
 

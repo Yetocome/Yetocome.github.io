@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  
-  <title><![CDATA[Xie's blog]]></title>
-  <subtitle><![CDATA[Any idea or discussion is highly welcomed.250745820@qq.com]]></subtitle>
+  <title>Xie&#39;s blog</title>
+  <subtitle>Any idea or discussion is highly welcomed.250745820@qq.com</subtitle>
   <link href="/atom.xml" rel="self"/>
-  <link href="http://xmhtech.me//"/>
+  
+  <link href="http://xmhtech.me/"/>
   <updated>2016-03-19T14:24:53.000Z</updated>
-  <id>http://xmhtech.me//</id>
+  <id>http://xmhtech.me/</id>
   
   <author>
-    <name><![CDATA[Xie Minghao]]></name>
+    <name>Xie Minghao</name>
     
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[《C++并发编程》学习笔记（一）]]></title>
+    <title>《C++并发编程》学习笔记（一）</title>
     <link href="http://xmhtech.me/2016/03/19/%E3%80%8AC-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>http://xmhtech.me/2016/03/19/《C-并发编程》学习笔记（一）/</id>
     <published>2016-03-19T14:14:56.000Z</published>
     <updated>2016-03-19T14:24:53.000Z</updated>
+    
     <content type="html"><![CDATA[<p>因为一些棘手的效率问题，手头的项目必须要引入并发编程。这里整理下我学习的《C++并发编程》的笔记，尽可能地记录下了重难点以及我练习的例程代码，作为自己学习的备忘，也供想要快速学习的人参考。不过还是建议直接去阅读原书，中英文版本的网盘链接我放在文章后面，请读者自取。</p>
 <a id="more"></a>
-<h3 id="第一章_你好，C++的并发世界">第一章 你好，C++的并发世界</h3><h4 id="何为并发">何为并发</h4><ul>
+<h3 id="第一章-你好，C-的并发世界"><a href="#第一章-你好，C-的并发世界" class="headerlink" title="第一章 你好，C++的并发世界"></a>第一章 你好，C++的并发世界</h3><h4 id="何为并发"><a href="#何为并发" class="headerlink" title="何为并发"></a>何为并发</h4><ul>
 <li>任务切换(task switching)：<br>单核机 - 某一时刻下只能执行一个任务，通过任务切换达成并发效果，任务切换时需要切换上下文(context switch)；</li>
 <li>硬件并发(hardware concurrency)：<br>多核机 - 真正的多任务同时执行，但是核心数仍然供不应求。</li>
 </ul>
@@ -31,58 +32,58 @@
 <p>并发的两种方式</p>
 <p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/%E5%9B%9B%E4%BB%BB%E5%8A%A1%E4%B8%A4%E6%A0%B8%E5%BF%83.png" alt="四任务两核心"></p>
 <p>四任务两核心</p>
-<h4 id="并发的途径">并发的途径</h4><ul>
+<h4 id="并发的途径"><a href="#并发的途径" class="headerlink" title="并发的途径"></a>并发的途径</h4><ul>
 <li>多进程并发<br> <img src="http://7xkwu7.com1.z0.glb.clouddn.com/%E5%B9%B6%E5%8F%91%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1.png" alt=""></li>
 <li>多线程并发<br> <img src="http://7xkwu7.com1.z0.glb.clouddn.com/%E8%BF%9B%E7%A8%8B%E5%86%85%E5%B9%B6%E5%8F%91%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1.png" alt=""></li>
 </ul>
-<h4 id="为什么使用并发">为什么使用并发</h4><ul>
+<h4 id="为什么使用并发"><a href="#为什么使用并发" class="headerlink" title="为什么使用并发"></a>为什么使用并发</h4><ul>
 <li>为了分离关注点</li>
 <li>为了性能提升</li>
 </ul>
-<h4 id="什么时候不能用并发">什么时候不能用并发</h4><blockquote>
+<h4 id="什么时候不能用并发"><a href="#什么时候不能用并发" class="headerlink" title="什么时候不能用并发"></a>什么时候不能用并发</h4><blockquote>
 <p>知道何时不使用并发与知道何时使用它一样重要。基本上，不使用并发的唯一原因就是，收益比不上成本。使用并发的代码在很多情况下难以理解，因此编写和维护的多线程代码就会产生直接的脑力成本，同时额外的复杂性也可能引起更多的错误。除非潜在的性能增益足够大或关注点分离地足够清晰，能抵消所需的额外的开发时间以及与维护多线程代码相关的额外成本(代码正确的前提下)；否则，别用并发。</p>
 </blockquote>
-<h3 id="第二章_线程管理">第二章 线程管理</h3><h4 id="线程管理基础">线程管理基础</h4><ol>
+<h3 id="第二章-线程管理"><a href="#第二章-线程管理" class="headerlink" title="第二章 线程管理"></a>第二章 线程管理</h3><h4 id="线程管理基础"><a href="#线程管理基础" class="headerlink" title="线程管理基础"></a>线程管理基础</h4><ol>
 <li><p>启动线程  </p>
 <ul>
 <li>线程在<code>std::thread</code>对象创建时启动。</li>
 <li>为了让编译器识别<code>std::thread</code>类，需将<code>&lt;thread&gt;</code>头文件包含进去。</li>
 <li><p><code>std::thread</code>可以用可调用(callable)类型构造</p>
-<pre><code><span class="keyword">class</span> background_task
+<pre><code>class background_task
 {
-<span class="keyword">public</span>:
-      <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">()</span> <span class="keyword">const</span>
-      </span>{
+public:
+      void operator()() const
+      {
        do_something();
        do_something_else();
       }
 };
 
 background_task f;
-<span class="built_in">std</span>::<span class="function">thread <span class="title">my_thread</span><span class="params">(f)</span></span>;
+std::thread my_thread(f);
 </code></pre></li>
 <li><p>启动线程后需要明确是要等待线程结束(加入式)还是让其自主运行(分离式)，必须在对象销毁之前做出决定。</p>
-<pre><code>清单<span class="number">2.1</span> 函数已经结束，线程依旧访问局部变量
-<span class="keyword">struct</span> func
+<pre><code>清单2.1 函数已经结束，线程依旧访问局部变量
+struct func
 {
-      <span class="keyword">int</span>&amp; i;
-      func(<span class="keyword">int</span>&amp; i_) : i(i_) {}
-      <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span> <span class="params">()</span>
-      </span>{
-           <span class="keyword">for</span> (<span class="keyword">unsigned</span> j=<span class="number">0</span> ; j&lt;<span class="number">1000000</span> ; ++j)
+      int&amp; i;
+      func(int&amp; i_) : i(i_) {}
+      void operator() ()
+      {
+           for (unsigned j=0 ; j&lt;1000000 ; ++j)
             {
-          do_something(i);           <span class="comment">// 1. 潜在访问隐患：悬空引用</span>
+          do_something(i);           // 1. 潜在访问隐患：悬空引用
             }
       }
 };
 
-<span class="function"><span class="keyword">void</span> <span class="title">oops</span><span class="params">()</span>
-</span>{
-      <span class="keyword">int</span> some_local_state=<span class="number">0</span>;
-      <span class="function">func <span class="title">my_func</span><span class="params">(some_local_state)</span></span>;
-      <span class="built_in">std</span>::<span class="function">thread <span class="title">my_thread</span><span class="params">(my_func)</span></span>;
-      my_thread.detach();          <span class="comment">// 2. 不等待线程结束</span>
-}                              <span class="comment">// 3. 新线程可能还在运行</span>
+void oops()
+{
+      int some_local_state=0;
+      func my_func(some_local_state);
+      std::thread my_thread(my_func);
+      my_thread.detach();          // 2. 不等待线程结束
+}                              // 3. 新线程可能还在运行
 </code></pre><p>  调用清单2.1中的<code>oops()</code>后，如果没有什么操作，看上去能够完美运行，可是一旦进行了某些操作，<code>i</code>引用地址的值就会发生改变，引发不想要的结果。</p>
 </li>
 </ul>
@@ -97,35 +98,35 @@ background_task f;
 <ul>
 <li>考虑用<code>try/catch</code>语句块在异常处理过程中调用<strong>join()</strong>，从而避免生命周期的问题</li>
 <li><p>另一种方式是使用RALL(Resource Acquisition Is Initialization)，并提供一个类，在析构函数中调用<strong>join()</strong>。</p>
-<pre><code>清单<span class="number">2.2</span> 使用RAII等待线程完成
-<span class="keyword">class</span> thread_guard
+<pre><code>清单2.2 使用RAII等待线程完成
+class thread_guard
 {
-  <span class="built_in">std</span>::thread&amp; t;
-<span class="keyword">public</span>:
-  <span class="function"><span class="keyword">explicit</span> <span class="title">thread_guard</span><span class="params">(<span class="built_in">std</span>::thread&amp; t_)</span>:
-    <span class="title">t</span><span class="params">(t_)</span>
-  </span>{}
+  std::thread&amp; t;
+public:
+  explicit thread_guard(std::thread&amp; t_):
+    t(t_)
+  {}
   ~thread_guard()
   {
-    <span class="keyword">if</span>(t.joinable()) <span class="comment">// ①</span>
+    if(t.joinable()) // ①
     {
-      t.join();      <span class="comment">// ②</span>
+      t.join();      // ②
     }
   }
-  thread_guard(thread_guard <span class="keyword">const</span>&amp;)=<span class="keyword">delete</span>;   <span class="comment">// ③</span>
-  thread_guard&amp; <span class="keyword">operator</span>=(thread_guard <span class="keyword">const</span>&amp;)=<span class="keyword">delete</span>;
+  thread_guard(thread_guard const&amp;)=delete;   // ③
+  thread_guard&amp; operator=(thread_guard const&amp;)=delete;
 };
 
-<span class="keyword">struct</span> func; <span class="comment">// 定义在清单2.1中</span>
+struct func; // 定义在清单2.1中
 
-<span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span>
-</span>{
-  <span class="keyword">int</span> some_local_state=<span class="number">0</span>;
-  <span class="function">func <span class="title">my_func</span><span class="params">(some_local_state)</span></span>;
-  <span class="built_in">std</span>::<span class="function">thread <span class="title">t</span><span class="params">(my_func)</span></span>;
-  <span class="function">thread_guard <span class="title">g</span><span class="params">(t)</span></span>;
+void f()
+{
+  int some_local_state=0;
+  func my_func(some_local_state);
+  std::thread t(my_func);
+  thread_guard g(t);
   do_something_in_current_thread();
-}    <span class="comment">// ④</span>
+}    // ④
 </code></pre><p>  解析：当线程执行到④时，局部变量即将被逆序销毁，然而<code>thread_guard</code>的对象<strong>g</strong>是第一个被销毁的，这时会调用其析构函数，被加入到原始线程中。注意：析构函数中的<strong>joinable()</strong>判断很重要，因为<strong>join()</strong>只能对给定的对象调用一次；</p>
 <blockquote>
 <p>拷贝构造函数和拷贝赋值操作被标记为=delete③，是为了不让编译器自动生成它们。直接对一个对象进行拷贝或赋值是危险的，因为这可能会弄丢已经加入的线程。通过删除声明，任何尝试给thread_guard对象赋值的操作都会引发一个编译错误。</p>
@@ -148,48 +149,52 @@ background_task f;
 <li><a href="https://www.gitbook.com/book/chenxiaowei/cpp_concurrency_in_action/details" target="_blank" rel="external"><em>中文版 - GitBook</em></a></li>
 </ol>
 ]]></content>
+    
     <summary type="html">
-    <![CDATA[<p>因为一些棘手的效率问题，手头的项目必须要引入并发编程。这里整理下我学习的《C++并发编程》的笔记，尽可能地记录下了重难点以及我练习的例程代码，作为自己学习的备忘，也供想要快速学习的人参考。不过还是建议直接去阅读原书，中英文版本的网盘链接我放在文章后面，请读者自取。</p>]]>
+    
+      &lt;p&gt;因为一些棘手的效率问题，手头的项目必须要引入并发编程。这里整理下我学习的《C++并发编程》的笔记，尽可能地记录下了重难点以及我练习的例程代码，作为自己学习的备忘，也供想要快速学习的人参考。不过还是建议直接去阅读原书，中英文版本的网盘链接我放在文章后面，请读者自取。&lt;/p&gt;
     
     </summary>
     
-      <category term="Concurrency" scheme="http://xmhtech.me/tags/Concurrency/"/>
+      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
+    
     
       <category term="c++" scheme="http://xmhtech.me/tags/c/"/>
     
-      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
+      <category term="Concurrency" scheme="http://xmhtech.me/tags/Concurrency/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[了解虚拟机]]></title>
+    <title>了解虚拟机</title>
     <link href="http://xmhtech.me/2016/03/12/%E4%BA%86%E8%A7%A3%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
     <id>http://xmhtech.me/2016/03/12/了解虚拟机/</id>
     <published>2016-03-12T15:53:50.000Z</published>
     <updated>2016-03-19T15:55:13.000Z</updated>
+    
     <content type="html"><![CDATA[<p>虚拟机是一款提供跨平台一致性体验的”软件”。<br>虚拟机最初被Popek and Goldberg定义为<em>“an efficient, isolated duplicate of a real machine”</em>。现在通常指与实际硬件不直接相关的虚拟机器。 </p>
 <a id="more"></a>
-<h3 id="简介">简介</h3><p>在传统意义上，一个应用程序是和特定平台（硬件+OS）所绑定的。用户层面上，这意味着你将无法在不同的平台上获得一致的体验，很多软件都只适配了某些特定的平台；开发者层面，因为不同系统适配的麻烦令许多中小开发者放弃对多平台的开发，这也是用户层面问题产生的重要原因。切换平台后，很多人会对新系统无所适从，发现常用的软件以及熟悉的操作方式不复存在。<br>虚拟机就是为了消除这种现实平台的限制而存在的，提供了一套更加灵活的解决方案。</p>
-<h3 id="虚拟机的必要性">虚拟机的必要性</h3><ol>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>在传统意义上，一个应用程序是和特定平台（硬件+OS）所绑定的。用户层面上，这意味着你将无法在不同的平台上获得一致的体验，很多软件都只适配了某些特定的平台；开发者层面，因为不同系统适配的麻烦令许多中小开发者放弃对多平台的开发，这也是用户层面问题产生的重要原因。切换平台后，很多人会对新系统无所适从，发现常用的软件以及熟悉的操作方式不复存在。<br>虚拟机就是为了消除这种现实平台的限制而存在的，提供了一套更加灵活的解决方案。</p>
+<h3 id="虚拟机的必要性"><a href="#虚拟机的必要性" class="headerlink" title="虚拟机的必要性"></a>虚拟机的必要性</h3><ol>
 <li>便携性(Portability)在当今的网络计算下至关重要；</li>
 <li>类型安全、面向对象编程、基于VM的语言成为主流；</li>
 <li>CPU的创新往往被旧的接口所限制；</li>
 <li>跨处理器的优化十分困难。</li>
 </ol>
-<h3 id="虚拟机的优点">虚拟机的优点</h3><ol>
+<h3 id="虚拟机的优点"><a href="#虚拟机的优点" class="headerlink" title="虚拟机的优点"></a>虚拟机的优点</h3><ol>
 <li>跨平台的兼容性；</li>
 <li>增加安全性；</li>
 <li>提升性能；</li>
 <li>简化软件迁移。</li>
 </ol>
-<h3 id="虚拟机的历史">虚拟机的历史</h3><p>许多年前，IBM出售昂贵的主机给大型组织，并且产生了一个问题：要是组织想要同时在一台机器上运行不同的操作系统该怎么办？一些应用被开发在某个系统上然而有些却在其他系统上。结果IBM以Virtual machine monitor(VMM, also hypervisor)的方式间接实现了它。</p>
-<h3 id="计算机系统的接口">计算机系统的接口</h3><p>在介绍虚拟机之前，先介绍下计算机的结构，计算机系统是通过不同层级的抽象构建起来的，见下图：<br><img src="http://7xkwu7.com1.z0.glb.clouddn.com/Computer_Architecture.png" alt="Computer Architecture"></p>
+<h3 id="虚拟机的历史"><a href="#虚拟机的历史" class="headerlink" title="虚拟机的历史"></a>虚拟机的历史</h3><p>许多年前，IBM出售昂贵的主机给大型组织，并且产生了一个问题：要是组织想要同时在一台机器上运行不同的操作系统该怎么办？一些应用被开发在某个系统上然而有些却在其他系统上。结果IBM以Virtual machine monitor(VMM, also hypervisor)的方式间接实现了它。</p>
+<h3 id="计算机系统的接口"><a href="#计算机系统的接口" class="headerlink" title="计算机系统的接口"></a>计算机系统的接口</h3><p>在介绍虚拟机之前，先介绍下计算机的结构，计算机系统是通过不同层级的抽象构建起来的，见下图：<br><img src="http://7xkwu7.com1.z0.glb.clouddn.com/Computer_Architecture.png" alt="Computer Architecture"></p>
 <p>其中两类接口至关重要：</p>
 <ol>
 <li>ISA接口<br> Instruction Set Architecture，又称指令集或指令集体系。连接软硬件。包括用户级ISA（对应用和OS可见）和系统级ISA（仅对OS可见）</li>
 <li>ABI接口<br> Application Binary Interface，是应用与OS间的接口，由用户级ISA和OS系统调用</li>
 </ol>
-<h3 id="虚拟机的分类系统">虚拟机的分类系统</h3><ol>
+<h3 id="虚拟机的分类系统"><a href="#虚拟机的分类系统" class="headerlink" title="虚拟机的分类系统"></a>虚拟机的分类系统</h3><ol>
 <li><p>Process VMs<br>位于ABI层，将独立的进程虚拟化 - 虚拟机随进程终止而终止。<br>进程虚拟机将ABI层虚拟化，<strong>仿真</strong>了用户级ISA和OS系统调用，这里的VM也可以被称作runtime，VMM则被称作runtime system。<br>Runtime将负责管理客户程序，负责其与OS的沟通。客户程序可能会和主程序掺杂在一起。</p>
 <ol>
 <li>Same ISA<ul>
@@ -220,9 +225,9 @@ background_task f;
 </ol>
 </li>
 </ol>
-<h3 id="虚拟化技术">虚拟化技术</h3><h4 id="纯硬件之上的虚拟化（本机执行）">纯硬件之上的虚拟化（本机执行）</h4><p>这种方法被称之为对硬件完全的虚拟化，可以使用type 1或type 2的当时执行管理程序：type 1 管理程序直接跑在硬件上，type 2则跑在另一个操作系统之上。每个虚拟机上可以运行任何一个被底层硬件所支持的操作系统，用户也因此可以同时运行两个甚至更多的”Guest”操作系统，相互之间无法干涉。<br>这种虚拟机甚至可以是recursive的——虚拟机之上可以运行虚拟机。</p>
-<h4 id="非本机系统模拟">非本机系统模拟</h4><p>虚拟机可以承担模拟器的责任，让软件和操作系统为另一个计算机处理器的结构所运行。模拟可以完全是软件层面的，或者可能包含一些硬件的成份比如说微指令。</p>
-<h4 id="操作系统级别的虚拟化">操作系统级别的虚拟化</h4><p>这种虚拟化是在操作系统之上的服务器虚拟化技术。可以这么理解，一个单独的物理服务器被分片成好几个小部分（又称作VE, VPS, guests, zones, etc），每个部分从用户的角度看像是真的服务器一般。</p>
+<h3 id="虚拟化技术"><a href="#虚拟化技术" class="headerlink" title="虚拟化技术"></a>虚拟化技术</h3><h4 id="纯硬件之上的虚拟化（本机执行）"><a href="#纯硬件之上的虚拟化（本机执行）" class="headerlink" title="纯硬件之上的虚拟化（本机执行）"></a>纯硬件之上的虚拟化（本机执行）</h4><p>这种方法被称之为对硬件完全的虚拟化，可以使用type 1或type 2的当时执行管理程序：type 1 管理程序直接跑在硬件上，type 2则跑在另一个操作系统之上。每个虚拟机上可以运行任何一个被底层硬件所支持的操作系统，用户也因此可以同时运行两个甚至更多的”Guest”操作系统，相互之间无法干涉。<br>这种虚拟机甚至可以是recursive的——虚拟机之上可以运行虚拟机。</p>
+<h4 id="非本机系统模拟"><a href="#非本机系统模拟" class="headerlink" title="非本机系统模拟"></a>非本机系统模拟</h4><p>虚拟机可以承担模拟器的责任，让软件和操作系统为另一个计算机处理器的结构所运行。模拟可以完全是软件层面的，或者可能包含一些硬件的成份比如说微指令。</p>
+<h4 id="操作系统级别的虚拟化"><a href="#操作系统级别的虚拟化" class="headerlink" title="操作系统级别的虚拟化"></a>操作系统级别的虚拟化</h4><p>这种虚拟化是在操作系统之上的服务器虚拟化技术。可以这么理解，一个单独的物理服务器被分片成好几个小部分（又称作VE, VPS, guests, zones, etc），每个部分从用户的角度看像是真的服务器一般。</p>
 <p><strong>内容还很简陋，如有错误欢迎指出，不定期更新。</strong></p>
 <p><em>Reference</em></p>
 <ol>
@@ -231,66 +236,70 @@ background_task f;
 <li><a href="https://www.wikiwand.com/en/Virtual_machine" target="_blank" rel="external">Vitual machine - Wikiwand</a></li>
 </ol>
 ]]></content>
+    
     <summary type="html">
-    <![CDATA[<p>虚拟机是一款提供跨平台一致性体验的”软件”。<br>虚拟机最初被Popek and Goldberg定义为<em>“an efficient, isolated duplicate of a real machine”</em>。现在通常指与实际硬件不直接相关的虚拟机器。 </p>]]>
+    
+      &lt;p&gt;虚拟机是一款提供跨平台一致性体验的”软件”。&lt;br&gt;虚拟机最初被Popek and Goldberg定义为&lt;em&gt;“an efficient, isolated duplicate of a real machine”&lt;/em&gt;。现在通常指与实际硬件不直接相关的虚拟机器。 &lt;/p&gt;
     
     </summary>
     
-      <category term="OS" scheme="http://xmhtech.me/tags/OS/"/>
+      <category term="Others" scheme="http://xmhtech.me/categories/Others/"/>
+    
     
       <category term="VM" scheme="http://xmhtech.me/tags/VM/"/>
     
-      <category term="Others" scheme="http://xmhtech.me/categories/Others/"/>
+      <category term="OS" scheme="http://xmhtech.me/tags/OS/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[Prolog学习笔记（四）]]></title>
+    <title>Prolog学习笔记（四）</title>
     <link href="http://xmhtech.me/2015/10/18/Prolog%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
     <id>http://xmhtech.me/2015/10/18/Prolog学习笔记（四）/</id>
     <published>2015-10-18T07:30:36.000Z</published>
     <updated>2015-10-18T12:37:48.000Z</updated>
+    
     <content type="html"><![CDATA[<p>这周的主要内容是<strong>递归之于表</strong>以及<strong>内建谓词介绍</strong></p>
 <a id="more"></a>
-<h2 id="递归&amp;表">递归&amp;表</h2><h3 id="引入——辨别一个表">引入——辨别一个表</h3><p>我们说表是递归定义的，那么是否为表也可以用下面的一个递归规则来测试：</p>
-<pre><code><span class="atom">is_a_list</span>([]).
-<span class="atom">is_a_list</span>([<span class="name">_</span>|<span class="name">T</span>]) :-    
-    <span class="atom">is_a_list</span>(<span class="name">T</span>). <span class="comment">%Head is replaced with an underscore as we don’t want to use it.</span>
-</code></pre><h3 id="为什么使用递归">为什么使用递归</h3><ul>
+<h2 id="递归-amp-表"><a href="#递归-amp-表" class="headerlink" title="递归&amp;表"></a>递归&amp;表</h2><h3 id="引入——辨别一个表"><a href="#引入——辨别一个表" class="headerlink" title="引入——辨别一个表"></a>引入——辨别一个表</h3><p>我们说表是递归定义的，那么是否为表也可以用下面的一个递归规则来测试：</p>
+<pre><code>is_a_list([]).
+is_a_list([_|T]) :-    
+    is_a_list(T). %Head is replaced with an underscore as we don’t want to use it.
+</code></pre><h3 id="为什么使用递归"><a href="#为什么使用递归" class="headerlink" title="为什么使用递归"></a>为什么使用递归</h3><ul>
 <li>它能让我们使用非常清晰和优雅的代码</li>
 <li>关系也许是递归的</li>
 <li>数据是递归定义的，最好的办法是迭代地处理</li>
 <li>允许prolog在一个问题空间里进行一些复杂的搜索而不需要使用专用的算法</li>
 </ul>
-<h3 id="递归的形式">递归的形式</h3><p>在Prolog里，递归的定义和其他语言是差不多的：</p>
+<h3 id="递归的形式"><a href="#递归的形式" class="headerlink" title="递归的形式"></a>递归的形式</h3><p>在Prolog里，递归的定义和其他语言是差不多的：</p>
 <ol>
 <li>首先，需要定义得到终止的条件</li>
-<li>然后，就是定义怎样来使一个较大的问题分解成一个相似但是较小的wen<h3 id="递归的三种使用方法">递归的三种使用方法</h3></li>
+<li>然后，就是定义怎样来使一个较大的问题分解成一个相似但是较小的wen<h3 id="递归的三种使用方法"><a href="#递归的三种使用方法" class="headerlink" title="递归的三种使用方法"></a>递归的三种使用方法</h3></li>
 </ol>
 <ol>
 <li><p>先在<strong>base case</strong>中计算出结果，然后使用这个结果在程序中<strong>回溯</strong>；</p>
-<pre><code><span class="function"><span class="title">listlength</span><span class="params">([],<span class="number">0</span>)</span></span>.
-<span class="function"><span class="title">listlength</span><span class="params">([_|T],N1)</span></span>:-
-      <span class="function"><span class="title">listlength</span><span class="params">(T,N)</span></span>,
-      N1 is N+<span class="number">1</span>.
+<pre><code>listlength([],0).
+listlength([_|T],N1):-
+      listlength(T,N),
+      N1 is N+1.
 </code></pre></li>
 <li><p>在<strong>递归</strong>进入程序时收集结果，最终结束于<strong>base case</strong>；</p>
-<pre><code>listlength([],<span class="type">Acc</span>,<span class="type">Acc</span>).% final <span class="literal">result</span>
-listlength([_|T],<span class="type">Acc</span>,<span class="type">Out</span>) :-
-    <span class="type">Acc1</span> <span class="keyword">is</span> <span class="type">Acc</span>+<span class="number">1</span>,    % 当递归时累加器加一
-    listlength(T,<span class="type">Acc1</span>,<span class="type">Out</span>).
+<pre><code>listlength([],Acc,Acc).% final result
+listlength([_|T],Acc,Out) :-
+    Acc1 is Acc+1,    % 当递归时累加器加一
+    listlength(T,Acc1,Out).
 </code></pre></li>
 <li><p>使用<strong>未实例化</strong>的变量递归，然后在回溯时收集结果</p>
 <pre><code>listlength() :-
-    listlenthlistless(List,<span class="operator">0,<span class="keyword">Length</span>).
-listlength2([], <span class="keyword">Acc</span>, <span class="keyword">Acc</span>). %利用了辅助谓词
-listlength2([_|<span class="keyword">T</span>], <span class="keyword">Acc</span>, <span class="keyword">Out</span>) :-
-    <span class="keyword">Acc</span> <span class="keyword">is</span> <span class="keyword">Acc</span>+<span class="number">1</span>,
-    listlength(<span class="keyword">T</span>,Accede,<span class="keyword">Out</span>).</span>
+    listlenthlistless(List,0,Length).
+listlength2([], Acc, Acc). %利用了辅助谓词
+listlength2([_|T], Acc, Out) :-
+    Acc is Acc+1,
+    listlength(T,Accede,Out).
 </code></pre></li>
 </ol>
-<h2 id="内建谓词">内建谓词</h2><p>按功能来分，内建谓词有以下三类</p>
-<h3 id="一、识别术语">一、识别术语</h3><p>以下的均为一元谓词，参数即需要判断的术语。</p>
+<h2 id="内建谓词"><a href="#内建谓词" class="headerlink" title="内建谓词"></a>内建谓词</h2><p>按功能来分，内建谓词有以下三类</p>
+<h3 id="一、识别术语"><a href="#一、识别术语" class="headerlink" title="一、识别术语"></a>一、识别术语</h3><p>以下的均为一元谓词，参数即需要判断的术语。</p>
 <ul>
 <li>var/1 判断变量</li>
 <li>nonvar/1 判断非变量或已经实例化的变量</li>
@@ -302,43 +311,43 @@ listlength2([_|<span class="keyword">T</span>], <span class="keyword">Acc</span>
 <li>compound/1 判断结构</li>
 <li>ground/1 判断是否包含未实例化的变量</li>
 </ul>
-<h3 id="二、分解结构">二、分解结构</h3><ol>
+<h3 id="二、分解结构"><a href="#二、分解结构" class="headerlink" title="二、分解结构"></a>二、分解结构</h3><ol>
 <li><p>=../2</p>
 <p> <strong>Term =.. L</strong><br> 当L是一个以Term中的主函数子为首，后面跟着它的变量为尾的<strong>表</strong>时为真。<br> ex:</p>
-<pre><code>?- <span class="atom">term</span>(<span class="atom">a</span>,<span class="atom">b</span>,<span class="atom">c</span>) =.. <span class="name">L</span>.
-<span class="name">L</span> = [<span class="atom">term</span>, <span class="atom">a</span>, <span class="atom">b</span>, <span class="atom">c</span>].
+<pre><code>?- term(a,b,c) =.. L.
+L = [term, a, b, c].
 </code></pre></li>
 <li><p>functor/3  </p>
 <p> <strong>fuctor(Term,F,N)</strong><br> 当F是Term当的fuctor且N是F的参数数量时为真。<br> ex:</p>
-<pre><code>?- functor(term(a,b,c),<span class="variable">F</span>,<span class="variable">N</span>).
-<span class="variable">F</span> = term,
-<span class="variable">N</span> = <span class="number">3</span>.
+<pre><code>?- functor(term(a,b,c),F,N).
+F = term,
+N = 3.
 </code></pre></li>
 <li><p>arg/3</p>
 <p> <strong>arg(N,Term,A)</strong><br> 当A是Term的第N个参数时为真<br> ex:</p>
-<pre><code>?- arg<span class="params">(<span class="number">3</span>,term<span class="params">(a,b,c)</span>,c)</span>.    
-<span class="literal">true</span>.
+<pre><code>?- arg(3,term(a,b,c),c).    
+true.
 </code></pre></li>
 </ol>
 <p>上面三个内建谓词通常用于组合使用。</p>
-<h3 id="三、收集解答">三、收集解答</h3><p>举个例子，当你想要找到一个目标的所有结果时，你通常会去这么使用谓词：<br>以member/2为例：</p>
-<pre><code>?- member<span class="comment">(X, [a,b,c,d])</span>.
+<h3 id="三、收集解答"><a href="#三、收集解答" class="headerlink" title="三、收集解答"></a>三、收集解答</h3><p>举个例子，当你想要找到一个目标的所有结果时，你通常会去这么使用谓词：<br>以member/2为例：</p>
+<pre><code>?- member(X, [a,b,c,d]).
 </code></pre><p>回车，得到结果，然后不断敲击分号得到所有结果直至false（有的直接结束）。</p>
-<pre><code><span class="setting">X = <span class="value">a ;</span></span>
-<span class="setting">X = <span class="value">b ;</span></span>
-<span class="setting">X = <span class="value">c ;</span></span>
-<span class="setting">X = <span class="value">d.</span></span>
+<pre><code>X = a ;
+X = b ;
+X = c ;
+X = d.
 </code></pre><p>然而，现在我们用一个谓词搞定这些。</p>
 <ol>
 <li><p>fingall/3<br> ex1:</p>
-<pre><code>?- <span class="atom">findall</span>(<span class="name">X</span>, <span class="atom">member</span>(<span class="name">X</span>, [<span class="atom">a</span>,<span class="atom">b</span>,<span class="atom">c</span>,<span class="atom">d</span>]), <span class="name">Results</span>).
-<span class="name">Results</span> = [<span class="atom">a</span>, <span class="atom">b</span>, <span class="atom">c</span>, <span class="atom">d</span>].<span class="comment">%输出的结果是列表形式的</span>
+<pre><code>?- findall(X, member(X, [a,b,c,d]), Results).
+Results = [a, b, c, d].%输出的结果是列表形式的
 </code></pre><p> ex2:</p>
-<pre><code>?- findall(X, (member(X, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]),X &gt; <span class="number">2</span>), Results).
-Results = [<span class="number">3</span>, <span class="number">4</span>].%第二个参数可以是一个目标，也可以是复合目标
+<pre><code>?- findall(X, (member(X, [1,2,3,4]),X &gt; 2), Results).
+Results = [3, 4].%第二个参数可以是一个目标，也可以是复合目标
 </code></pre><p> ex3:</p>
-<pre><code>?- findall(X/Y, (member(X, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]), Y is X*X), Results).
-Results = [<span class="number">1</span>/<span class="number">1</span>, <span class="number">2</span>/<span class="number">4</span>, <span class="number">3</span>/<span class="number">9</span>, <span class="number">4</span>/<span class="number">16</span>].%第一个参数可以是一个复杂的集合，用合一的思想就很好理解
+<pre><code>?- findall(X/Y, (member(X, [1,2,3,4]), Y is X*X), Results).
+Results = [1/1, 2/4, 3/9, 4/16].%第一个参数可以是一个复杂的集合，用合一的思想就很好理解
 </code></pre><p> 其他用法：</p>
 <ul>
 <li>变量的灵活使用</li>
@@ -355,72 +364,76 @@ Results = [<span class="number">1</span>/<span class="number">1</span>, <span cl
 </ol>
 <p>上面的三个谓词被统称为<strong>meta-predicates</strong>(元谓词)<br>    ——因为它们能够操纵Prolog的证明策略</p>
 <hr>
-<h3 id="Remark:">Remark:</h3><p>学习的过程中产生了在prolog中<strong><em>双引号</em></strong>使用的疑惑，在<a href="http://stackoverflow.com" target="_blank" rel="external">stack overflow</a>上找到一个不错的<a href="http://stackoverflow.com/questions/8264699/what-is-the-difference-between-and-in-prolog" target="_blank" rel="external">回答</a></p>
+<h3 id="Remark"><a href="#Remark" class="headerlink" title="Remark:"></a>Remark:</h3><p>学习的过程中产生了在prolog中<strong><em>双引号</em></strong>使用的疑惑，在<a href="http://stackoverflow.com" target="_blank" rel="external">stack overflow</a>上找到一个不错的<a href="http://stackoverflow.com/questions/8264699/what-is-the-difference-between-and-in-prolog" target="_blank" rel="external">回答</a></p>
 <p>时间原因就不翻译了，贴出来给大家学习：</p>
 <blockquote>
 <p>Single quoted items are always atoms.</p>
 <p>The meaning of double quotes depends on the Prolog flag double_quotes:</p>
 <p><strong>atom</strong> — with this value <code>&quot;a&quot; = a</code>. Nowadays, this is rarely used. But you will find Prolog books where <code>[&quot;abc.pl&quot;]</code> is written.</p>
 <p><strong>codes</strong> — a list of character codes. This is frequently the default, but it leads to very unreadable answers like</p>
-<pre><code>   ?- phrase((<span class="string">"Ja tvoi "</span>,(<span class="string">"sluga"</span>|<span class="string">"rabotnik"</span>),<span class="string">"!"</span>), Satz).
-Satz = [<span class="number">74</span>,<span class="number">97</span>,<span class="number">32</span>,<span class="number">116</span>,<span class="number">118</span>,<span class="number">111</span>,<span class="number">105</span>,<span class="number">32</span>,<span class="number">115</span>,<span class="number">108</span>,<span class="number">117</span>,<span class="number">103</span>,<span class="number">97</span>,<span class="number">33</span>] ;
-Satz = [<span class="number">74</span>,<span class="number">97</span>,<span class="number">32</span>,<span class="number">116</span>,<span class="number">118</span>,<span class="number">111</span>,<span class="number">105</span>,<span class="number">32</span>,<span class="number">114</span>,<span class="number">97</span>,<span class="number">98</span>,<span class="number">111</span>,<span class="number">116</span>,<span class="number">110</span>,<span class="number">105</span>,<span class="number">107</span>,<span class="number">33</span>].
+<pre><code>   ?- phrase((&quot;Ja tvoi &quot;,(&quot;sluga&quot;|&quot;rabotnik&quot;),&quot;!&quot;), Satz).
+Satz = [74,97,32,116,118,111,105,32,115,108,117,103,97,33] ;
+Satz = [74,97,32,116,118,111,105,32,114,97,98,111,116,110,105,107,33].
 </code></pre><p>Even worse, if you use characters beyond ASCII:</p>
-<pre><code>   ?- phrase((<span class="string">"Я твой "</span>,(<span class="string">"слуга"</span>|<span class="string">"работник"</span>),<span class="string">"!"</span>), Satz).
-Satz = [<span class="number">1071</span>,<span class="number">32</span>,<span class="number">1090</span>,<span class="number">1074</span>,<span class="number">1086</span>,<span class="number">1081</span>,<span class="number">32</span>,<span class="number">1089</span>,<span class="number">1083</span>,<span class="number">1091</span>,<span class="number">1075</span>,<span class="number">1072</span>,<span class="number">33</span>] ;
-Satz = [<span class="number">1071</span>,<span class="number">32</span>,<span class="number">1090</span>,<span class="number">1074</span>,<span class="number">1086</span>,<span class="number">1081</span>,<span class="number">32</span>,<span class="number">1088</span>,<span class="number">1072</span>,<span class="number">1073</span>,<span class="number">1086</span>,<span class="number">1090</span>,<span class="number">1085</span>,<span class="number">1080</span>,<span class="number">1082</span>,<span class="number">33</span>].
+<pre><code>   ?- phrase((&quot;Я твой &quot;,(&quot;слуга&quot;|&quot;работник&quot;),&quot;!&quot;), Satz).
+Satz = [1071,32,1090,1074,1086,1081,32,1089,1083,1091,1075,1072,33] ;
+Satz = [1071,32,1090,1074,1086,1081,32,1088,1072,1073,1086,1090,1085,1080,1082,33].
 </code></pre><p><strong>chars</strong> — a list of one-char atoms.</p>
-<pre><code>   ?- <span class="atom">set_prolog_flag</span>(<span class="atom">double_quotes</span>,<span class="atom">chars</span>).
-<span class="atom">true</span>.
+<pre><code>   ?- set_prolog_flag(double_quotes,chars).
+true.
 
-   ?- <span class="atom">phrase</span>((<span class="string">"Ja tvoi "</span>,(<span class="string">"sluga"</span>|<span class="string">"rabotnik"</span>),<span class="string">"!"</span>), <span class="name">Satz</span>).
-<span class="name">Satz</span> = [<span class="string">'J'</span>,<span class="atom">a</span>,<span class="string">' '</span>,<span class="atom">t</span>,<span class="atom">v</span>,<span class="atom">o</span>,<span class="atom">i</span>,<span class="string">' '</span>,<span class="atom">s</span>,<span class="atom">l</span>,<span class="atom">u</span>,<span class="atom">g</span>,<span class="atom">a</span>,!] ;
-<span class="name">Satz</span> = [<span class="string">'J'</span>,<span class="atom">a</span>,<span class="string">' '</span>,<span class="atom">t</span>,<span class="atom">v</span>,<span class="atom">o</span>,<span class="atom">i</span>,<span class="string">' '</span>,<span class="atom">r</span>,<span class="atom">a</span>,<span class="atom">b</span>,<span class="atom">o</span>,<span class="atom">t</span>,<span class="atom">n</span>,<span class="atom">i</span>,<span class="atom">k</span>,!].
+   ?- phrase((&quot;Ja tvoi &quot;,(&quot;sluga&quot;|&quot;rabotnik&quot;),&quot;!&quot;), Satz).
+Satz = [&apos;J&apos;,a,&apos; &apos;,t,v,o,i,&apos; &apos;,s,l,u,g,a,!] ;
+Satz = [&apos;J&apos;,a,&apos; &apos;,t,v,o,i,&apos; &apos;,r,a,b,o,t,n,i,k,!].
 
-   ?- <span class="atom">phrase</span>((<span class="string">"Я твой "</span>,(<span class="string">"слуга"</span>|<span class="string">"работник"</span>),<span class="string">"!"</span>), <span class="name">Satz</span>).
-<span class="name">Satz</span> = [<span class="string">'Я'</span>,<span class="string">' '</span>,т,в,о,й,<span class="string">' '</span>,с,л,у,г,а,!] ;
-<span class="name">Satz</span> = [<span class="string">'Я'</span>,<span class="string">' '</span>,т,в,о,й,<span class="string">' '</span>,р,а,б,о,т,н,и,к,!].
+   ?- phrase((&quot;Я твой &quot;,(&quot;слуга&quot;|&quot;работник&quot;),&quot;!&quot;), Satz).
+Satz = [&apos;Я&apos;,&apos; &apos;,т,в,о,й,&apos; &apos;,с,л,у,г,а,!] ;
+Satz = [&apos;Я&apos;,&apos; &apos;,т,в,о,й,&apos; &apos;,р,а,б,о,т,н,и,к,!].
 </code></pre><p>This notation gives more readable answers. It can be even more compactly displayed since the double quote notation can be used for printing any list of one-char atoms. For SWI, there is <a href="http://www.complang.tuwien.ac.at/ulrich/Prolog-inedit/double_quotes.pl" target="_blank" rel="external">library(double_quotes)</a>.</p>
-<pre><code>   ?- use_module<span class="params">(library<span class="params">(double_quotes)</span>)</span>.
-<span class="literal">true</span>.
+<pre><code>   ?- use_module(library(double_quotes)).
+true.
 
-   ?- phrase<span class="params">(<span class="params">(<span class="string">"Ja tvoi "</span>,<span class="params">(<span class="string">"sluga"</span>|<span class="string">"rabotnik"</span>)</span>,<span class="string">"!"</span>)</span>, Satz)</span>.
-Satz = <span class="string">"Ja tvoi sluga!"</span> ;
-Satz = <span class="string">"Ja tvoi rabotnik!"</span>.
+   ?- phrase((&quot;Ja tvoi &quot;,(&quot;sluga&quot;|&quot;rabotnik&quot;),&quot;!&quot;), Satz).
+Satz = &quot;Ja tvoi sluga!&quot; ;
+Satz = &quot;Ja tvoi rabotnik!&quot;.
 
-   ?- phrase<span class="params">(<span class="params">(<span class="string">"Я твой "</span>,<span class="params">(<span class="string">"слуга"</span>|<span class="string">"работник"</span>)</span>,<span class="string">"!"</span>)</span>, Satz)</span>.
-Satz = <span class="string">"Я твой слуга!"</span> ;
-Satz = <span class="string">"Я твой работник!"</span>.
+   ?- phrase((&quot;Я твой &quot;,(&quot;слуга&quot;|&quot;работник&quot;),&quot;!&quot;), Satz).
+Satz = &quot;Я твой слуга!&quot; ;
+Satz = &quot;Я твой работник!&quot;.
 </code></pre></blockquote>
 <p><em>Reference:</em></p>
 <ol>
 <li><em>Prolog Programming for Artificial Intelligence 4th edition - chapter 6</em></li>
 </ol>
 ]]></content>
+    
     <summary type="html">
-    <![CDATA[<p>这周的主要内容是<strong>递归之于表</strong>以及<strong>内建谓词介绍</strong></p>]]>
+    
+      &lt;p&gt;这周的主要内容是&lt;strong&gt;递归之于表&lt;/strong&gt;以及&lt;strong&gt;内建谓词介绍&lt;/strong&gt;&lt;/p&gt;
     
     </summary>
     
-      <category term="AI" scheme="http://xmhtech.me/tags/AI/"/>
+      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
+    
     
       <category term="Prolog" scheme="http://xmhtech.me/tags/Prolog/"/>
     
-      <category term="language" scheme="http://xmhtech.me/tags/language/"/>
+      <category term="AI" scheme="http://xmhtech.me/tags/AI/"/>
     
-      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
+      <category term="language" scheme="http://xmhtech.me/tags/language/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[Prolog学习笔记（三）]]></title>
+    <title>Prolog学习笔记（三）</title>
     <link href="http://xmhtech.me/2015/10/05/Prolog%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/"/>
     <id>http://xmhtech.me/2015/10/05/Prolog学习笔记（三）/</id>
     <published>2015-10-05T07:43:02.000Z</published>
     <updated>2015-10-06T08:56:30.000Z</updated>
+    
     <content type="html"><![CDATA[<p>本周的重点是AND/OR树、结构体和表。<br>通过AND/OR树，我们可以很好地理解Prolog的证明策略；<br>结构体是（一）里没有介绍过的类型，要注意与<strong>事实(facts)</strong>的区别；<br>List的构造与使用让我们真正感受到了在prolog里递归的力量，你会感叹设计递归的精妙与艰辛:p</p>
 <a id="more"></a>
-<h3 id="Representing_Proofs_using_Trees">Representing Proofs using Trees</h3><p>为了更好地理解Prolog的证明策略，我们可以用AND/OR树来表示它的行为，利用下图来理解：</p>
+<h3 id="Representing-Proofs-using-Trees"><a href="#Representing-Proofs-using-Trees" class="headerlink" title="Representing Proofs using Trees"></a>Representing Proofs using Trees</h3><p>为了更好地理解Prolog的证明策略，我们可以用AND/OR树来表示它的行为，利用下图来理解：</p>
 <p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/prologAND%3AOR%20Tree.png" alt=""></p>
 <p>对应：<br>P :- Q, R.<br>P :- S.</p>
 <p>Q :- T.<br>Q :- U.</p>
@@ -440,14 +453,14 @@ Satz = <span class="string">"Я твой работник!"</span>.
 </ol>
 </li>
 </ol>
-<h3 id="Structures">Structures</h3><h5 id="简介">简介</h5><p>结构体就是一个拥有一个或几个组成成分的对象，组成成分其本身也可以是结构体，这种嵌套的定义使得树的意义再一次在prolog里体现。</p>
-<h5 id="使用">使用</h5><p>比方说1983年五月一日可以写成：</p>
-<pre><code><span class="function"><span class="title">date</span><span class="params">(<span class="number">1</span>,May,<span class="number">1983</span>)</span></span>
+<h3 id="Structures"><a href="#Structures" class="headerlink" title="Structures"></a>Structures</h3><h5 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h5><p>结构体就是一个拥有一个或几个组成成分的对象，组成成分其本身也可以是结构体，这种嵌套的定义使得树的意义再一次在prolog里体现。</p>
+<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><p>比方说1983年五月一日可以写成：</p>
+<pre><code>date(1,May,1983)
 </code></pre><p>在这里date被称为functor（函数子？），这个结构的组成都是常数，实际上它可以是变量：</p>
-<pre><code><span class="function"><span class="title">date</span><span class="params">(Day,may,<span class="number">1983</span>)</span></span>
+<pre><code>date(Day,may,1983)
 </code></pre><p>它表示的是1983年五月的某一天（其实只是我们这么认为，当然可以有别的解释）</p>
-<h5 id="匹配">匹配</h5><p>结构体的匹配原则与在（二）里有较详尽介绍的合一一致。</p>
-<h5 id="与事实的区别">与事实的区别</h5><p>语法形式上结构和事实很像，但它们不是一个东西：</p>
+<h5 id="匹配"><a href="#匹配" class="headerlink" title="匹配"></a>匹配</h5><p>结构体的匹配原则与在（二）里有较详尽介绍的合一一致。</p>
+<h5 id="与事实的区别"><a href="#与事实的区别" class="headerlink" title="与事实的区别"></a>与事实的区别</h5><p>语法形式上结构和事实很像，但它们不是一个东西：</p>
 <ol>
 <li>当结构未被存储在数据库里时，它不是事实（需要以句号结尾）；</li>
 <li>结构通常只被用在组织数据上；</li>
@@ -455,17 +468,17 @@ Satz = <span class="string">"Я твой работник!"</span>.
 </ol>
 <p>但是谓词却能够以结构形式存储…</p>
 <p>eg: <strong>command(X) :- X.</strong></p>
-<pre><code>?- X = <span class="built_in">write</span>(<span class="string">'Passing a command'</span>), <span class="command"><span class="keyword">command</span>(<span class="title">X</span>).</span>
-Passing <span class="operator">a</span> <span class="command"><span class="keyword">command</span></span>
-X = <span class="built_in">write</span>(<span class="string">'Passing a command'</span>) ?
-<span class="constant">true</span>
+<pre><code>?- X = write(&apos;Passing a command&apos;), command(X).
+Passing a command
+X = write(&apos;Passing a command&apos;) ?
+true
 </code></pre><p>是不是感觉有些混乱？关于facts、predicates、functors和terms，大家可以参考stackoverflow下的一个问答：<br><a href="http://stackoverflow.com/questions/19115712/in-prolog-is-a-fact-the-same-as-a-functor" target="_blank" rel="external">http://stackoverflow.com/questions/19115712/in-prolog-is-a-fact-the-same-as-a-functor</a></p>
 <p>里面的问题是：</p>
 <blockquote>
 <p>If you have for instance next line of Prolog declaration:</p>
-<pre><code>move(<span class="keyword">state</span>(middle, onbox, middle, hasnot),
+<pre><code>move(state(middle, onbox, middle, hasnot),
       grasp,
-      <span class="keyword">state</span>(middle, onbox, middle, has)).
+      state(middle, onbox, middle, has)).
 </code></pre><p>Are both move and state functors?</p>
 <p>I’m kind off confused by facts, functors, terms, …</p>
 </blockquote>
@@ -477,93 +490,93 @@ X = <span class="built_in">write</span>(<span class="string">'Passing a command'
 <p>Note that the first and third arguments in your example of a term are themselves compound terms, built using functor state/4…</p>
 </blockquote>
 <p>更多的自己去原文链接看吧，个人觉得说的还是挺有道理的。</p>
-<h3 id="List">List</h3><p>表(list)是一系列数据(包括表自己)的集合，由方括号包着，内部通过逗号(commmas)分隔。</p>
+<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p>表(list)是一系列数据(包括表自己)的集合，由方括号包着，内部通过逗号(commmas)分隔。</p>
 <p>eg：[ann, tennis, tom, skiing]<br>还可以是空的：[]</p>
-<h5 id="不同的表示形式">不同的表示形式</h5><p>第一个元素，我们称之为表头(<em>head</em>)，剩下的部分统称为尾(<em>tail</em>),所以在prolog里表又有不同的表示形式（喂喂，这里的因果关系有问题吧”(ºДº*)）。<br>.(Head, Tail)</p>
+<h5 id="不同的表示形式"><a href="#不同的表示形式" class="headerlink" title="不同的表示形式"></a>不同的表示形式</h5><p>第一个元素，我们称之为表头(<em>head</em>)，剩下的部分统称为尾(<em>tail</em>),所以在prolog里表又有不同的表示形式（喂喂，这里的因果关系有问题吧”(ºДº*)）。<br>.(Head, Tail)</p>
 <p>所以上面的表可以表示为(可以用树来理解)：<br>.(ann,.(tennis,.(tom,.(sking,[]))))</p>
 <p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/prologlist_tree.png" alt=""></p>
 <p>更为直观地表示为：<br>[Head | Tail]</p>
 <p>这其实是list的递归表示，在polog里，它的存在让许多表的操作可以优雅地以<strong><em>递归</em></strong>方式实现，应用的例子直接从下面的List操作中体现。</p>
-<h5 id="List_操作">List 操作</h5><ol>
+<h5 id="List-操作"><a href="#List-操作" class="headerlink" title="List 操作"></a>List 操作</h5><ol>
 <li><p>concatenation（连接操作）<br> 实现：</p>
-<pre><code><span class="function"><span class="title">conc</span><span class="params">([], L2, L2)</span></span>.
-<span class="function"><span class="title">conc</span><span class="params">([H|T1],L2,[H|T])</span></span> :-
-    <span class="function"><span class="title">conc</span><span class="params">(T1, L2, T)</span></span>.
+<pre><code>conc([], L2, L2).
+conc([H|T1],L2,[H|T]) :-
+    conc(T1, L2, T).
 </code></pre><p> 使用</p>
-<pre><code>?- <span class="atom">conc</span>([<span class="atom">a</span>,<span class="atom">b</span>], [<span class="atom">c</span>,<span class="atom">d</span>], <span class="name">P</span>).
-    <span class="name">P</span> = [<span class="atom">a</span>, <span class="atom">b</span>, <span class="atom">c</span>, <span class="atom">d</span>].
+<pre><code>?- conc([a,b], [c,d], P).
+    P = [a, b, c, d].
 </code></pre><p> 实际上你还可以把它当删除用，在query时在List1或者List2的位置用变量就可以了。<br> 某种意义上可以用它实现接下来所有操作，但是有些操作还是重写比较简洁，也不容易出现问题，conc在连接单个元素时要注意加上[]，因为它并没有定义单个元素的base case，直接用常量会出现问题，prolog将不会认为那是一个list然后得出false的结论。</p>
 </li>
 <li><p>删除<br> 实现：</p>
-<pre><code><span class="function"><span class="title">delete</span><span class="params">(A,[A|X],X)</span></span>.
-<span class="function"><span class="title">delete</span><span class="params">(A,[B|X],[B|Y])</span></span> :-
-    <span class="function"><span class="title">delete</span><span class="params">(A,X,Y)</span></span>.
+<pre><code>delete(A,[A|X],X).
+delete(A,[B|X],[B|Y]) :-
+    delete(A,X,Y).
 </code></pre><p> 使用：</p>
-<pre><code>?- delete(<span class="literal">a</span>, [<span class="literal">a</span>,b,e,<span class="literal">a</span>], L).
-L = [b, e, <span class="literal">a</span>] <span class="comment">;</span>
-L = [<span class="literal">a</span>, b, e] <span class="comment">;</span>
-<span class="literal">false</span>.
+<pre><code>?- delete(a, [a,b,e,a], L).
+L = [b, e, a] ;
+L = [a, b, e] ;
+false.
 </code></pre><p> 注意这种删除只支持删除一个元素，如果重复的话，它输出的是删除一次的不同情况。</p>
 </li>
 <li><p>头部添加<br> 实现：</p>
-<pre><code><span class="function"><span class="title">add_front</span><span class="params">(X, L , [X|L])</span></span>.
+<pre><code>add_front(X, L , [X|L]).
 </code></pre><p> 使用：</p>
-<pre><code>?- <span class="atom">add</span>(<span class="atom">a</span>,[<span class="atom">b</span>,<span class="atom">c</span>,<span class="atom">d</span>],<span class="name">L</span>).
-<span class="name">L</span> = [<span class="atom">a</span>, <span class="atom">b</span>, <span class="atom">c</span>, <span class="atom">d</span>].
+<pre><code>?- add(a,[b,c,d],L).
+L = [a, b, c, d].
 </code></pre></li>
 <li><p>是否成员<br> 实现：</p>
-<pre><code><span class="function"><span class="title">mem</span><span class="params">(T,[T|_])</span></span>.
-<span class="function"><span class="title">mem</span><span class="params">(A,[_|T])</span></span> :-
-    <span class="function"><span class="title">mem</span><span class="params">(A, T)</span></span>.
+<pre><code>mem(T,[T|_]).
+mem(A,[_|T]) :-
+    mem(A, T).
 </code></pre><p> 不写使用了，累了。</p>
 <p> 这里的下划线(underscore)代表它只是个无用的变量，内容是什么无关紧要，prolog在查阅时会跳过它。</p>
 </li>
 <li><p>子表(sublist)<br> 实现：</p>
-<pre><code><span class="function"><span class="title">sublist</span><span class="params">(S, L)</span></span> :-
-    <span class="function"><span class="title">conc</span><span class="params">(_, L2, L)</span></span>,
-    <span class="function"><span class="title">conc</span><span class="params">(S, _, L2)</span></span>.
+<pre><code>sublist(S, L) :-
+    conc(_, L2, L),
+    conc(S, _, L2).
 </code></pre><p> 使用：</p>
-<pre><code>?- <span class="atom">sublist</span>(<span class="name">S</span>, [<span class="atom">a</span>,<span class="atom">b</span>,<span class="atom">c</span>]).
-<span class="name">S</span> = [] ;
-<span class="name">S</span> = [<span class="atom">a</span>] ;
-<span class="name">S</span> = [<span class="atom">a</span>, <span class="atom">b</span>] ;
-<span class="name">S</span> = [<span class="atom">a</span>, <span class="atom">b</span>, <span class="atom">c</span>] ;
-<span class="name">S</span> = [] ;
-<span class="name">S</span> = [<span class="atom">b</span>] ;
-<span class="name">S</span> = [<span class="atom">b</span>, <span class="atom">c</span>] ;
-<span class="name">S</span> = [] ;
-<span class="name">S</span> = [<span class="atom">c</span>] ;
-<span class="name">S</span> = [] ;
-<span class="atom">false</span>.
+<pre><code>?- sublist(S, [a,b,c]).
+S = [] ;
+S = [a] ;
+S = [a, b] ;
+S = [a, b, c] ;
+S = [] ;
+S = [b] ;
+S = [b, c] ;
+S = [] ;
+S = [c] ;
+S = [] ;
+false.
 </code></pre><p> 这个使用conc比较好理解，你将会得到输入表的所有子表（注意左边的是子表，用反就没完没了了）。</p>
 </li>
 <li><p>插入<br> 实现：</p>
-<pre><code><span class="operator"><span class="keyword">insert</span>(X, <span class="keyword">L</span>, <span class="keyword">D</span>) :-
-    <span class="keyword">delete</span>(X, <span class="keyword">D</span>, <span class="keyword">L</span>).</span>
+<pre><code>insert(X, L, D) :-
+    delete(X, D, L).
 </code></pre></li>
 <li><p>计数<br> 实现：</p>
-<pre><code><span class="function"><span class="title">len</span><span class="params">([], <span class="number">0</span>)</span></span>.
-<span class="function"><span class="title">len</span><span class="params">([_|L], N)</span></span> :-
-    <span class="function"><span class="title">len</span><span class="params">(L, N_)</span></span>,
-    N is N_ + <span class="number">1</span>.
+<pre><code>len([], 0).
+len([_|L], N) :-
+    len(L, N_),
+    N is N_ + 1.
 </code></pre></li>
 <li><p>prolog里自带的list操作</p>
 <p> 上面的的操作其实很多prolog已经写好了，直接调来用就可以了，这里给出我用的swi-prolog里的原生操作：</p>
 <p> <img src="http://7xkwu7.com1.z0.glb.clouddn.com/prologlist.png" alt=""><br> 有点多，请读者自行在prolog下用help(谓词名)来获取实用信息。</p>
 </li>
 </ol>
-<h5 id="list应用——全排列">list应用——全排列</h5><ul>
+<h5 id="list应用——全排列"><a href="#list应用——全排列" class="headerlink" title="list应用——全排列"></a>list应用——全排列</h5><ul>
 <li><p>方法一</p>
-<pre><code><span class="function"><span class="title">permutation</span><span class="params">([], [])</span></span>.
-<span class="function"><span class="title">permutation</span><span class="params">([X|L], P)</span></span> :-
-    <span class="function"><span class="title">permutation</span><span class="params">(L, L1)</span></span>,
-    <span class="function"><span class="title">insert</span><span class="params">(X, L1, P)</span></span>.
+<pre><code>permutation([], []).
+permutation([X|L], P) :-
+    permutation(L, L1),
+    insert(X, L1, P).
 </code></pre></li>
 <li><p>方法二</p>
-<pre><code><span class="function"><span class="title">permutation</span><span class="params">([], [])</span></span>.
-<span class="function"><span class="title">permutation_</span><span class="params">(L, [X|P])</span></span> :-
-    <span class="function"><span class="title">delete</span><span class="params">(X, L, L1)</span></span>,
-    <span class="function"><span class="title">permutation</span><span class="params">(L1,P)</span></span>
+<pre><code>permutation([], []).
+permutation_(L, [X|P]) :-
+    delete(X, L, L1),
+    permutation(L1,P)
 </code></pre></li>
 </ul>
 <p><em>Reference:</em></p>
@@ -571,31 +584,35 @@ L = [<span class="literal">a</span>, b, e] <span class="comment">;</span>
 <li><em>Prolog Programming for Artificial Intelligence 4th edition - chapter 2/3</em> </li>
 </ol>
 ]]></content>
+    
     <summary type="html">
-    <![CDATA[<p>本周的重点是AND/OR树、结构体和表。<br>通过AND/OR树，我们可以很好地理解Prolog的证明策略；<br>结构体是（一）里没有介绍过的类型，要注意与<strong>事实(facts)</strong>的区别；<br>List的构造与使用让我们真正感受到了在prolog里递归的力量，你会感叹设计递归的精妙与艰辛:p</p>]]>
+    
+      &lt;p&gt;本周的重点是AND/OR树、结构体和表。&lt;br&gt;通过AND/OR树，我们可以很好地理解Prolog的证明策略；&lt;br&gt;结构体是（一）里没有介绍过的类型，要注意与&lt;strong&gt;事实(facts)&lt;/strong&gt;的区别；&lt;br&gt;List的构造与使用让我们真正感受到了在prolog里递归的力量，你会感叹设计递归的精妙与艰辛:p&lt;/p&gt;
     
     </summary>
     
-      <category term="AI" scheme="http://xmhtech.me/tags/AI/"/>
+      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
+    
     
       <category term="Prolog" scheme="http://xmhtech.me/tags/Prolog/"/>
     
-      <category term="language" scheme="http://xmhtech.me/tags/language/"/>
+      <category term="AI" scheme="http://xmhtech.me/tags/AI/"/>
     
-      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
+      <category term="language" scheme="http://xmhtech.me/tags/language/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[Prolog学习笔记（二）]]></title>
+    <title>Prolog学习笔记（二）</title>
     <link href="http://xmhtech.me/2015/09/27/Prolog%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>http://xmhtech.me/2015/09/27/Prolog学习笔记（二）/</id>
     <published>2015-09-27T09:29:00.000Z</published>
     <updated>2015-09-27T09:45:08.000Z</updated>
+    
     <content type="html"><![CDATA[<p>第三周：这周的主要内容是算数操作符，合一的概念还有跟踪和调试的方法。</p>
 <p>这是第一个版本，时间仓促，没有怎么看书就发了出来，如有出错还请见谅，之后会对错误和遗漏进行修改。</p>
 <a id="more"></a>
-<h3 id="算数操作符(Arithmetic_Operators)">算数操作符(Arithmetic Operators)</h3><ol>
+<h3 id="算数操作符-Arithmetic-Operators"><a href="#算数操作符-Arithmetic-Operators" class="headerlink" title="算数操作符(Arithmetic Operators)"></a>算数操作符(Arithmetic Operators)</h3><ol>
 <li>操作符种类：<ul>
 <li>运算操作符：+, -, *, /,^,mod（还可以使用div代表/，但是有所不同，/是实数除法，div是整数除法）</li>
 <li>比较操作符：&lt;, &gt;, =&lt;, &gt;=, =:= (equals), =\= (not equals)</li>
@@ -605,34 +622,34 @@ L = [<span class="literal">a</span>, b, e] <span class="comment">;</span>
 <li>前缀(prefix)：像用谓词一样使用即可；+(2,3)表达的就是2+3，还可以嵌套，这可以直观的用操作符树来表示；</li>
 <li>中缀(infix)：和普通的计算公式相同相同；</li>
 <li>后缀(postfix)：用的比较少；</li>
-<li>自定义：可以通过自定义谓词来进行一些不同的计算过程，这周比较忙，这里就不再展开，先挖个坑<pre><code><span class="tag">&lt;我是坑&gt;</span>
+<li>自定义：可以通过自定义谓词来进行一些不同的计算过程，这周比较忙，这里就不再展开，先挖个坑<pre><code>&lt;我是坑&gt;
 </code></pre></li>
 </ul>
 </li>
 <li>操作符优先级：^before mod before /, *, before +,-(和平时使用相同，括号的优先级最高)</li>
-<li>计算结果：使用is才能够得到计算结果，不然只是一个表达式。<br> 对比：<pre><code>?- X = <span class="number">2</span> + <span class="number">3.</span>
-X = <span class="number">2</span>+<span class="number">3.</span>
-?- X is <span class="number">2</span> + <span class="number">3.</span>
-X = <span class="number">5.</span>
+<li>计算结果：使用is才能够得到计算结果，不然只是一个表达式。<br> 对比：<pre><code>?- X = 2 + 3.
+X = 2+3.
+?- X is 2 + 3.
+X = 5.
 </code></pre></li>
 </ol>
-<h3 id="合一(Unification)">合一(Unification)</h3><p>同一(Unify)概念是在 Prolog 背后的主要想法，它是逻辑学当中的一个的重要概念。《Prolog Programming for Artificial Intelligence》一书强调了出于效能的原因，在Prolog里用unification是不准确的，应该使用匹配(matching)，<br>    比如我们问Prolog：</p>
-<pre><code> ?- X = f<span class="params">(X)</span>.
- 这句匹配请求应该是成功还是失败？在逻辑中的合一<span class="params">(Unification)</span>，它应该是失败的，然而在prolog里就能实现。大家可以通过下面的跟踪感受一下：
- [trace]  ?- X = f<span class="params">(X)</span>, Y = X.
-   Call: <span class="params">(<span class="number">8</span>)</span> _G951=f<span class="params">(_G951)</span> ? creep
-   Exit: <span class="params">(<span class="number">8</span>)</span> f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(...)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>=f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(...)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span> ? creep
-   Call: <span class="params">(<span class="number">8</span>)</span> _G956=f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(...)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span> ? creep
-   Exit: <span class="params">(<span class="number">8</span>)</span> f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(...)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>=f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(...)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span> ? creep
-X = Y, Y = f<span class="params">(Y)</span>.
+<h3 id="合一-Unification"><a href="#合一-Unification" class="headerlink" title="合一(Unification)"></a>合一(Unification)</h3><p>同一(Unify)概念是在 Prolog 背后的主要想法，它是逻辑学当中的一个的重要概念。《Prolog Programming for Artificial Intelligence》一书强调了出于效能的原因，在Prolog里用unification是不准确的，应该使用匹配(matching)，<br>    比如我们问Prolog：</p>
+<pre><code> ?- X = f(X).
+ 这句匹配请求应该是成功还是失败？在逻辑中的合一(Unification)，它应该是失败的，然而在prolog里就能实现。大家可以通过下面的跟踪感受一下：
+ [trace]  ?- X = f(X), Y = X.
+   Call: (8) _G951=f(_G951) ? creep
+   Exit: (8) f(f(f(f(f(f(f(f(f(...)))))))))=f(f(f(f(f(f(f(f(f(...))))))))) ? creep
+   Call: (8) _G956=f(f(f(f(f(f(f(f(f(...))))))))) ? creep
+   Exit: (8) f(f(f(f(f(f(f(f(f(...)))))))))=f(f(f(f(f(f(f(f(f(...))))))))) ? creep
+X = Y, Y = f(Y).
 
-[trace]  ?- X = f<span class="params">(X)</span>, Y =f<span class="params">(X)</span>.
-   Call: <span class="params">(<span class="number">8</span>)</span> _G951=f<span class="params">(_G951)</span> ? creep
-   Exit: <span class="params">(<span class="number">8</span>)</span> f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(...)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>=f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(...)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span> ? creep
-   Call: <span class="params">(<span class="number">8</span>)</span> _G958=f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(...)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span> ? creep
-   Exit: <span class="params">(<span class="number">8</span>)</span> f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(...)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>=f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(f<span class="params">(...)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span>)</span> ? creep
-X = Y, Y = f<span class="params">(_S1)</span>, <span class="built_in">%</span> where
-_S1 = f<span class="params">(_S1)</span>.
+[trace]  ?- X = f(X), Y =f(X).
+   Call: (8) _G951=f(_G951) ? creep
+   Exit: (8) f(f(f(f(f(f(f(f(f(...)))))))))=f(f(f(f(f(f(f(f(f(...))))))))) ? creep
+   Call: (8) _G958=f(f(f(f(f(f(f(f(f(...))))))))) ? creep
+   Exit: (8) f(f(f(f(f(f(f(f(f(...)))))))))=f(f(f(f(f(f(f(f(f(...))))))))) ? creep
+X = Y, Y = f(_S1), % where
+_S1 = f(_S1).
 </code></pre><p>总而言之，它表示绑定变量的内容的机制并可以看作为一种只一次的(one-time)赋值。在 Prolog 中，这种操作用符号 “=” 来指示。</p>
 <ol>
 <li>在传统 Prolog 中，未实例化的变量 X —— 就是说在它上面以前没有进行合一，可以合一于一个原子、一个项、或另一个未实例化的变量，因此在效果上变成了它的别名。在很多现代 Prolog 方言和一阶逻辑演算中，变量<em>不能合一于包含它的项</em>；这叫做出现检查。</li>
@@ -640,27 +657,27 @@ _S1 = f<span class="params">(_S1)</span>.
 <li>类似的，项只能合一于另一个项，如果顶部函数符号和项的元数(arity)和这个项是一样的，并且参数可以同时合一。注意这是递归行为。<br>由于它的声明本性，一序列合一的次序(通常)是不重要的。</li>
 </ol>
 <p>注意： 在一阶逻辑的术语中，原子是基本命题而且其合一同 Prolog 项一样。<br>example:</p>
-<pre><code><span class="number">1</span>. 这些是合一的：
+<pre><code>1. 这些是合一的：
      red = fred.         true
      ‘Hey you’ = ‘Hey you’.    true
      fred=X.            X=fred.
      X=Y.            Y=X. 
-     <span class="function"><span class="title">foo</span><span class="params">(X)</span></span> = <span class="function"><span class="title">foo</span><span class="params">(bar)</span></span>.        X=bar.
-     <span class="function"><span class="title">foo</span><span class="params">(N,N)</span></span> = <span class="function"><span class="title">foo</span><span class="params">(bar, X)</span></span>.        N=X, X=bar.
-     <span class="function"><span class="title">foo</span><span class="params">(foo(bar)</span></span>) = <span class="function"><span class="title">foo</span><span class="params">(X)</span></span>        X=<span class="function"><span class="title">foo</span><span class="params">(bar)</span></span>
-<span class="number">2</span>. 这些不是合一的：
-     <span class="number">1</span> = <span class="function"><span class="title">sin</span><span class="params">(pi/<span class="number">2</span>)</span></span>.     <span class="comment">//1 is sin(pi/2).也是false，然而1 =:= sin(pi/2)是true</span>
+     foo(X) = foo(bar).        X=bar.
+     foo(N,N) = foo(bar, X).        N=X, X=bar.
+     foo(foo(bar)) = foo(X)        X=foo(bar)
+2. 这些不是合一的：
+     1 = sin(pi/2).     //1 is sin(pi/2).也是false，然而1 =:= sin(pi/2)是true
      fred = jim.
      ‘Hey you’ = ‘Hey me’.
-     <span class="function"><span class="title">frou</span><span class="params">(frou)</span></span> = <span class="function"><span class="title">f</span><span class="params">(frou)</span></span>.
-     <span class="function"><span class="title">foo</span><span class="params">(bar)</span></span> = <span class="function"><span class="title">foo</span><span class="params">(bar,bar)</span></span>.
-     <span class="function"><span class="title">foo</span><span class="params">(N,N)</span></span> = <span class="function"><span class="title">foo</span><span class="params">(bar,rab)</span></span>.
-</code></pre><h3 id="其他命令：">其他命令：</h3><ul>
-<li>跟踪(Trace)：<pre><code>?- <span class="keyword">trace</span>.<span class="comment">//开始</span>
-[<span class="keyword">trace</span>] ?- notrace.<span class="comment">//结束</span>
+     frou(frou) = f(frou).
+     foo(bar) = foo(bar,bar).
+     foo(N,N) = foo(bar,rab).
+</code></pre><h3 id="其他命令："><a href="#其他命令：" class="headerlink" title="其他命令："></a>其他命令：</h3><ul>
+<li>跟踪(Trace)：<pre><code>?- trace.//开始
+[trace] ?- notrace.//结束
 </code></pre></li>
-<li>调试(Debug)：<pre><code><span class="attr_selector">[trace]</span> ?<span class="tag">-</span> <span class="tag">notrace</span>.<span class="comment">//从跟踪结束</span>
-<span class="attr_selector">[debug]</span> ?<span class="tag">-</span> <span class="tag">nodebug</span>.<span class="comment">//结束调试</span>
+<li>调试(Debug)：<pre><code>[trace] ?- notrace.//从跟踪结束
+[debug] ?- nodebug.//结束调试
 </code></pre></li>
 </ul>
 <p><em>Reference:</em></p>
@@ -670,32 +687,36 @@ _S1 = f<span class="params">(_S1)</span>.
 <li><em>Prolog Programming for Artificial Intelligence 4th edition - chapter 2、3</em></li>
 </ol>
 ]]></content>
+    
     <summary type="html">
-    <![CDATA[<p>第三周：这周的主要内容是算数操作符，合一的概念还有跟踪和调试的方法。</p>
-<p>这是第一个版本，时间仓促，没有怎么看书就发了出来，如有出错还请见谅，之后会对错误和遗漏进行修改。</p>]]>
+    
+      &lt;p&gt;第三周：这周的主要内容是算数操作符，合一的概念还有跟踪和调试的方法。&lt;/p&gt;
+&lt;p&gt;这是第一个版本，时间仓促，没有怎么看书就发了出来，如有出错还请见谅，之后会对错误和遗漏进行修改。&lt;/p&gt;
     
     </summary>
     
-      <category term="AI" scheme="http://xmhtech.me/tags/AI/"/>
+      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
+    
     
       <category term="Prolog" scheme="http://xmhtech.me/tags/Prolog/"/>
     
-      <category term="language" scheme="http://xmhtech.me/tags/language/"/>
+      <category term="AI" scheme="http://xmhtech.me/tags/AI/"/>
     
-      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
+      <category term="language" scheme="http://xmhtech.me/tags/language/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[Homebrew安装使用总结]]></title>
+    <title>Homebrew安装使用总结</title>
     <link href="http://xmhtech.me/2015/09/19/Homebrew%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/"/>
     <id>http://xmhtech.me/2015/09/19/Homebrew安装使用总结/</id>
     <published>2015-09-19T14:29:16.000Z</published>
     <updated>2015-09-19T14:33:36.000Z</updated>
+    
     <content type="html"><![CDATA[<p>homebrew是一个小型的，非商业性质的套件管理器。<br>它能够自动化安装库或者软件，并且自动安装其所需要的依赖（不同于MacPorts，尽量使用系统自带的库），定制简单，上手容易，更新及时，而且是直接装在 /usr/local 下，减少很多各种 PATH 环境变量的定义（简直是开发必备啊）。</p>
 <a id="more"></a>
-<h3 id="安装">安装</h3><p>终端输入</p>
-<pre><code>ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/<span class="operator"><span class="keyword">install</span>/<span class="keyword">master</span>/<span class="keyword">install</span>)”//请去<span class="keyword">reference</span>中的官网去更新最新脚本</span>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>终端输入</p>
+<pre><code>ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)”//请去reference中的官网去更新最新脚本
 </code></pre><p>若安装失败，请检查安装条件：</p>
 <ol>
 <li>Intel的芯片</li>
@@ -703,45 +724,45 @@ _S1 = f<span class="params">(_S1)</span>.
 <li>Xcode开发工具（xcode-select –install）</li>
 <li>已安装Bourne shell</li>
 </ol>
-<h3 id="卸载">卸载</h3><p>终端输入</p>
-<pre><code>ruby <span class="operator">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)</span>"</span>
-</code></pre><h3 id="常用命令">常用命令</h3><pre><code>brew <span class="keyword">help</span><span class="comment">//查看帮助信息</span>
-brew <span class="keyword">search</span><span class="comment">//加要寻找的关键字</span>
-brew install<span class="comment">//加要安装的包名称,安装最新的包及其依赖</span>
-brew uninstall<span class="comment">//加要卸载的包名称，卸载它</span>
-brew <span class="keyword">update</span><span class="comment">//升级自身</span>
-brew <span class="keyword">list</span><span class="comment">//列出所有已安装的包名称</span>
-brew outdated<span class="comment">//列出所有过时的包名称</span>
-brew upgrade<span class="comment">//升级所有，加包名升级对应包（注意旧版本会保留）</span>
-brew cleanup<span class="comment">//清除所有旧版本，-n用以查看信息，加包名清除对应包旧版本</span>
-brew doctor<span class="comment">//诊断Homebrew存在的问题并给出建议</span>
-brew info<span class="comment">//加包名查询对应信息，不加查询已安装的包的存储信息</span>
-brew deps<span class="comment">//加包名查询对应依赖</span>
-brew pin<span class="comment">//固定某一包的版本</span>
-brew upin<span class="comment">//解除固定</span>
-</code></pre><h3 id="二阶命令——brew_cask使用">二阶命令——brew cask使用</h3><p>安装cask</p>
-<pre><code><span class="keyword">brew </span>install cask
+<h3 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h3><p>终端输入</p>
+<pre><code>ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)&quot;
+</code></pre><h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><pre><code>brew help//查看帮助信息
+brew search//加要寻找的关键字
+brew install//加要安装的包名称,安装最新的包及其依赖
+brew uninstall//加要卸载的包名称，卸载它
+brew update//升级自身
+brew list//列出所有已安装的包名称
+brew outdated//列出所有过时的包名称
+brew upgrade//升级所有，加包名升级对应包（注意旧版本会保留）
+brew cleanup//清除所有旧版本，-n用以查看信息，加包名清除对应包旧版本
+brew doctor//诊断Homebrew存在的问题并给出建议
+brew info//加包名查询对应信息，不加查询已安装的包的存储信息
+brew deps//加包名查询对应依赖
+brew pin//固定某一包的版本
+brew upin//解除固定
+</code></pre><h3 id="二阶命令——brew-cask使用"><a href="#二阶命令——brew-cask使用" class="headerlink" title="二阶命令——brew cask使用"></a>二阶命令——brew cask使用</h3><p>安装cask</p>
+<pre><code>brew install cask
 </code></pre><p>之后就可以用brew cask 尽情地享受了~</p>
-<pre><code>brew cask <span class="keyword">help</span><span class="comment">//查看帮助信息</span>
+<pre><code>brew cask help//查看帮助信息
 </code></pre><p>懒得一个个写了，这里粘贴出来，很多都和brew命令相同，不同的是用cask是用来安装.app的</p>
-<pre><code>alfred     displays note about <span class="built_in">new</span> built-<span class="operator">in</span> alfred support
-audit      verifies installability <span class="operator">of</span> Casks
-cat        dump raw source <span class="operator">of</span> <span class="operator">the</span> given Cask <span class="built_in">to</span> <span class="operator">the</span> standard output
-cleanup    cleans up cached downloads <span class="operator">and</span> tracker symlinks
-<span class="built_in">create</span>     creates <span class="operator">the</span> given Cask <span class="operator">and</span> opens <span class="keyword">it</span> <span class="operator">in</span> <span class="operator">an</span> editor
-doctor     checks <span class="keyword">for</span> configuration issues
-edit       edits <span class="operator">the</span> given Cask
-fetch      downloads Cask resources <span class="built_in">to</span> <span class="built_in">local</span> cache
-home       opens <span class="operator">the</span> homepage <span class="operator">of</span> <span class="operator">the</span> given Cask
-info       displays information about <span class="operator">the</span> given Cask
-install    installs <span class="operator">the</span> given Cask
-list       <span class="operator">with</span> no args, lists installed Casks; given installed Casks, lists staged <span class="built_in">files</span>
+<pre><code>alfred     displays note about new built-in alfred support
+audit      verifies installability of Casks
+cat        dump raw source of the given Cask to the standard output
+cleanup    cleans up cached downloads and tracker symlinks
+create     creates the given Cask and opens it in an editor
+doctor     checks for configuration issues
+edit       edits the given Cask
+fetch      downloads Cask resources to local cache
+home       opens the homepage of the given Cask
+info       displays information about the given Cask
+install    installs the given Cask
+list       with no args, lists installed Casks; given installed Casks, lists staged files
 search     searches all known Casks
-uninstall  uninstalls <span class="operator">the</span> given Cask
-update     <span class="operator">a</span> synonym <span class="keyword">for</span> <span class="string">'brew update'</span>
-zap        zaps all <span class="built_in">files</span> associated <span class="operator">with</span> <span class="operator">the</span> given Cask
-</code></pre><h3 id="高阶用法">高阶用法</h3><pre><code>brew create//创建自己的Homebrew程式
-brew edit//使用 <span class="variable">$EDITOR</span> 编辑!
+uninstall  uninstalls the given Cask
+update     a synonym for &apos;brew update&apos;
+zap        zaps all files associated with the given Cask
+</code></pre><h3 id="高阶用法"><a href="#高阶用法" class="headerlink" title="高阶用法"></a>高阶用法</h3><pre><code>brew create//创建自己的Homebrew程式
+brew edit//使用 $EDITOR 编辑!
 </code></pre><p>详细用法可以参考：<a href="http://linfan.info/blog/2012/02/25/homebrew-installation-and-usage/" target="_blank" rel="external">http://linfan.info/blog/2012/02/25/homebrew-installation-and-usage/</a></p>
 <p><em>Reference:</em></p>
 <ol>
@@ -750,29 +771,33 @@ brew edit//使用 <span class="variable">$EDITOR</span> 编辑!
 <li>官方文档： <a href="https://github.com/Homebrew/homebrew/tree/master/share/doc" target="_blank" rel="external">https://github.com/Homebrew/homebrew/tree/master/share/doc</a></li>
 </ol>
 ]]></content>
+    
     <summary type="html">
-    <![CDATA[<p>homebrew是一个小型的，非商业性质的套件管理器。<br>它能够自动化安装库或者软件，并且自动安装其所需要的依赖（不同于MacPorts，尽量使用系统自带的库），定制简单，上手容易，更新及时，而且是直接装在 /usr/local 下，减少很多各种 PATH 环境变量的定义（简直是开发必备啊）。</p>]]>
+    
+      &lt;p&gt;homebrew是一个小型的，非商业性质的套件管理器。&lt;br&gt;它能够自动化安装库或者软件，并且自动安装其所需要的依赖（不同于MacPorts，尽量使用系统自带的库），定制简单，上手容易，更新及时，而且是直接装在 /usr/local 下，减少很多各种 PATH 环境变量的定义（简直是开发必备啊）。&lt;/p&gt;
     
     </summary>
     
-      <category term="develop" scheme="http://xmhtech.me/tags/develop/"/>
+      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
     
-      <category term="mac" scheme="http://xmhtech.me/tags/mac/"/>
     
       <category term="tool" scheme="http://xmhtech.me/tags/tool/"/>
     
-      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
+      <category term="mac" scheme="http://xmhtech.me/tags/mac/"/>
+    
+      <category term="develop" scheme="http://xmhtech.me/tags/develop/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[Prolog学习笔记（一）]]></title>
+    <title>Prolog学习笔记（一）</title>
     <link href="http://xmhtech.me/2015/09/18/Prolog%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>http://xmhtech.me/2015/09/18/Prolog学习笔记（一）/</id>
     <published>2015-09-18T13:18:00.000Z</published>
     <updated>2015-10-06T08:58:44.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="前言：">前言：</h3><p>选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。</p>
-<h3 id="Prolog简介：">Prolog简介：</h3><p>有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。</p>
+    
+    <content type="html"><![CDATA[<h3 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h3><p>选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。</p>
+<h3 id="Prolog简介："><a href="#Prolog简介：" class="headerlink" title="Prolog简介："></a>Prolog简介：</h3><p>有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。</p>
 <a id="more"></a>
 <p>配置环境（macbook air）：</p>
 <ol>
@@ -783,10 +808,10 @@ brew edit//使用 <span class="variable">$EDITOR</span> 编辑!
 <p> brew install homebrew/x11/swi-prolog</p>
 </li>
 <li><p>常用命令</p>
-<pre><code>swipl <span class="comment">//调出主界面</span>
-halt. <span class="comment">//退出，Control+D</span>
-consult<span class="params">('’)</span>. <span class="comment">//</span>
-reconsult<span class="params">()</span>.<span class="comment">//</span>
+<pre><code>swipl //调出主界面
+halt. //退出，Control+D
+consult(&apos;’). //
+reconsult().//
 </code></pre></li>
 </ol>
 <p>基本语法</p>
@@ -826,7 +851,7 @@ reconsult<span class="params">()</span>.<span class="comment">//</span>
 </li>
 </ol>
 <p>其他：</p>
-<pre><code><span class="number">1.</span> 询问时，分号的作用：使当前子句无效，继续搜索答案。
+<pre><code>1. 询问时，分号的作用：使当前子句无效，继续搜索答案。
 </code></pre><p><strong>Prolog是如何回答问题的?</strong></p>
 <p>Prolog寻找证据的顺序正好与我们的推理相反，即执果索因，使用目标、规则、代换和当前目标来推导出新的目标，直到新目标恰好是简单事实时，给出答案。</p>
 <p><em>Reference:</em></p>
@@ -834,32 +859,36 @@ reconsult<span class="params">()</span>.<span class="comment">//</span>
 <li><em>Prolog Programming for Artificial Intelligence 4th edition - chapter 1</em></li>
 </ol>
 ]]></content>
+    
     <summary type="html">
-    <![CDATA[<h3 id="前言：">前言：</h3><p>选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。</p>
-<h3 id="Prolog简介：">Prolog简介：</h3><p>有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。</p>]]>
+    
+      &lt;h3 id=&quot;前言：&quot;&gt;&lt;a href=&quot;#前言：&quot; class=&quot;headerlink&quot; title=&quot;前言：&quot;&gt;&lt;/a&gt;前言：&lt;/h3&gt;&lt;p&gt;选修了人工智能导论，要求的语言就是prolog，上了两节觉得这个语言还是挺有趣的，和以前的完全不是一个风格，这里整理一下自己初步的学习。&lt;/p&gt;
+&lt;h3 id=&quot;Prolog简介：&quot;&gt;&lt;a href=&quot;#Prolog简介：&quot; class=&quot;headerlink&quot; title=&quot;Prolog简介：&quot;&gt;&lt;/a&gt;Prolog简介：&lt;/h3&gt;&lt;p&gt;有别于一般的函数式语言，prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。&lt;/p&gt;
     
     </summary>
     
-      <category term="AI" scheme="http://xmhtech.me/tags/AI/"/>
+      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
+    
     
       <category term="Prolog" scheme="http://xmhtech.me/tags/Prolog/"/>
     
-      <category term="language" scheme="http://xmhtech.me/tags/language/"/>
+      <category term="AI" scheme="http://xmhtech.me/tags/AI/"/>
     
-      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
+      <category term="language" scheme="http://xmhtech.me/tags/language/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[TL-WR703N v1.7 刷OpenWrt（译）]]></title>
+    <title>TL-WR703N v1.7 刷OpenWrt（译）</title>
     <link href="http://xmhtech.me/2015/09/06/TL-WR703N%20v1.7%20%E5%88%B7OpenWrt%EF%BC%88%E8%AF%91%EF%BC%89/"/>
     <id>http://xmhtech.me/2015/09/06/TL-WR703N v1.7 刷OpenWrt（译）/</id>
     <published>2015-09-06T03:00:54.000Z</published>
     <updated>2015-09-06T03:04:03.000Z</updated>
+    
     <content type="html"><![CDATA[<p>买了一台TP-Link wr703n准备刷OpenWrt用作开发，怎料官方挖了个大坑等我去跳——最新的官方固件封死网页刷机的渠道（据说是加了签名），又不会焊TTL的。。。幸好国外的大神已经给出了解决方案，亲测可行，替大家把原文翻译一下（有改动）。</p>
 <a id="more"></a>
 <p>原文出处：<a href="http://www.shadowandy.net/2015/03/flashing-tp-link-tl-wr703n-v1-7-to-openwrt.htm" target="_blank" rel="external">http://www.shadowandy.net/2015/03/flashing-tp-link-tl-wr703n-v1-7-to-openwrt.htm</a></p>
-<h2 id="翻译水平有限大家将就看看哈，刷坏概不负责。">翻译水平有限大家将就看看哈，刷坏概不负责。</h2><h3 id="获得必要的材料">获得必要的材料</h3><p>将v1.7的TL-WR703N刷到OpenWrt，你需要：</p>
+<h2 id="翻译水平有限大家将就看看哈，刷坏概不负责。"><a href="#翻译水平有限大家将就看看哈，刷坏概不负责。" class="headerlink" title="翻译水平有限大家将就看看哈，刷坏概不负责。"></a>翻译水平有限大家将就看看哈，刷坏概不负责。</h2><h3 id="获得必要的材料"><a href="#获得必要的材料" class="headerlink" title="获得必要的材料"></a>获得必要的材料</h3><p>将v1.7的TL-WR703N刷到OpenWrt，你需要：</p>
 <ol>
 <li>固件版本为3.17.1 Build 140120 Rel.56593n的TL-WR703N v1.7 </li>
 <li>OpenWrt为TL-WR703N定制的固件 <a href="http://downloads.openwrt.org/barrier_breaker/14.07/ar71xx/generic/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin" target="_blank" rel="external">Download</a></li>
@@ -869,16 +898,16 @@ reconsult<span class="params">()</span>.<span class="comment">//</span>
 <li>一个命令行脚本来指导路由器执行刷机.你需要一个编辑器 (e.g. Notepad++) 来创建一个Unix风格的脚本</li>
 <li>busybox 1.16.1 for mips <a href="http://www.busybox.net/downloads/binaries/1.16.1/" target="_blank" rel="external">Download</a></li>
 </ol>
-<h3 id="准备开发wr703n的材料">准备开发wr703n的材料</h3><ol>
+<h3 id="准备开发wr703n的材料"><a href="#准备开发wr703n的材料" class="headerlink" title="准备开发wr703n的材料"></a>准备开发wr703n的材料</h3><ol>
 <li><p>拆分 OpenWrt 为 kernel 和 rootfs 镜像</p>
-<pre><code><span class="tag">dd</span> <span class="keyword">if</span>=openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory<span class="class">.bin</span> of=i1 bs=<span class="number">1</span> count=<span class="number">1048576</span>
-<span class="tag">dd</span> <span class="keyword">if</span>=openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory<span class="class">.bin</span> of=i2 bs=<span class="number">1</span> skip=<span class="number">1048576</span>
+<pre><code>dd if=openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin of=i1 bs=1 count=1048576
+dd if=openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin of=i2 bs=1 skip=1048576
 </code></pre></li>
 <li><p>在你的电脑上设置局域网接口</p>
 </li>
 </ol>
 <p>命令行脚本(aa)是在和IP地址192.168.1.9沟通。你可以修改电脑的静态IP也可以修改命令行脚本里的地址，这取决于你！</p>
-<h3 id="开始刷机">开始刷机</h3><ol>
+<h3 id="开始刷机"><a href="#开始刷机" class="headerlink" title="开始刷机"></a>开始刷机</h3><ol>
 <li><p>用必要的文件设置TFTP<br>现在你有以下四个文件：</p>
 <ul>
 <li>aa</li>
@@ -893,9 +922,9 @@ reconsult<span class="params">()</span>.<span class="comment">//</span>
 <ol>
 <li>将你的在命令行下的操作目录指向含有cURL的地方</li>
 <li><p>依次执行以下三条命令</p>
-<pre><code>curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization=Basic<span class="variable">%20YWRtaW46YWRtaW40Mg</span><span class="variable">%3D</span><span class="variable">%3D</span>; ChgPwdSubTag=true"</span> <span class="string">"http://192.168.1.1/"</span>
-curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization=Basic<span class="variable">%20YWRtaW46YWRtaW40Mg</span><span class="variable">%3D</span><span class="variable">%3D</span>; ChgPwdSubTag="</span> --referer <span class="string">"http://192.168.1.1/userRpm/ParentCtrlRpm.htm"</span> <span class="string">"http://192.168.1.1/userRpm/ParentCtrlRpm.htm?ctrl_enable=1&amp;parent_mac_addr=00-00-00-00-00-02&amp;Page=1"</span>
-curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization=Basic<span class="variable">%20YWRtaW46YWRtaW40Mg</span><span class="variable">%3D</span><span class="variable">%3D</span>; ChgPwdSubTag="</span> --referer <span class="string">"http://192.168.1.1/userRpm/ParentCtrlRpm.htm?Modify=0&amp;Page=1"</span> <span class="string">"http://192.168.1.1/userRpm/ParentCtrlRpm.htm?child_mac=00-00-00-00-00-01&amp;lan_lists=888&amp;url_comment=test&amp;url_0=;cd<span class="variable">%20</span>/tmp;&amp;url_1=;tftp<span class="variable">%20</span>-gl<span class="variable">%20aa</span><span class="variable">%20192</span>.168.1.9;&amp;url_2=;sh<span class="variable">%20aa</span>;&amp;url_3=&amp;url_4=&amp;url_5=&amp;url_6=&amp;url_7=&amp;scheds_lists=255&amp;enable=1&amp;Changed=1&amp;SelIndex=0&amp;Page=1&amp;rule_mode=0&amp;Save=<span class="variable">%B1</span><span class="variable">%A3</span>+<span class="variable">%B4</span><span class="variable">%E6</span>"</span>
+<pre><code>curl -o - -b &quot;tLargeScreenP=1; subType=pcSub; Authorization=Basic%20YWRtaW46YWRtaW40Mg%3D%3D; ChgPwdSubTag=true&quot; &quot;http://192.168.1.1/&quot;
+curl -o - -b &quot;tLargeScreenP=1; subType=pcSub; Authorization=Basic%20YWRtaW46YWRtaW40Mg%3D%3D; ChgPwdSubTag=&quot; --referer &quot;http://192.168.1.1/userRpm/ParentCtrlRpm.htm&quot; &quot;http://192.168.1.1/userRpm/ParentCtrlRpm.htm?ctrl_enable=1&amp;parent_mac_addr=00-00-00-00-00-02&amp;Page=1&quot;
+curl -o - -b &quot;tLargeScreenP=1; subType=pcSub; Authorization=Basic%20YWRtaW46YWRtaW40Mg%3D%3D; ChgPwdSubTag=&quot; --referer &quot;http://192.168.1.1/userRpm/ParentCtrlRpm.htm?Modify=0&amp;Page=1&quot; &quot;http://192.168.1.1/userRpm/ParentCtrlRpm.htm?child_mac=00-00-00-00-00-01&amp;lan_lists=888&amp;url_comment=test&amp;url_0=;cd%20/tmp;&amp;url_1=;tftp%20-gl%20aa%20192.168.1.9;&amp;url_2=;sh%20aa;&amp;url_3=&amp;url_4=&amp;url_5=&amp;url_6=&amp;url_7=&amp;scheds_lists=255&amp;enable=1&amp;Changed=1&amp;SelIndex=0&amp;Page=1&amp;rule_mode=0&amp;Save=%B1%A3+%B4%E6&quot;
 </code></pre><p>判断命令是否执行成功：</p>
 </li>
 </ol>
@@ -912,30 +941,34 @@ curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization
 </ol>
 <p>这里是我刷机用过的工具和做好的材料，解压后使用——<a href="http://pan.baidu.com/share/link?shareid=3048068689&amp;uk=3694274917" target="_blank" rel="external">度盘</a></p>
 ]]></content>
+    
     <summary type="html">
-    <![CDATA[<p>买了一台TP-Link wr703n准备刷OpenWrt用作开发，怎料官方挖了个大坑等我去跳——最新的官方固件封死网页刷机的渠道（据说是加了签名），又不会焊TTL的。。。幸好国外的大神已经给出了解决方案，亲测可行，替大家把原文翻译一下（有改动）。</p>]]>
+    
+      &lt;p&gt;买了一台TP-Link wr703n准备刷OpenWrt用作开发，怎料官方挖了个大坑等我去跳——最新的官方固件封死网页刷机的渠道（据说是加了签名），又不会焊TTL的。。。幸好国外的大神已经给出了解决方案，亲测可行，替大家把原文翻译一下（有改动）。&lt;/p&gt;
     
     </summary>
     
-      <category term="OpenWrt" scheme="http://xmhtech.me/tags/OpenWrt/"/>
+      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
     
-      <category term="Translation" scheme="http://xmhtech.me/tags/Translation/"/>
+    
+      <category term="OpenWrt" scheme="http://xmhtech.me/tags/OpenWrt/"/>
     
       <category term="router" scheme="http://xmhtech.me/tags/router/"/>
     
-      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
+      <category term="Translation" scheme="http://xmhtech.me/tags/Translation/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[初识SDN]]></title>
+    <title>初识SDN</title>
     <link href="http://xmhtech.me/2015/09/05/%E5%88%9D%E8%AF%86SDN/"/>
     <id>http://xmhtech.me/2015/09/05/初识SDN/</id>
     <published>2015-09-05T02:51:23.000Z</published>
     <updated>2015-10-06T04:23:10.000Z</updated>
+    
     <content type="html"><![CDATA[<p><strong>SDN</strong>是一种为了解决传统网络中各种问题，比如管理困难、维护困难、拓展性差、灵活性差等，而出现的<strong>新型</strong>的<em><strong>网络架构</strong></em>。它的核心特征是实现了控制平面和数据平面的分离、控制逻辑集中和网络可编程。它的意义在于淡化底层设备的作用，让网络硬件的设计更加简单通用，打破“<strong>厂商锁定</strong>”，并且在这之上建立一个开放的网络操作系统，让开发者进入网络服务开发的门槛更低，建立起一个大三层网络生态系统，激发网络<em><strong>创新</strong></em>，给用户带来更好的使用体验。</p>
 <a id="more"></a>
-<h3 id="架构">架构</h3><p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/sdnsdn-3layers-2.gif" alt=""><br><em>图片出自ONF</em></p>
+<h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/sdnsdn-3layers-2.gif" alt=""><br><em>图片出自ONF</em></p>
 <p><a href="https://www.opennetworking.org" target="_blank" rel="external">ONF</a>提出的典型架构分为三层（从上到下依次是）：</p>
 <ul>
 <li>应用层（应用平面）</li>
@@ -943,7 +976,7 @@ curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization
 <li>基础设施层（数据平面）</li>
 </ul>
 <p><em>备注：连接底下两层的被称为南向接口，连接顶上两层则被称为北向接口，控制层内部的连接被称为东西向接口。</em></p>
-<h3 id="核心特征">核心特征</h3><ul>
+<h3 id="核心特征"><a href="#核心特征" class="headerlink" title="核心特征"></a>核心特征</h3><ul>
 <li><p>控制逻辑集中：传统网络中分散的控制在SDN网络中被集中了起来，并且获得了空前的对全网的信息掌控，在此基础上很多复杂的操作都将被简化。</p>
 </li>
 <li><p>网络可编程 (programmability)：SDN网络中的北向接口，屏蔽了下层网络的细节，兼容多种高级语言，降低了开发者进入网络开发领域的门槛。</p>
@@ -951,14 +984,14 @@ curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization
 <li><p>数据控制分离：传统网络体系里数据平面和控制平面都是分布式的，相互之间通过协议协作，但是这种分布式的网络控制不可避免地将会带来管理和维护的麻烦，而且出现问题可能也是连动式地，对于故障的定位也是一个大问题。SDN网络在这种分布式网络中分离出了控制部分，让所有上层的控制决策都由一个远端的控制器或者控制集群来下发。</p>
 </li>
 </ul>
-<h3 id="各层简介">各层简介</h3><h4 id="（一）数据平面">（一）数据平面</h4><p>传统交换设备的功能架构包含了控制平面和数据平面，在物理上是紧耦合的，各种转发设备均与协议相关。SDN数据平面的交换设备专注于高速转发数据分组，转发决策由南向接口下发，实现了硬件设计的精简化，提升了效率。</p>
+<h3 id="各层简介"><a href="#各层简介" class="headerlink" title="各层简介"></a>各层简介</h3><h4 id="（一）数据平面"><a href="#（一）数据平面" class="headerlink" title="（一）数据平面"></a>（一）数据平面</h4><p>传统交换设备的功能架构包含了控制平面和数据平面，在物理上是紧耦合的，各种转发设备均与协议相关。SDN数据平面的交换设备专注于高速转发数据分组，转发决策由南向接口下发，实现了硬件设计的精简化，提升了效率。</p>
 <p>SDN交换机设计：</p>
 <ol>
 <li>转发决策(Forwarding Decision)<br>数据分组进入交换机后，先与流表进行匹配查找，匹配成功则执行相应处理动作，失败则上交控制器由之决策，流程依赖于内部的SDN交换芯片，也是设备速率的瓶颈所在。</li>
 <li>背板转发(Backplane)<br>交换机通过背板将各个端口连接，经由背板从输入端口转发到目的端口，为保证顺序，这里有个队列，队列满数据可能会被丢弃。</li>
 <li>输出链路调度(Output Link Scheduling)<br>当数据分组到达SDN交换机的设备出端口后，在队列里等待，直到它被发出到相应的交换机输出链路上。</li>
 </ol>
-<h4 id="（二）控制平面">（二）控制平面</h4><p>控制平面向上提供应用接口，向下指挥硬件转发，是整个SDN架构中最核心的部分。<br>类似于计算机的操作系统，设计SDN控制器的体系可以以之为参考。<br>控制器（Controller）是控制平面的核心组件，它是一个运行在服务器上的软件程序，可以用不同的语言运行在不同的操作系统上。<br>SDN控制器的设计多种多样，但一般要考虑到以下几个方面：</p>
+<h4 id="（二）控制平面"><a href="#（二）控制平面" class="headerlink" title="（二）控制平面"></a>（二）控制平面</h4><p>控制平面向上提供应用接口，向下指挥硬件转发，是整个SDN架构中最核心的部分。<br>类似于计算机的操作系统，设计SDN控制器的体系可以以之为参考。<br>控制器（Controller）是控制平面的核心组件，它是一个运行在服务器上的软件程序，可以用不同的语言运行在不同的操作系统上。<br>SDN控制器的设计多种多样，但一般要考虑到以下几个方面：</p>
 <ol>
 <li>北向接口：不同的控制器北向接口差异可以很大；</li>
 <li>南向接口：不同于OpenFlow控制器，SDN控制器可以是更加灵活的，而已支持其他南向接口甚至私有接口，这也是设备制造商差异化服务的体现；</li>
@@ -968,13 +1001,13 @@ curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization
 <li>安全性：系统级别的安全防御是很有必要的，在这一层要能够拦截下绝大部分网络攻击；</li>
 <li>可靠性：要考虑到集群某一个或几个控制器故障或者遭受攻击的情况，要立刻启动应急机制，像是备份控制器。</li>
 </ol>
-<h4 id="（三）应用平面">（三）应用平面</h4><p>SDN应用平面正是SDN体现其创新平台作用的地方，与传统网络相比，SDN网络将拥有更强的智能型，动态控制性和可编程性。<br>在当前主流SDN网络应用平面上，主要有以下三种类型的应用：</p>
+<h4 id="（三）应用平面"><a href="#（三）应用平面" class="headerlink" title="（三）应用平面"></a>（三）应用平面</h4><p>SDN应用平面正是SDN体现其创新平台作用的地方，与传统网络相比，SDN网络将拥有更强的智能型，动态控制性和可编程性。<br>在当前主流SDN网络应用平面上，主要有以下三种类型的应用：</p>
 <ol>
 <li>资源管理平台<br>  在资源管理平台上整合SDN交付的网络控制能力是为了满足云计算资源调配自动化的需求，那些由标准步骤构成的流程最适合用专门的脚本来模拟反复，资源管理平台以软件的形式实现了对网络资源包括计算、存储和网络的协同交付。所以，SDN也是助力云计算发展的一大利器；</li>
 <li>软件定义的应用交付<br>  网络上一直存在着改善网络服务的性能和体验的应用，例如Web安全、访问控制、负载均衡、应用加速、WAN优化、入侵检测等。它们在网络安全、管理方面发挥了重要作用，然而随着SDN的发展，这些原本集成在各层硬件上的服务也可以以软件形式被部署在服务器上，还可以是和控制器共用一个服务器，由于控制器具备全网视角，集中化的网络管理能力也从另一个侧面强化了这些网络应用的作用方式和范围。但是也要注意这会增加控制器的工作量以及网络受攻击的风险，同样的道理，这种影响也是全网级别的。</li>
 <li>创新网络业务<br>  这类应用形式并不统一，但它一定是一些传统网络难以胜任而在SDN环境下能获得良好支持的一些软件。这也正是SDN网络未来的发展所在。</li>
 </ol>
-<h3 id="接口技术">接口技术</h3><ul>
+<h3 id="接口技术"><a href="#接口技术" class="headerlink" title="接口技术"></a>接口技术</h3><ul>
 <li><p>南向接口：SDN控制器通过南向接口对SDN交换机进行集中管理，目前OpenFlow协议是由ONF唯一确定的控制器标准南向接口（还有与之配套的OF-CONFIG配置协议，用于远程配置OpenFlow交换机），也有一些其他的接口。</p>
 </li>
 <li><p>北向接口：网络应用开发者可以利用北向接口，以软件编程的形式实现对网络资源的调用，灵活性强。</p>
@@ -989,73 +1022,87 @@ curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization
 <li>《深度解析SDN——利益、战略、技术、实践》，电子工业出版社，张卫峰。</li>
 </ol>
 ]]></content>
+    
     <summary type="html">
-    <![CDATA[<p><strong>SDN</strong>是一种为了解决传统网络中各种问题，比如管理困难、维护困难、拓展性差、灵活性差等，而出现的<strong>新型</strong>的<em><strong>网络架构</strong></em>。它的核心特征是实现了控制平面和数据平面的分离、控制逻辑集中和网络可编程。它的意义在于淡化底层设备的作用，让网络硬件的设计更加简单通用，打破“<strong>厂商锁定</strong>”，并且在这之上建立一个开放的网络操作系统，让开发者进入网络服务开发的门槛更低，建立起一个大三层网络生态系统，激发网络<em><strong>创新</strong></em>，给用户带来更好的使用体验。</p>]]>
+    
+      &lt;p&gt;&lt;strong&gt;SDN&lt;/strong&gt;是一种为了解决传统网络中各种问题，比如管理困难、维护困难、拓展性差、灵活性差等，而出现的&lt;strong&gt;新型&lt;/strong&gt;的&lt;em&gt;&lt;strong&gt;网络架构&lt;/strong&gt;&lt;/em&gt;。它的核心特征是实现了控制平面和数据平面的分离、控制逻辑集中和网络可编程。它的意义在于淡化底层设备的作用，让网络硬件的设计更加简单通用，打破“&lt;strong&gt;厂商锁定&lt;/strong&gt;”，并且在这之上建立一个开放的网络操作系统，让开发者进入网络服务开发的门槛更低，建立起一个大三层网络生态系统，激发网络&lt;em&gt;&lt;strong&gt;创新&lt;/strong&gt;&lt;/em&gt;，给用户带来更好的使用体验。&lt;/p&gt;
     
     </summary>
     
-      <category term="Network" scheme="http://xmhtech.me/tags/Network/"/>
+      <category term="Sci" scheme="http://xmhtech.me/categories/Sci/"/>
+    
     
       <category term="SDN" scheme="http://xmhtech.me/tags/SDN/"/>
     
-      <category term="summary" scheme="http://xmhtech.me/tags/summary/"/>
+      <category term="Network" scheme="http://xmhtech.me/tags/Network/"/>
     
-      <category term="Sci" scheme="http://xmhtech.me/categories/Sci/"/>
+      <category term="summary" scheme="http://xmhtech.me/tags/summary/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[网络信息的检索与利用]]></title>
+    <title>网络信息的检索与利用</title>
     <link href="http://xmhtech.me/2015/08/08/%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF%E7%9A%84%E6%A3%80%E7%B4%A2%E4%B8%8E%E5%88%A9%E7%94%A8/"/>
     <id>http://xmhtech.me/2015/08/08/网络信息的检索与利用/</id>
     <published>2015-08-08T14:01:35.000Z</published>
     <updated>2015-08-08T14:03:48.000Z</updated>
+    
     <content type="html"><![CDATA[<a id="more"></a>
 ]]></content>
+    
     <summary type="html">
-    <![CDATA[<a id="more"></a>
-]]>
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
+    
     </summary>
     
-      <category term="book" scheme="http://xmhtech.me/tags/book/"/>
+      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
+    
     
       <category term="info" scheme="http://xmhtech.me/tags/info/"/>
     
-      <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
+      <category term="book" scheme="http://xmhtech.me/tags/book/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[搜索进阶]]></title>
+    <title>搜索进阶</title>
     <link href="http://xmhtech.me/2015/08/08/%E6%90%9C%E7%B4%A2%E8%BF%9B%E9%98%B6/"/>
     <id>http://xmhtech.me/2015/08/08/搜索进阶/</id>
     <published>2015-08-08T14:00:50.000Z</published>
     <updated>2015-10-06T04:20:31.000Z</updated>
+    
     <content type="html"><![CDATA[<a id="more"></a>
 ]]></content>
+    
     <summary type="html">
-    <![CDATA[<a id="more"></a>
-]]>
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
+    
     </summary>
     
-      <category term="Resource" scheme="http://xmhtech.me/tags/Resource/"/>
+      <category term="Others" scheme="http://xmhtech.me/categories/Others/"/>
+    
     
       <category term="info" scheme="http://xmhtech.me/tags/info/"/>
     
-      <category term="Others" scheme="http://xmhtech.me/categories/Others/"/>
+      <category term="Resource" scheme="http://xmhtech.me/tags/Resource/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[从搜索引擎谈起]]></title>
+    <title>从搜索引擎谈起</title>
     <link href="http://xmhtech.me/2015/08/07/%E4%BB%8E%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E8%B0%88%E8%B5%B7/"/>
     <id>http://xmhtech.me/2015/08/07/从搜索引擎谈起/</id>
     <published>2015-08-07T12:31:08.000Z</published>
     <updated>2015-08-19T14:23:33.000Z</updated>
+    
     <content type="html"><![CDATA[<p>心血来潮想整理下一些关于搜索的奇技淫巧。在这个信息爆炸的时代不会用搜索不仅仅是一件令人遗憾的事情，可能会对你的生活都造成影响。能够快速、准确地利用搜索引擎找到自己想要的信息和资源，也是一件令人骄傲的事。</p>
 <p>不过搜出来的很多技巧倒是让我大吃一惊，在这里分享出来。</p>
 <a id="more"></a>
-<h2 id="你所不知道的谷歌的用法">你所不知道的谷歌的用法</h2><p>哦，首先你得学会科学上网，等哪天我再写一篇科学上网方法的汇总。<br>如果实在不会，可以尝试<a href="http://www.gfsoso.com" target="_blank" rel="external">谷粉搜搜</a>  </p>
+<h2 id="你所不知道的谷歌的用法"><a href="#你所不知道的谷歌的用法" class="headerlink" title="你所不知道的谷歌的用法"></a>你所不知道的谷歌的用法</h2><p>哦，首先你得学会科学上网，等哪天我再写一篇科学上网方法的汇总。<br>如果实在不会，可以尝试<a href="http://www.gfsoso.com" target="_blank" rel="external">谷粉搜搜</a>  </p>
 <p>把以下的字符组合加在关键词(句)前：</p>
 <ul>
 <li><code>&quot; &quot;</code>以整个短语为关键字(完全匹配搜索)，而不是拆开</li>
@@ -1079,15 +1126,15 @@ curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization
 <li><code>info:</code>提供cache、link、related和完全包含该信息的网页</li>
 </ul>
 <p>以上基本的语法，组合起来会有更多更多奇妙的效果</p>
-<h2 id="除了谷歌，我们还有什么">除了谷歌，我们还有什么</h2><p>首先祭出大杀器：<br><a href="http://so.chongbuluo.com" target="_blank" rel="external">快搜-搜索快人一步</a><br>这个亦可以看看吧<br><a href="http://s.f2do.com" target="_blank" rel="external">多维搜索 - 同时搜索多个维度的数据</a></p>
+<h2 id="除了谷歌，我们还有什么"><a href="#除了谷歌，我们还有什么" class="headerlink" title="除了谷歌，我们还有什么"></a>除了谷歌，我们还有什么</h2><p>首先祭出大杀器：<br><a href="http://so.chongbuluo.com" target="_blank" rel="external">快搜-搜索快人一步</a><br>这个亦可以看看吧<br><a href="http://s.f2do.com" target="_blank" rel="external">多维搜索 - 同时搜索多个维度的数据</a></p>
 <p>以下搜索引擎其实只要了解一些就可以通过谷歌搜索出来，相当于二阶搜索的技巧</p>
 <p><a href="www.baidu.com">百度</a><br><a href="www.google.com">谷歌</a><br><a href="www.bing.com">必应</a><br><a href="https://www.sogou.com" target="_blank" rel="external">搜狗</a><br><a href="http://www.haosou.com" target="_blank" rel="external">好搜</a>——360的搜索产品 </p>
 <p><a href="https://www.taobao.com" target="_blank" rel="external">淘宝</a><br><a href="http://weixin.sogou.com" target="_blank" rel="external">微信搜索</a>——搜狗微信搜索<br><a href="http://s.weibo.com" target="_blank" rel="external">微博搜索</a></p>
 <p><a href="https://scholar.google.com" target="_blank" rel="external">谷歌学术</a><br><a href="http://xueshu.baidu.com" target="_blank" rel="external">百度学术</a><br><a href="">超星发现</a>  </p>
 <p><a href="http://so.baiduyun.me" target="_blank" rel="external">百度网盘</a>  </p>
 <p><a href="http://www.soopat.com" target="_blank" rel="external">soopat</a>——搜索专利的一个网站<br><a href="https://www.quora.com" target="_blank" rel="external">quora</a><br><a href="http://www.wolframalpha.com" target="_blank" rel="external">wolframalpha</a></p>
-<h2 id="搜索的自我提升">搜索的自我提升</h2><p>随着搜索次数的增加，搜索的效率是会不断提升的，要学会<strong>复盘</strong>，保存之前搜索的结果，试试有没有更快更准确的别的方法。很多时候之前搜到的信息也能够作为你下一次搜索的参考来实现关键字优化（应该说是某种矫正吗）<br>如果没有搜到，去思考为什么会搜不到，是不是应该搜索，是不是应该在这里搜索…</p>
-<h2 id="Small_Tips">Small Tips</h2><ol>
+<h2 id="搜索的自我提升"><a href="#搜索的自我提升" class="headerlink" title="搜索的自我提升"></a>搜索的自我提升</h2><p>随着搜索次数的增加，搜索的效率是会不断提升的，要学会<strong>复盘</strong>，保存之前搜索的结果，试试有没有更快更准确的别的方法。很多时候之前搜到的信息也能够作为你下一次搜索的参考来实现关键字优化（应该说是某种矫正吗）<br>如果没有搜到，去思考为什么会搜不到，是不是应该搜索，是不是应该在这里搜索…</p>
+<h2 id="Small-Tips"><a href="#Small-Tips" class="headerlink" title="Small Tips"></a>Small Tips</h2><ol>
 <li><p>更换语言搜索  </p>
 <blockquote>
 <p>曾经做过女性产品，需要性感美女照片，国内美女要考虑肖像权。所以我就把＂性感美女    ＂这个关键词换成其他国家语言，拿到Google上搜，法国，英国，韩国，日本，我想要的    还真的都有，很好用。<br> 当然，用日文搜，往往还有意外收获。</p>
@@ -1100,15 +1147,15 @@ curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization
 <li>浏览全球范围内的公开摄像头——你可以通过搜索Google随机地浏览全球范围内的摄像头流媒体.这可能不是最有效的Google技巧,但却是最有趣的!(作者:你可能需要立即安装一个ActiveX控件或者Java运行环境,以允许你的浏览器获取这些视频流格式)</li>
 <li>在谷歌/必应里搜索百度网盘(<strong>网站积累</strong>)——加site:pan.baidu.com，将这个技巧泛化可以得到很多应用，但是首先你得知道site:后面要填什么，所以平时要注意网站的积累，这个博客也会不定期更新，我会把我所知道最新最有用的网站贴给大家。(也可以是<code>关键字 + &quot;(网址)&quot;</code>的形式)<br> (1) site:evernote.com/pub/——利用这种方法可以搜索到无私贡献出自己高质量笔记本的大牛们的私活，绝赞好评！！！（site:evernote.com/shard/——单个笔记）<br> (2) </li>
 </ol>
-<h2 id="反思">反思</h2><p>回到最初的问题，滥用搜索引擎真的好吗？且不说搜索引擎带给我们的答案是否正确，作为工具，它确实给我们带来了许多的便利，但同时我们也要注意使用这个工具所带来的潜在风险。</p>
+<h2 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h2><p>回到最初的问题，滥用搜索引擎真的好吗？且不说搜索引擎带给我们的答案是否正确，作为工具，它确实给我们带来了许多的便利，但同时我们也要注意使用这个工具所带来的潜在风险。</p>
 <ul>
 <li>钝化思维：很多时候，我们自己不能解决的问题，问一下搜索引擎就好了，午饭吃什么，生病了要吃什么，什么衣服比较流行诸如此类生活化问题搜索引擎也会帮你找到相关网页让你得到你可能想要的答案，可是这些问题真的值得上搜索引擎问嘛？或者问搜索引擎真的对吗？</li>
 <li>信息质量良莠不齐：搜索引擎不会告诉你哪些回答是对的哪些回答是错的，而且也不排除你会把对的答案用在了错的地方，对于网络上浩如烟海的信息资源，如何辨别衡量他们的质量便是一个很大的问题，不过像是某度的知道就给出了对回答的评价机制，让网友来辨别答案的真假，这在一定程度上给了我们更多的信息去辨别。</li>
 <li>效率问题：有的时候你费尽去搜索，得不到答案也是一件很苦恼的事情，虽然总好过得到了一个错误的答案，但你总归把时间浪费在了这上面，如果说你能得到一些促进你得到结果的idea也算还好，什么都没得到只顾搜索那就违背了我们使用搜索引擎的初衷。</li>
 </ul>
 <p>所以在使用搜索引擎前要好好衡量以上的几点因素，不要到最后成为一个离开搜素引擎就没用了的废物。</p>
-<h2 id="总结">总结</h2><p>突然觉得以前一搜就搜出几千万的结果然后没翻几页就决定结果的行为甚是草率，如何精确、准确定位自己所需要的资源或信息，我还有很长一段路要走。  </p>
-<h4 id="后记：有针对地去寻找资源和信息——不定期更新">后记：有针对地去寻找资源和信息——不定期更新</h4><p>很多时候搜索引擎显得并不是那么好用，有些高质量的论坛、网站里面相当于已经帮你做好了一次筛选，虽然搜出来可能不是几百几千万结果，但这些地方也许有更多的可能有你想要的答案，因为它已经帮你筛选过了，而且得到的结果的准确率往往也会高许多。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>突然觉得以前一搜就搜出几千万的结果然后没翻几页就决定结果的行为甚是草率，如何精确、准确定位自己所需要的资源或信息，我还有很长一段路要走。  </p>
+<h4 id="后记：有针对地去寻找资源和信息——不定期更新"><a href="#后记：有针对地去寻找资源和信息——不定期更新" class="headerlink" title="后记：有针对地去寻找资源和信息——不定期更新"></a>后记：有针对地去寻找资源和信息——不定期更新</h4><p>很多时候搜索引擎显得并不是那么好用，有些高质量的论坛、网站里面相当于已经帮你做好了一次筛选，虽然搜出来可能不是几百几千万结果，但这些地方也许有更多的可能有你想要的答案，因为它已经帮你筛选过了，而且得到的结果的准确率往往也会高许多。</p>
 <ol>
 <li>书籍</li>
 <li>图片<ul>
@@ -1178,58 +1225,62 @@ curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization
 </ul>
 </li>
 </ol>
-<h5 id="参考">参考</h5><ol>
+<h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><ol>
 <li><a href="http://www.zhihu.com/question/20161362" target="_blank" rel="external">知乎：如何用好 Google 等搜索引擎？</a></li>
 <li><a href="http://www.zhihu.com/question/23233662" target="_blank" rel="external">知乎：你有什么在网上搜索东西的神搜索技巧？</a></li>
 <li><a href="http://www.zhihu.com/question/20251786" target="_blank" rel="external">知乎：有哪些特殊的搜索引擎</a></li>
 </ol>
 <p>下一篇<code>搜索进阶</code>我将会结合自己的想法和前辈的经验，总结一下搜索的步骤。</p>
 ]]></content>
+    
     <summary type="html">
-    <![CDATA[<p>心血来潮想整理下一些关于搜索的奇技淫巧。在这个信息爆炸的时代不会用搜索不仅仅是一件令人遗憾的事情，可能会对你的生活都造成影响。能够快速、准确地利用搜索引擎找到自己想要的信息和资源，也是一件令人骄傲的事。</p>
-<p>不过搜出来的很多技巧倒是让我大吃一惊，在这里分享出来。</p>]]>
+    
+      &lt;p&gt;心血来潮想整理下一些关于搜索的奇技淫巧。在这个信息爆炸的时代不会用搜索不仅仅是一件令人遗憾的事情，可能会对你的生活都造成影响。能够快速、准确地利用搜索引擎找到自己想要的信息和资源，也是一件令人骄傲的事。&lt;/p&gt;
+&lt;p&gt;不过搜出来的很多技巧倒是让我大吃一惊，在这里分享出来。&lt;/p&gt;
     
     </summary>
     
-      <category term="Google" scheme="http://xmhtech.me/tags/Google/"/>
+      <category term="Others" scheme="http://xmhtech.me/categories/Others/"/>
     
-      <category term="Resource" scheme="http://xmhtech.me/tags/Resource/"/>
     
       <category term="info" scheme="http://xmhtech.me/tags/info/"/>
     
-      <category term="Others" scheme="http://xmhtech.me/categories/Others/"/>
+      <category term="Resource" scheme="http://xmhtech.me/tags/Resource/"/>
+    
+      <category term="Google" scheme="http://xmhtech.me/tags/Google/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[Markdown 学习]]></title>
+    <title>Markdown 学习</title>
     <link href="http://xmhtech.me/2015/08/05/Markdown-%E5%AD%A6%E4%B9%A0/"/>
     <id>http://xmhtech.me/2015/08/05/Markdown-学习/</id>
     <published>2015-08-05T12:22:48.000Z</published>
     <updated>2015-08-08T08:11:48.000Z</updated>
+    
     <content type="html"><![CDATA[<p>刚建好自己的小窝，第一篇正式的博文记录了自己学习的Markdown语法，毕竟以后都要使用它来写博客，大家多多指教。<br><a id="more"></a></p>
-<h3 id="斜体设置">斜体设置</h3><p>你需要在需要斜体的部分前后加上一个underscore（下划线），像<em>这样</em>。</p>
-<h3 id="粗体设置">粗体设置</h3><p>你需要在需要粗体的部分都加上两个asterisks（星号）,像<strong>这样</strong>。<br>这里有个小插曲，我发现加一个asterisks是<em>这样</em>，也是斜体。</p>
+<h3 id="斜体设置"><a href="#斜体设置" class="headerlink" title="斜体设置"></a>斜体设置</h3><p>你需要在需要斜体的部分前后加上一个underscore（下划线），像<em>这样</em>。</p>
+<h3 id="粗体设置"><a href="#粗体设置" class="headerlink" title="粗体设置"></a>粗体设置</h3><p>你需要在需要粗体的部分都加上两个asterisks（星号）,像<strong>这样</strong>。<br>这里有个小插曲，我发现加一个asterisks是<em>这样</em>，也是斜体。</p>
 <p><strong>以上两种语法的组合不分先后.</strong></p>
-<h3 id="行内代码">行内代码</h3><p>你需要使用反引号 (`)(在键盘上位于1的左边)把文字括起来来表示<code>行内代码</code></p>
-<h3 id="标题设置">标题设置</h3><p>你需要在你的标题前面加若干个连续的hash mark（俗称井号），井号越多字体越小，最多六个，像这样：</p>
-<h1 id="重要的事情说三遍">重要的事情说三遍</h1><h2 id="重要的事情说三遍-1">重要的事情说三遍</h2><h3 id="重要的事情说三遍-2">重要的事情说三遍</h3><h4 id="因为很重要所以再说三遍">因为很重要所以再说三遍</h4><h5 id="因为很重要所以再说三遍-1">因为很重要所以再说三遍</h5><h6 id="因为很重要所以再说三遍-2">因为很重要所以再说三遍</h6><pre><code>注意<span class="built_in">hash</span> mark只有在行首才有用，否则会失去它本身的作用而被无情地显示出来T_T
+<h3 id="行内代码"><a href="#行内代码" class="headerlink" title="行内代码"></a>行内代码</h3><p>你需要使用反引号 (`)(在键盘上位于1的左边)把文字括起来来表示<code>行内代码</code></p>
+<h3 id="标题设置"><a href="#标题设置" class="headerlink" title="标题设置"></a>标题设置</h3><p>你需要在你的标题前面加若干个连续的hash mark（俗称井号），井号越多字体越小，最多六个，像这样：</p>
+<h1 id="重要的事情说三遍"><a href="#重要的事情说三遍" class="headerlink" title="重要的事情说三遍"></a>重要的事情说三遍</h1><h2 id="重要的事情说三遍-1"><a href="#重要的事情说三遍-1" class="headerlink" title="重要的事情说三遍"></a>重要的事情说三遍</h2><h3 id="重要的事情说三遍-2"><a href="#重要的事情说三遍-2" class="headerlink" title="重要的事情说三遍"></a>重要的事情说三遍</h3><h4 id="因为很重要所以再说三遍"><a href="#因为很重要所以再说三遍" class="headerlink" title="因为很重要所以再说三遍"></a>因为很重要所以再说三遍</h4><h5 id="因为很重要所以再说三遍-1"><a href="#因为很重要所以再说三遍-1" class="headerlink" title="因为很重要所以再说三遍"></a>因为很重要所以再说三遍</h5><h6 id="因为很重要所以再说三遍-2"><a href="#因为很重要所以再说三遍-2" class="headerlink" title="因为很重要所以再说三遍"></a>因为很重要所以再说三遍</h6><pre><code>注意hash mark只有在行首才有用，否则会失去它本身的作用而被无情地显示出来T_T
 </code></pre><p>只要hash mark在行首，对后面的内容部分你可以随意地用上面介绍的两个语法让文字<em>变斜</em>，或者<strong>加粗</strong>。<br>    还有一个要提醒大家的地方就是——<strong>慎用</strong>一号标题和六号标题！！！</p>
 <p>以上的标题设置我们称之为<strong>类atx</strong>形式的语法，接下来要介绍另一种局限性比较大的标题设置语法——<strong>类Setext</strong>形式语法。<br>类 Setext 形式是用底线的形式，利用 =（最高阶标题）和 -（第二阶标题），任意数量的 = 和 - 加在要作为标题的文本下方即可。</p>
-<h3 id="分隔线">分隔线</h3><p>你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。</p>
-<h3 id="网页链接">网页链接</h3><p>在Markdown的语法里有两种链接网页的方式：</p>
-<h5 id="第一种：Inline_Link">第一种：Inline Link</h5><p>在你想显示的文本外边框起brackets（方括号），紧接着在后边用parenthesis（圆括号）框起这段文字指向的链接，例如：<br>    <a href="http://xmhtech.me">千万不要点这里</a><br>Remark:  </p>
+<h3 id="分隔线"><a href="#分隔线" class="headerlink" title="分隔线"></a>分隔线</h3><p>你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。</p>
+<h3 id="网页链接"><a href="#网页链接" class="headerlink" title="网页链接"></a>网页链接</h3><p>在Markdown的语法里有两种链接网页的方式：</p>
+<h5 id="第一种：Inline-Link"><a href="#第一种：Inline-Link" class="headerlink" title="第一种：Inline Link"></a>第一种：Inline Link</h5><p>在你想显示的文本外边框起brackets（方括号），紧接着在后边用parenthesis（圆括号）框起这段文字指向的链接，例如：<br>    <a href="http://xmhtech.me">千万不要点这里</a><br>Remark:  </p>
 <ul>
 <li>brackets和parenthesis都是半角的;</li>
 <li>还有前两种语法对brackets里的内容也适用;</li>
 <li>标题里也可以添加链接;</li>
 </ul>
-<h5 id="第二种：Reference_Link">第二种：Reference Link</h5><p>正如Reference的意思，这种链接网页的方式实际上是对文档内其他位置的链接的引用。它的语法是在链接文字的括号后面再接上另一个方括号，而在第二个方括号里面要填入用以辨识链接的标记：</p>
-<pre><code>This is [<span class="link_label">an example</span>][<span class="link_reference">id</span>] reference-style link.
+<h5 id="第二种：Reference-Link"><a href="#第二种：Reference-Link" class="headerlink" title="第二种：Reference Link"></a>第二种：Reference Link</h5><p>正如Reference的意思，这种链接网页的方式实际上是对文档内其他位置的链接的引用。它的语法是在链接文字的括号后面再接上另一个方括号，而在第二个方括号里面要填入用以辨识链接的标记：</p>
+<pre><code>This is [an example][id] reference-style link.
 </code></pre><p>你也可以选择性地在两个方括号中间加上一个空格：</p>
-<pre><code>This <span class="keyword">is</span> [an example] [<span class="property">id</span>]<span class="keyword">reference</span>-style link.
+<pre><code>This is [an example] [id]reference-style link.
 </code></pre><p>接着，在文件的任意处，你可以把这个标记的链接内容定义出来：</p>
-<pre><code><span class="attr_selector">[id]</span>: <span class="rule"><span class="attribute">http</span>:<span class="value">//example.com/  <span class="string">"Optional Title Here"</span></span></span>
+<pre><code>[id]: http://example.com/  &quot;Optional Title Here&quot;
 </code></pre><p>链接内容定义的形式为：</p>
 <ul>
 <li>方括号（前面可以选择性地加上至多三个空格来缩进），里面输入链接文字</li>
@@ -1239,31 +1290,31 @@ curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization
 <li>选择性地接着 title 内容，可以用单引号、双引号或是括弧包着</li>
 </ul>
 <p>下面这三种链接的定义都是相同：</p>
-<pre><code>[<span class="link_reference">foo</span>]:<span class="link_url"> http://example.com/  "Optional Title Here"</span>
-[<span class="link_reference">foo</span>]:<span class="link_url"> http://example.com/  'Optional Title Here'</span>
-[<span class="link_reference">foo</span>]:<span class="link_url"> http://example.com/  (Optional Title Here)</span>
+<pre><code>[foo]: http://example.com/  &quot;Optional Title Here&quot;
+[foo]: http://example.com/  &apos;Optional Title Here&apos;
+[foo]: http://example.com/  (Optional Title Here)
 </code></pre><p>这样做的一个好处是，当多个link指向同一个网址时，更新时只需要修改一个地方，方便也不容易忘记。</p>
-<h5 id="第三种：Auto_Link">第三种：Auto Link</h5><p>Markdown 支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要是用方括号包起来， Markdown 就会自动把它转成链接。一般网址的链接文字就和链接地址一样。</p>
-<h3 id="插入图片">插入图片</h3><p>当你已经学会插入网页链接时，插入图片也不是什么难事了，插入图片也有两种方式，要做的只是把先前网页链接的部分换成图片的外链地址，为了区别于网站链接而将图片显示出来，在方括号前面加上一个exclamation point（叹号）即可<br><img src="http://7xkwu7.com1.z0.glb.clouddn.com/doge_sleep_icon.png" alt="A representation of Octdrey Catburn"></p>
+<h5 id="第三种：Auto-Link"><a href="#第三种：Auto-Link" class="headerlink" title="第三种：Auto Link"></a>第三种：Auto Link</h5><p>Markdown 支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要是用方括号包起来， Markdown 就会自动把它转成链接。一般网址的链接文字就和链接地址一样。</p>
+<h3 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h3><p>当你已经学会插入网页链接时，插入图片也不是什么难事了，插入图片也有两种方式，要做的只是把先前网页链接的部分换成图片的外链地址，为了区别于网站链接而将图片显示出来，在方括号前面加上一个exclamation point（叹号）即可<br><img src="http://7xkwu7.com1.z0.glb.clouddn.com/doge_sleep_icon.png" alt="A representation of Octdrey Catburn"></p>
 <p>但是非常可惜的是，这种方法并不能调整图片的长宽，想要调整，还是得学习一点相关的Html语法。</p>
-<h3 id="Blockquote（引用区块）">Blockquote（引用区块）</h3><p>引用区块就是利用一句话或者一个段落的特殊格式来引起读者注意的语法。要做到这件事情也是十分简单，只要在要引用的句子或段落的前面加上”greater than” caret（大于号）就可以了，例如：</p>
+<h3 id="Blockquote（引用区块）"><a href="#Blockquote（引用区块）" class="headerlink" title="Blockquote（引用区块）"></a>Blockquote（引用区块）</h3><p>引用区块就是利用一句话或者一个段落的特殊格式来引起读者注意的语法。要做到这件事情也是十分简单，只要在要引用的句子或段落的前面加上”greater than” caret（大于号）就可以了，例如：</p>
 <blockquote>
 <p>If you need to call special attention to a quote from another source, or design a pull quote for a magazine article, then Markdown’s blockquote syntax will be useful. A blockquote is a sentence or paragraph that’s been specially formatted to draw attention to the reader.</p>
 <p>To create a block quote, all you have to do is preface a line with the “greater than” caret.</p>
 </blockquote>
 <p>Blockquote还支持嵌套（例如：引用内的引用），只要根据层次加上不同数量的 &gt;</p>
-<h3 id="Codeblock（代码区块）">Codeblock（代码区块）</h3><p>在Markdown里添加代码也非常简单，只需要缩进一个table（制表符）或者四个space（空格）就好了。<br>注意代码区块里斜体加粗引用等Markdown语法都会失效。</p>
-<pre><code><span class="preprocessor">#inluce&lt;iostream&gt;</span>
-<span class="keyword">using</span> namespce <span class="built_in">std</span>;
+<h3 id="Codeblock（代码区块）"><a href="#Codeblock（代码区块）" class="headerlink" title="Codeblock（代码区块）"></a>Codeblock（代码区块）</h3><p>在Markdown里添加代码也非常简单，只需要缩进一个table（制表符）或者四个space（空格）就好了。<br>注意代码区块里斜体加粗引用等Markdown语法都会失效。</p>
+<pre><code>#inluce&lt;iostream&gt;
+using namespce std;
 
-<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>{
-    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello, World!"</span> &lt;&lt; endl;
-    <span class="keyword">return</span> <span class="number">0</span>;
+int main(){
+    cout &lt;&lt; &quot;Hello, World!&quot; &lt;&lt; endl;
+    return 0;
 }
-</code></pre><h3 id="创建列表">创建列表</h3><h5 id="第一种：Unordered_List（无序列表）">第一种：Unordered List（无序列表）</h5><p>It’s easy.在每一项的前面加上asterisk（星号）就好，记得星号后面要留一个space（空格）或table（制表符）哦，<strong>还有一个特殊的地方就是在这里plus sign（加号）和minus sign（减号）可以与asterisk混用。</strong></p>
-<h5 id="第二种：Ordered_List（有序列表）">第二种：Ordered List（有序列表）</h5><p>有序列表就是数字加上一个半角句点和一个space或table就好了。但是要注意不小心产生有序列表的情况，所以尽量避免数字半角句点和space/table连续出现的情况，实在无法避免在句点前加上一个backslash（反斜杠）即可——<strong><em>反斜杠通常被利用来来插入一些在语法中有其它意义的符号(又被称作转义符)</em></strong>.</p>
+</code></pre><h3 id="创建列表"><a href="#创建列表" class="headerlink" title="创建列表"></a>创建列表</h3><h5 id="第一种：Unordered-List（无序列表）"><a href="#第一种：Unordered-List（无序列表）" class="headerlink" title="第一种：Unordered List（无序列表）"></a>第一种：Unordered List（无序列表）</h5><p>It’s easy.在每一项的前面加上asterisk（星号）就好，记得星号后面要留一个space（空格）或table（制表符）哦，<strong>还有一个特殊的地方就是在这里plus sign（加号）和minus sign（减号）可以与asterisk混用。</strong></p>
+<h5 id="第二种：Ordered-List（有序列表）"><a href="#第二种：Ordered-List（有序列表）" class="headerlink" title="第二种：Ordered List（有序列表）"></a>第二种：Ordered List（有序列表）</h5><p>有序列表就是数字加上一个半角句点和一个space或table就好了。但是要注意不小心产生有序列表的情况，所以尽量避免数字半角句点和space/table连续出现的情况，实在无法避免在句点前加上一个backslash（反斜杠）即可——<strong><em>反斜杠通常被利用来来插入一些在语法中有其它意义的符号(又被称作转义符)</em></strong>.</p>
 <p>Remark：在实践中，我发现一个有趣的现象，就是有序列表只要制定了开头，后边的序号可以不用写，用asterisk/minus sign/plus sign代替也是可以，这样的话它会自动递增地帮你打印出序号来。</p>
-<h5 id="多级列表的处理">多级列表的处理</h5><p>在新一级的标识符前加上table来缩进即可，打印出来的效果像这样</p>
+<h5 id="多级列表的处理"><a href="#多级列表的处理" class="headerlink" title="多级列表的处理"></a>多级列表的处理</h5><p>在新一级的标识符前加上table来缩进即可，打印出来的效果像这样</p>
 <ul>
 <li>First level<ul>
 <li>Second level<ul>
@@ -1276,12 +1327,12 @@ curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization
 </ul>
 </li>
 </ul>
-<h3 id="创建表格">创建表格</h3><p>这个并不是<strong>Markdown</strong>的标准语法，似乎需要解释器，先看看能不能发上来。<br>示例：</p>
+<h3 id="创建表格"><a href="#创建表格" class="headerlink" title="创建表格"></a>创建表格</h3><p>这个并不是<strong>Markdown</strong>的标准语法，似乎需要解释器，先看看能不能发上来。<br>示例：</p>
 <pre><code>H1 |H2 |H3
 ---|---|---
-<span class="number">0</span>,<span class="number">0</span>|<span class="number">0</span>,<span class="number">1</span>|<span class="number">0</span>,<span class="number">2</span>
-<span class="number">1</span>,<span class="number">0</span>|<span class="number">1</span>,<span class="number">1</span>|<span class="number">1</span>,<span class="number">2</span>
-<span class="number">2</span>,<span class="number">0</span>|<span class="number">2</span>,<span class="number">1</span>|<span class="number">2</span>,<span class="number">2</span>
+0,0|0,1|0,2
+1,0|1,1|1,2
+2,0|2,1|2,2
 </code></pre><table>
 <thead>
 <tr>
@@ -1308,19 +1359,22 @@ curl -o - -b <span class="string">"tLargeScreenP=1; subType=pcSub; Authorization
 </tr>
 </tbody>
 </table>
-<h3 id="段落和换行">段落和换行</h3><p>你在实际操作中会发现，即使你在编辑时输入return（回车），显示出来的仍旧是一行，在Marhdown语法里也有两种方式来实现换行：</p>
-<h5 id="Hard_Break">Hard Break</h5><p>直接再输入一个return（回车），这样段落的间距比较大。</p>
-<h5 id="Soft_Break">Soft Break</h5><p>在段末输两个连续的space（空格），这样段落的间距会比较小。</p>
+<h3 id="段落和换行"><a href="#段落和换行" class="headerlink" title="段落和换行"></a>段落和换行</h3><p>你在实际操作中会发现，即使你在编辑时输入return（回车），显示出来的仍旧是一行，在Marhdown语法里也有两种方式来实现换行：</p>
+<h5 id="Hard-Break"><a href="#Hard-Break" class="headerlink" title="Hard Break"></a>Hard Break</h5><p>直接再输入一个return（回车），这样段落的间距比较大。</p>
+<h5 id="Soft-Break"><a href="#Soft-Break" class="headerlink" title="Soft Break"></a>Soft Break</h5><p>在段末输两个连续的space（空格），这样段落的间距会比较小。</p>
 <p>总的来说，Markdown语法还是十分简单易学的，还有就是建议大家还是在实践中学习会比较快。<br>最后，感谢这个Markdown教程的网站，它提供了训练式的Markdown学习，对我的帮助十分大。<a href="http://markdowntutorial.com/" target="_blank" rel="external">http://markdowntutorial.com/</a>也十分感谢<a href="http://www.appinn.com/markdown/#img" target="_blank" rel="external"><em>Markdown 语法说明 (简体中文版)</em></a>告诉我许多其他的语法作为补充</p>
 ]]></content>
+    
     <summary type="html">
-    <![CDATA[<p>刚建好自己的小窝，第一篇正式的博文记录了自己学习的Markdown语法，毕竟以后都要使用它来写博客，大家多多指教。<br>]]>
+    
+      &lt;p&gt;刚建好自己的小窝，第一篇正式的博文记录了自己学习的Markdown语法，毕竟以后都要使用它来写博客，大家多多指教。&lt;br&gt;
     
     </summary>
     
-      <category term="web" scheme="http://xmhtech.me/tags/web/"/>
-    
       <category term="Tech" scheme="http://xmhtech.me/categories/Tech/"/>
+    
+    
+      <category term="web" scheme="http://xmhtech.me/tags/web/"/>
     
   </entry>
   
