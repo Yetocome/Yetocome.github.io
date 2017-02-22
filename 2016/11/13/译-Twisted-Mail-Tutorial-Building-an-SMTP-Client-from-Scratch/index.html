@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://xmhtest.space/2016/11/13/译-Twisted-Mail-Tutorial-Building-an-SMTP-Client-from-Scratch/index.html">
 <meta property="og:site_name" content="Xie's Exploration">
 <meta property="og:description" content="This tutorial will walk you through the creation of an extremely simple SMTP client application. By the time the tutorial is complete, you will understand how to create and start a TCP client speakin">
-<meta property="og:updated_time" content="2016-11-12T17:35:43.000Z">
+<meta property="og:updated_time" content="2016-11-12T17:39:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[译]Twisted Mail Tutorial: Building an SMTP Client from Scratch">
 <meta name="twitter:description" content="This tutorial will walk you through the creation of an extremely simple SMTP client application. By the time the tutorial is complete, you will understand how to create and start a TCP client speakin">
@@ -293,22 +293,8 @@ def main():
 application = main()
 </code></pre><h3 id="第一个SMTP客户端"><a href="#第一个SMTP客户端" class="headerlink" title="第一个SMTP客户端"></a>第一个SMTP客户端</h3><p>可能的话，创建一个 <code>smtpclient-1.tac</code> 为twistd所使用。</p>
 <p>源代码：</p>
-<pre><code>from twisted.application import service
-# The first line of the .tac file imports twisted.application.service , a module
-# which contains many of the basic service classes and helper functions available
-# in Twisted. In particular, we will be using the Application function to create
-# a new application service . An application service simply acts as a central
-# object on which to store certain kinds of deployment configuration.
-
-application = service.Application(&quot;SMTP Client Tutorial&quot;)
-
-# The second line of the .tac file creates a new application service and binds
-# it to the local name application . twistd requires this local name in each .tac
-# file it runs. It uses various pieces of configuration on the object to determine
-# its behavior. For example, &quot;SMTP Client Tutorial&quot; will be used as the name of
-# the .tap file into which to serialize application state, should it be necessary
-# to do so.
-</code></pre><p>运行我们的服务器，这里-n代表以非后台形式运行，-y表示在python源文件里读取applicaiton：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> twisted.<span class="built_in">application</span> import service</div><div class="line"><span class="comment"># The first line of the .tac file imports twisted.application.service , a module</span></div><div class="line"><span class="comment"># which contains many of the basic service classes and helper functions available</span></div><div class="line"><span class="comment"># in Twisted. In particular, we will be using the Application function to create</span></div><div class="line"><span class="comment"># a new application service . An application service simply acts as a central</span></div><div class="line"><span class="comment"># object on which to store certain kinds of deployment configuration.</span></div><div class="line">	</div><div class="line"><span class="built_in">application</span> = service.Application(<span class="string">"SMTP Client Tutorial"</span>)</div><div class="line">	</div><div class="line"><span class="comment"># The second line of the .tac file creates a new application service and binds</span></div><div class="line"><span class="comment"># it to the local name application . twistd requires this local name in each .tac</span></div><div class="line"><span class="comment"># file it runs. It uses various pieces of configuration on the object to determine</span></div><div class="line"><span class="comment"># its behavior. For example, "SMTP Client Tutorial" will be used as the name of</span></div><div class="line"><span class="comment"># the .tap file into which to serialize application state, should it be necessary</span></div><div class="line"><span class="comment"># to do so.</span></div></pre></td></tr></table></figure>
+<p>运行我们的服务器，这里-n代表以非后台形式运行，-y表示在python源文件里读取applicaiton：</p>
 <pre><code>❯ twistd -ny smtpclient-1.tac
 2016-11-12T16:55:36+0800 [-] Loading smtpclient-1.tac...
 2016-11-12T16:55:36+0800 [-] Loaded.
@@ -822,6 +808,15 @@ getMailExchange(&apos;example.net&apos;).addCallback(cbMailExchange)
   
 <nav id="article-nav">
   
+    <a href="/2017/02/22/SDN-workshop-Collection/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          SDN workshop Collection
+        
+      </div>
+    </a>
+  
   
     <a href="/2016/09/21/【Mac】Terminal改造小记/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">【Mac】Terminal改造小记</div>
@@ -884,7 +879,7 @@ getMailExchange(&apos;example.net&apos;).addCallback(cbMailExchange)
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 Minghao Xie
+    		&copy; 2017 Minghao Xie
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -960,7 +955,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/Concurrency/" style="font-size: 10px;">Concurrency</a> <a href="/tags/Google/" style="font-size: 10px;">Google</a> <a href="/tags/Network/" style="font-size: 13.33px;">Network</a> <a href="/tags/OS/" style="font-size: 10px;">OS</a> <a href="/tags/OpenWrt/" style="font-size: 10px;">OpenWrt</a> <a href="/tags/Prolog/" style="font-size: 20px;">Prolog</a> <a href="/tags/Resource/" style="font-size: 13.33px;">Resource</a> <a href="/tags/SDN/" style="font-size: 10px;">SDN</a> <a href="/tags/TLDR/" style="font-size: 10px;">TLDR</a> <a href="/tags/Translation/" style="font-size: 10px;">Translation</a> <a href="/tags/VM/" style="font-size: 10px;">VM</a> <a href="/tags/book/" style="font-size: 10px;">book</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/develop/" style="font-size: 13.33px;">develop</a> <a href="/tags/info/" style="font-size: 16.67px;">info</a> <a href="/tags/language/" style="font-size: 20px;">language</a> <a href="/tags/mac/" style="font-size: 13.33px;">mac</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/router/" style="font-size: 10px;">router</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a> <a href="/tags/tool/" style="font-size: 13.33px;">tool</a> <a href="/tags/twisted/" style="font-size: 10px;">twisted</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
+    				<a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/Concurrency/" style="font-size: 10px;">Concurrency</a> <a href="/tags/Google/" style="font-size: 10px;">Google</a> <a href="/tags/Network/" style="font-size: 16.67px;">Network</a> <a href="/tags/OS/" style="font-size: 10px;">OS</a> <a href="/tags/OpenWrt/" style="font-size: 10px;">OpenWrt</a> <a href="/tags/Paper/" style="font-size: 10px;">Paper</a> <a href="/tags/Prolog/" style="font-size: 20px;">Prolog</a> <a href="/tags/Resource/" style="font-size: 13.33px;">Resource</a> <a href="/tags/SDN/" style="font-size: 13.33px;">SDN</a> <a href="/tags/TLDR/" style="font-size: 10px;">TLDR</a> <a href="/tags/Translation/" style="font-size: 10px;">Translation</a> <a href="/tags/VM/" style="font-size: 10px;">VM</a> <a href="/tags/book/" style="font-size: 10px;">book</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/develop/" style="font-size: 13.33px;">develop</a> <a href="/tags/info/" style="font-size: 16.67px;">info</a> <a href="/tags/language/" style="font-size: 20px;">language</a> <a href="/tags/mac/" style="font-size: 13.33px;">mac</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/router/" style="font-size: 10px;">router</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a> <a href="/tags/tool/" style="font-size: 13.33px;">tool</a> <a href="/tags/twisted/" style="font-size: 10px;">twisted</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/workshop/" style="font-size: 10px;">workshop</a>
     			</div>
     	</section>
     
