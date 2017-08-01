@@ -22,6 +22,12 @@ p {
 	color: #444;
 }
 
+li {
+	font-size: 1em;
+	line-height: 1.4em;
+	color: #444;
+}
+
 #cv {
 	width: 90%;
 	max-width: 800px;
