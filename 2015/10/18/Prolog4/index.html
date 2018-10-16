@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://mhxie.me">
-  <title>Prolog学习笔记（四） | Xie&#39;s Exploration</title>
+  <title>Prolog学习笔记（四） | Minghao&#39;s Exploration</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="这周的主要内容是递归之于表以及内建谓词介绍">
+<meta name="keywords" content="prolog,AI,language">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Prolog学习笔记（四）">
 <meta property="og:url" content="https://mhxie.me/2015/10/18/Prolog4/index.html">
-<meta property="og:site_name" content="Xie's Exploration">
+<meta property="og:site_name" content="Minghao&#39;s Exploration">
 <meta property="og:description" content="这周的主要内容是递归之于表以及内建谓词介绍">
+<meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2018-10-08T05:42:10.452Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Prolog学习笔记（四）">
 <meta name="twitter:description" content="这周的主要内容是递归之于表以及内建谓词介绍">
   
-    <link rel="alternative" href="/atom.xml" title="Xie&#39;s Exploration" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Minghao&#39;s Exploration" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -68,11 +70,11 @@ var _hmt = _hmt || [];
 <div class="overlay" style="background: #4d4d4d"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
-		<a href="null" class="profilepic">
-			<img src="/img/daodao.jpg" class="js-avatar">
+		<a href="" class="profilepic">
+			<img src="/img/baobao.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="null">Minghao Xie</a></h1>
+		  <h1 class="header-author"><a href="">Minghao Xie</a></h1>
 		</hgroup>
 		
 		<p class="header-subtitle">Any idea or discussion is highly welcomed.</p>
@@ -89,9 +91,7 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/categories/Practice">Practice</a></li>
 	        
-				<li><a href="/categories/Comment">Comment</a></li>
-	        
-				<li><a href="/categories/Essay">Essay</a></li>
+				<li><a href="/categories/Others">Others</a></li>
 	        
 			</ul>
 		</nav>
@@ -139,7 +139,7 @@ var _hmt = _hmt || [];
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/img/daodao.jpg" class="js-avatar">
+				<img src="/img/baobao.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Minghao Xie</h1>
@@ -148,8 +148,6 @@ var _hmt = _hmt || [];
 			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Any idea or discussion is highly welcomed.<i class="icon icon-quo-right"></i></p>
 			
 			
-			
-				
 			
 				
 			
@@ -183,17 +181,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">Home</a></li>
+					<li style="width: 20%"><a href="/">Home</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">All</a></li>
+					<li style="width: 20%"><a href="/archives">All</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Theory">Theory</a></li>
+					<li style="width: 20%"><a href="/categories/Theory">Theory</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Practice">Practice</a></li>
+					<li style="width: 20%"><a href="/categories/Practice">Practice</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Comment">Comment</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Essay">Essay</a></li>
+					<li style="width: 20%"><a href="/categories/Others">Others</a></li>
 		        
 				</ul>
 			</nav>
@@ -333,40 +329,58 @@ Results = [1/1, 2/4, 3/9, 4/16].%第一个参数可以是一个复杂的集合�
 </ol>
 <p>上面的三个谓词被统称为<strong>meta-predicates</strong>(元谓词)<br>    ——因为它们能够操纵Prolog的证明策略</p>
 <hr>
-<h3 id="Remark"><a href="#Remark" class="headerlink" title="Remark:"></a>Remark:</h3><p>学习的过程中产生了在prolog中<strong><em>双引号</em></strong>使用的疑惑，在<a href="http://stackoverflow.com" target="_blank" rel="external">stack overflow</a>上找到一个不错的<a href="http://stackoverflow.com/questions/8264699/what-is-the-difference-between-and-in-prolog" target="_blank" rel="external">回答</a></p>
+<h3 id="Remark"><a href="#Remark" class="headerlink" title="Remark:"></a>Remark:</h3><p>学习的过程中产生了在prolog中<strong><em>双引号</em></strong>使用的疑惑，在<a href="http://stackoverflow.com" target="_blank" rel="noopener">stack overflow</a>上找到一个不错的<a href="http://stackoverflow.com/questions/8264699/what-is-the-difference-between-and-in-prolog" target="_blank" rel="noopener">回答</a></p>
 <p>时间原因就不翻译了，贴出来给大家学习：</p>
 <blockquote>
 <p>Single quoted items are always atoms.</p>
+</blockquote>
+<blockquote>
 <p>The meaning of double quotes depends on the Prolog flag double_quotes:</p>
+</blockquote>
+<blockquote>
 <p><strong>atom</strong> — with this value <code>&quot;a&quot; = a</code>. Nowadays, this is rarely used. But you will find Prolog books where <code>[&quot;abc.pl&quot;]</code> is written.</p>
+</blockquote>
+<blockquote>
 <p><strong>codes</strong> — a list of character codes. This is frequently the default, but it leads to very unreadable answers like</p>
+</blockquote>
+<blockquote>
 <pre><code>   ?- phrase((&quot;Ja tvoi &quot;,(&quot;sluga&quot;|&quot;rabotnik&quot;),&quot;!&quot;), Satz).
 Satz = [74,97,32,116,118,111,105,32,115,108,117,103,97,33] ;
 Satz = [74,97,32,116,118,111,105,32,114,97,98,111,116,110,105,107,33].
 </code></pre><p>Even worse, if you use characters beyond ASCII:</p>
+</blockquote>
+<blockquote>
 <pre><code>   ?- phrase((&quot;Я твой &quot;,(&quot;слуга&quot;|&quot;работник&quot;),&quot;!&quot;), Satz).
 Satz = [1071,32,1090,1074,1086,1081,32,1089,1083,1091,1075,1072,33] ;
 Satz = [1071,32,1090,1074,1086,1081,32,1088,1072,1073,1086,1090,1085,1080,1082,33].
 </code></pre><p><strong>chars</strong> — a list of one-char atoms.</p>
+</blockquote>
+<blockquote>
 <pre><code>   ?- set_prolog_flag(double_quotes,chars).
 true.
-
-   ?- phrase((&quot;Ja tvoi &quot;,(&quot;sluga&quot;|&quot;rabotnik&quot;),&quot;!&quot;), Satz).
+</code></pre></blockquote>
+<blockquote>
+<pre><code>   ?- phrase((&quot;Ja tvoi &quot;,(&quot;sluga&quot;|&quot;rabotnik&quot;),&quot;!&quot;), Satz).
 Satz = [&apos;J&apos;,a,&apos; &apos;,t,v,o,i,&apos; &apos;,s,l,u,g,a,!] ;
 Satz = [&apos;J&apos;,a,&apos; &apos;,t,v,o,i,&apos; &apos;,r,a,b,o,t,n,i,k,!].
-
-   ?- phrase((&quot;Я твой &quot;,(&quot;слуга&quot;|&quot;работник&quot;),&quot;!&quot;), Satz).
+</code></pre></blockquote>
+<blockquote>
+<pre><code>   ?- phrase((&quot;Я твой &quot;,(&quot;слуга&quot;|&quot;работник&quot;),&quot;!&quot;), Satz).
 Satz = [&apos;Я&apos;,&apos; &apos;,т,в,о,й,&apos; &apos;,с,л,у,г,а,!] ;
 Satz = [&apos;Я&apos;,&apos; &apos;,т,в,о,й,&apos; &apos;,р,а,б,о,т,н,и,к,!].
-</code></pre><p>This notation gives more readable answers. It can be even more compactly displayed since the double quote notation can be used for printing any list of one-char atoms. For SWI, there is <a href="http://www.complang.tuwien.ac.at/ulrich/Prolog-inedit/double_quotes.pl" target="_blank" rel="external">library(double_quotes)</a>.</p>
+</code></pre><p>This notation gives more readable answers. It can be even more compactly displayed since the double quote notation can be used for printing any list of one-char atoms. For SWI, there is <a href="http://www.complang.tuwien.ac.at/ulrich/Prolog-inedit/double_quotes.pl" target="_blank" rel="noopener">library(double_quotes)</a>.</p>
+</blockquote>
+<blockquote>
 <pre><code>   ?- use_module(library(double_quotes)).
 true.
-
-   ?- phrase((&quot;Ja tvoi &quot;,(&quot;sluga&quot;|&quot;rabotnik&quot;),&quot;!&quot;), Satz).
+</code></pre></blockquote>
+<blockquote>
+<pre><code>   ?- phrase((&quot;Ja tvoi &quot;,(&quot;sluga&quot;|&quot;rabotnik&quot;),&quot;!&quot;), Satz).
 Satz = &quot;Ja tvoi sluga!&quot; ;
 Satz = &quot;Ja tvoi rabotnik!&quot;.
-
-   ?- phrase((&quot;Я твой &quot;,(&quot;слуга&quot;|&quot;работник&quot;),&quot;!&quot;), Satz).
+</code></pre></blockquote>
+<blockquote>
+<pre><code>   ?- phrase((&quot;Я твой &quot;,(&quot;слуга&quot;|&quot;работник&quot;),&quot;!&quot;), Satz).
 Satz = &quot;Я твой слуга!&quot; ;
 Satz = &quot;Я твой работник!&quot;.
 </code></pre></blockquote>
@@ -655,11 +669,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">methodology</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">research</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">c++</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">concurrency</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SDN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">network</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">summary</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -676,26 +710,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">note</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">methodology</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">research</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SDN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">network</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">summary</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -747,14 +761,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">workshop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">paper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">resource</a>
               </li>
              
@@ -767,6 +773,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">workshop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">paper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">twisted</a>
               </li>
              
@@ -776,6 +790,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">TLDR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">flash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">storage</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">data center</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">QoS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IX</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">data plane</a>
               </li>
             
             <div class="clearfix"></div>
@@ -835,19 +873,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
+              <a href="https://gbxu.github.io" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>某川大校友</a>
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
+              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广告位招租1</a>
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
+              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广告位招租2</a>
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广告位招租3</a>
             </li>
           
         </ul>

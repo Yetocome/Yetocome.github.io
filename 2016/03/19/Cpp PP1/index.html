@@ -6,14 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://mhxie.me">
-  <title>《C++并发编程》学习笔记（一） | Xie&#39;s Exploration</title>
+  <title>《C++并发编程》学习笔记（一） | Minghao&#39;s Exploration</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="因为一些棘手的效率问题，手头的项目必须要引入并发编程。这里整理下我学习的《C++并发编程》的笔记，尽可能地记录下了重难点以及我练习的例程代码，作为自己学习的备忘，也供想要快速学习的人参考。不过还是建议直接去阅读原书，中英文版本的网盘链接我放在文章后面，请读者自取。">
+<meta name="keywords" content="c++,concurrency">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《C++并发编程》学习笔记（一）">
 <meta property="og:url" content="https://mhxie.me/2016/03/19/Cpp PP1/index.html">
-<meta property="og:site_name" content="Xie's Exploration">
+<meta property="og:site_name" content="Minghao&#39;s Exploration">
 <meta property="og:description" content="因为一些棘手的效率问题，手头的项目必须要引入并发编程。这里整理下我学习的《C++并发编程》的笔记，尽可能地记录下了重难点以及我练习的例程代码，作为自己学习的备忘，也供想要快速学习的人参考。不过还是建议直接去阅读原书，中英文版本的网盘链接我放在文章后面，请读者自取。">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F.png">
 <meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/%E5%9B%9B%E4%BB%BB%E5%8A%A1%E4%B8%A4%E6%A0%B8%E5%BF%83.png">
 <meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/%E5%B9%B6%E5%8F%91%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1.png">
@@ -24,7 +26,7 @@
 <meta name="twitter:description" content="因为一些棘手的效率问题，手头的项目必须要引入并发编程。这里整理下我学习的《C++并发编程》的笔记，尽可能地记录下了重难点以及我练习的例程代码，作为自己学习的备忘，也供想要快速学习的人参考。不过还是建议直接去阅读原书，中英文版本的网盘链接我放在文章后面，请读者自取。">
 <meta name="twitter:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F.png">
   
-    <link rel="alternative" href="/atom.xml" title="Xie&#39;s Exploration" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Minghao&#39;s Exploration" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -73,11 +75,11 @@ var _hmt = _hmt || [];
 <div class="overlay" style="background: #4d4d4d"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
-		<a href="null" class="profilepic">
-			<img src="/img/daodao.jpg" class="js-avatar">
+		<a href="" class="profilepic">
+			<img src="/img/baobao.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="null">Minghao Xie</a></h1>
+		  <h1 class="header-author"><a href="">Minghao Xie</a></h1>
 		</hgroup>
 		
 		<p class="header-subtitle">Any idea or discussion is highly welcomed.</p>
@@ -94,9 +96,7 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/categories/Practice">Practice</a></li>
 	        
-				<li><a href="/categories/Comment">Comment</a></li>
-	        
-				<li><a href="/categories/Essay">Essay</a></li>
+				<li><a href="/categories/Others">Others</a></li>
 	        
 			</ul>
 		</nav>
@@ -144,7 +144,7 @@ var _hmt = _hmt || [];
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/img/daodao.jpg" class="js-avatar">
+				<img src="/img/baobao.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Minghao Xie</h1>
@@ -153,8 +153,6 @@ var _hmt = _hmt || [];
 			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Any idea or discussion is highly welcomed.<i class="icon icon-quo-right"></i></p>
 			
 			
-			
-				
 			
 				
 			
@@ -188,17 +186,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">Home</a></li>
+					<li style="width: 20%"><a href="/">Home</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">All</a></li>
+					<li style="width: 20%"><a href="/archives">All</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Theory">Theory</a></li>
+					<li style="width: 20%"><a href="/categories/Theory">Theory</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Practice">Practice</a></li>
+					<li style="width: 20%"><a href="/categories/Practice">Practice</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Comment">Comment</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Essay">Essay</a></li>
+					<li style="width: 20%"><a href="/categories/Others">Others</a></li>
 		        
 				</ul>
 			</nav>
@@ -356,8 +352,8 @@ void f()
 <p>这周就先学习到这里，欢迎大家留言交流。</p>
 <p>中英文书籍：</p>
 <ol>
-<li><a href="http://pan.baidu.com/s/1qXxyxuk" target="_blank" rel="external"><em>英文版 - 网盘</em></a></li>
-<li><a href="https://www.gitbook.com/book/chenxiaowei/cpp_concurrency_in_action/details" target="_blank" rel="external"><em>中文版 - GitBook</em></a></li>
+<li><a href="http://pan.baidu.com/s/1qXxyxuk" target="_blank" rel="noopener"><em>英文版 - 网盘</em></a></li>
+<li><a href="https://www.gitbook.com/book/chenxiaowei/cpp_concurrency_in_action/details" target="_blank" rel="noopener"><em>中文版 - GitBook</em></a></li>
 </ol>
 
       
@@ -636,11 +632,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">methodology</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">research</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">c++</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">concurrency</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SDN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">network</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">summary</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -657,26 +673,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">note</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">methodology</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">research</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SDN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">network</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">summary</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -728,14 +724,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">workshop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">paper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">resource</a>
               </li>
              
@@ -748,6 +736,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">workshop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">paper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">twisted</a>
               </li>
              
@@ -757,6 +753,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">TLDR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">flash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">storage</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">data center</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">QoS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IX</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">data plane</a>
               </li>
             
             <div class="clearfix"></div>
@@ -816,19 +836,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
+              <a href="https://gbxu.github.io" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>某川大校友</a>
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
+              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广告位招租1</a>
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
+              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广告位招租2</a>
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广告位招租3</a>
             </li>
           
         </ul>

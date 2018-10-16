@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://mhxie.me">
-  <title>Homebrew安装使用总结 | Xie&#39;s Exploration</title>
+  <title>Homebrew安装使用总结 | Minghao&#39;s Exploration</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="homebrew是一个小型的，非商业性质的套件管理器。它能够自动化安装库或者软件，并且自动安装其所需要的依赖（不同于MacPorts，尽量使用系统自带的库），定制简单，上手容易，更新及时，而且是直接装在 /usr/local 下，减少很多各种 PATH 环境变量的定义（简直是开发必备啊）。">
+<meta name="keywords" content="tool,mac,develop">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Homebrew安装使用总结">
 <meta property="og:url" content="https://mhxie.me/2015/09/19/Homebrew Usage/index.html">
-<meta property="og:site_name" content="Xie's Exploration">
+<meta property="og:site_name" content="Minghao&#39;s Exploration">
 <meta property="og:description" content="homebrew是一个小型的，非商业性质的套件管理器。它能够自动化安装库或者软件，并且自动安装其所需要的依赖（不同于MacPorts，尽量使用系统自带的库），定制简单，上手容易，更新及时，而且是直接装在 /usr/local 下，减少很多各种 PATH 环境变量的定义（简直是开发必备啊）。">
+<meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2018-10-08T05:00:47.612Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Homebrew安装使用总结">
 <meta name="twitter:description" content="homebrew是一个小型的，非商业性质的套件管理器。它能够自动化安装库或者软件，并且自动安装其所需要的依赖（不同于MacPorts，尽量使用系统自带的库），定制简单，上手容易，更新及时，而且是直接装在 /usr/local 下，减少很多各种 PATH 环境变量的定义（简直是开发必备啊）。">
   
-    <link rel="alternative" href="/atom.xml" title="Xie&#39;s Exploration" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Minghao&#39;s Exploration" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -68,11 +70,11 @@ var _hmt = _hmt || [];
 <div class="overlay" style="background: #4d4d4d"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
-		<a href="null" class="profilepic">
-			<img src="/img/daodao.jpg" class="js-avatar">
+		<a href="" class="profilepic">
+			<img src="/img/baobao.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="null">Minghao Xie</a></h1>
+		  <h1 class="header-author"><a href="">Minghao Xie</a></h1>
 		</hgroup>
 		
 		<p class="header-subtitle">Any idea or discussion is highly welcomed.</p>
@@ -89,9 +91,7 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/categories/Practice">Practice</a></li>
 	        
-				<li><a href="/categories/Comment">Comment</a></li>
-	        
-				<li><a href="/categories/Essay">Essay</a></li>
+				<li><a href="/categories/Others">Others</a></li>
 	        
 			</ul>
 		</nav>
@@ -139,7 +139,7 @@ var _hmt = _hmt || [];
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/img/daodao.jpg" class="js-avatar">
+				<img src="/img/baobao.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Minghao Xie</h1>
@@ -148,8 +148,6 @@ var _hmt = _hmt || [];
 			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Any idea or discussion is highly welcomed.<i class="icon icon-quo-right"></i></p>
 			
 			
-			
-				
 			
 				
 			
@@ -183,17 +181,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">Home</a></li>
+					<li style="width: 20%"><a href="/">Home</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">All</a></li>
+					<li style="width: 20%"><a href="/archives">All</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Theory">Theory</a></li>
+					<li style="width: 20%"><a href="/categories/Theory">Theory</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Practice">Practice</a></li>
+					<li style="width: 20%"><a href="/categories/Practice">Practice</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Comment">Comment</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Essay">Essay</a></li>
+					<li style="width: 20%"><a href="/categories/Others">Others</a></li>
 		        
 				</ul>
 			</nav>
@@ -278,12 +274,12 @@ update     a synonym for &apos;brew update&apos;
 zap        zaps all files associated with the given Cask
 </code></pre><h3 id="高阶用法"><a href="#高阶用法" class="headerlink" title="高阶用法"></a>高阶用法</h3><pre><code>brew create//创建自己的Homebrew程式
 brew edit//使用 $EDITOR 编辑!
-</code></pre><p>详细用法可以参考：<a href="http://linfan.info/blog/2012/02/25/homebrew-installation-and-usage/" target="_blank" rel="external">http://linfan.info/blog/2012/02/25/homebrew-installation-and-usage/</a></p>
+</code></pre><p>详细用法可以参考：<a href="http://linfan.info/blog/2012/02/25/homebrew-installation-and-usage/" target="_blank" rel="noopener">http://linfan.info/blog/2012/02/25/homebrew-installation-and-usage/</a></p>
 <p><em>Reference:</em></p>
 <ol>
-<li>官网地址： <a href="http://brew.sh" target="_blank" rel="external">http://brew.sh</a></li>
-<li>命令说明： <a href="https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Formula-Cookbook.md" target="_blank" rel="external">https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Formula-Cookbook.md</a></li>
-<li>官方文档： <a href="https://github.com/Homebrew/homebrew/tree/master/share/doc" target="_blank" rel="external">https://github.com/Homebrew/homebrew/tree/master/share/doc</a></li>
+<li>官网地址： <a href="http://brew.sh" target="_blank" rel="noopener">http://brew.sh</a></li>
+<li>命令说明： <a href="https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Formula-Cookbook.md" target="_blank" rel="noopener">https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Formula-Cookbook.md</a></li>
+<li>官方文档： <a href="https://github.com/Homebrew/homebrew/tree/master/share/doc" target="_blank" rel="noopener">https://github.com/Homebrew/homebrew/tree/master/share/doc</a></li>
 </ol>
 
       
@@ -566,11 +562,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">methodology</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">research</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">c++</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">concurrency</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SDN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">network</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">summary</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -587,26 +603,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">note</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">methodology</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">research</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SDN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">network</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">summary</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -658,14 +654,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">workshop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">paper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">resource</a>
               </li>
              
@@ -678,6 +666,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">workshop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">paper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">twisted</a>
               </li>
              
@@ -687,6 +683,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">TLDR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">flash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">storage</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">data center</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">QoS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IX</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">data plane</a>
               </li>
             
             <div class="clearfix"></div>
@@ -746,19 +766,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
+              <a href="https://gbxu.github.io" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>某川大校友</a>
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
+              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广告位招租1</a>
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
+              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广告位招租2</a>
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广告位招租3</a>
             </li>
           
         </ul>

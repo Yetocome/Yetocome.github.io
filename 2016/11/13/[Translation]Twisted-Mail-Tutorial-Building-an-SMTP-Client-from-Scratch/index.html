@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://mhxie.me">
-  <title>[译]Twisted Mail Tutorial: Building an SMTP Client from Scratch | Xie&#39;s Exploration</title>
+  <title>[译]Twisted Mail Tutorial: Building an SMTP Client from Scratch | Minghao&#39;s Exploration</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="This tutorial will walk you through the creation of an extremely simple SMTP client application. By the time the tutorial is complete, you will understand how to create and start a TCP client speakin">
+<meta name="keywords" content="network,twisted,python,TLDR">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[译]Twisted Mail Tutorial: Building an SMTP Client from Scratch">
 <meta property="og:url" content="https://mhxie.me/2016/11/13/[Translation]Twisted-Mail-Tutorial-Building-an-SMTP-Client-from-Scratch/index.html">
-<meta property="og:site_name" content="Xie's Exploration">
+<meta property="og:site_name" content="Minghao&#39;s Exploration">
 <meta property="og:description" content="This tutorial will walk you through the creation of an extremely simple SMTP client application. By the time the tutorial is complete, you will understand how to create and start a TCP client speakin">
+<meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2018-10-08T05:41:25.246Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[译]Twisted Mail Tutorial: Building an SMTP Client from Scratch">
 <meta name="twitter:description" content="This tutorial will walk you through the creation of an extremely simple SMTP client application. By the time the tutorial is complete, you will understand how to create and start a TCP client speakin">
   
-    <link rel="alternative" href="/atom.xml" title="Xie&#39;s Exploration" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Minghao&#39;s Exploration" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -68,11 +70,11 @@ var _hmt = _hmt || [];
 <div class="overlay" style="background: #4d4d4d"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
-		<a href="null" class="profilepic">
-			<img src="/img/daodao.jpg" class="js-avatar">
+		<a href="" class="profilepic">
+			<img src="/img/baobao.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="null">Minghao Xie</a></h1>
+		  <h1 class="header-author"><a href="">Minghao Xie</a></h1>
 		</hgroup>
 		
 		<p class="header-subtitle">Any idea or discussion is highly welcomed.</p>
@@ -89,9 +91,7 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/categories/Practice">Practice</a></li>
 	        
-				<li><a href="/categories/Comment">Comment</a></li>
-	        
-				<li><a href="/categories/Essay">Essay</a></li>
+				<li><a href="/categories/Others">Others</a></li>
 	        
 			</ul>
 		</nav>
@@ -139,7 +139,7 @@ var _hmt = _hmt || [];
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/img/daodao.jpg" class="js-avatar">
+				<img src="/img/baobao.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Minghao Xie</h1>
@@ -148,8 +148,6 @@ var _hmt = _hmt || [];
 			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Any idea or discussion is highly welcomed.<i class="icon icon-quo-right"></i></p>
 			
 			
-			
-				
 			
 				
 			
@@ -183,17 +181,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">Home</a></li>
+					<li style="width: 20%"><a href="/">Home</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">All</a></li>
+					<li style="width: 20%"><a href="/archives">All</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Theory">Theory</a></li>
+					<li style="width: 20%"><a href="/categories/Theory">Theory</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Practice">Practice</a></li>
+					<li style="width: 20%"><a href="/categories/Practice">Practice</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Comment">Comment</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Essay">Essay</a></li>
+					<li style="width: 20%"><a href="/categories/Others">Others</a></li>
 		        
 				</ul>
 			</nav>
@@ -232,7 +228,7 @@ var _hmt = _hmt || [];
 <p>This tutorial will walk you through the creation of an extremely simple SMTP client application. By the time the tutorial is complete, you will understand how to create and start a TCP client speaking the SMTP protocol, have it connect to an appropriate mail exchange server, and transmit a message for delivery.  </p>
 <p>For the majority of this tutorial, twistd will be used to launch the application. Near the end we will explore other possibilities for starting a Twisted application. Until then, make sure that you have twistd installed and conveniently accessible for use in running each of the example .tac files.  </p>
 </blockquote>
-<p>教程整理自twitsed的官方文档， <strong>原文有删改</strong> ， <a href="https://twistedmatrix.com/documents/current/mail/tutorial/smtpclient/smtpclient.html" target="_blank" rel="external">原文链接</a></p>
+<p>教程整理自twitsed的官方文档， <strong>原文有删改</strong> ， <a href="https://twistedmatrix.com/documents/current/mail/tutorial/smtpclient/smtpclient.html" target="_blank" rel="noopener">原文链接</a></p>
 <p><strong>Caution</strong>：本文较长，建议抽出一段较长的时间边运行代码边读。</p>
 <p>因为时间有限，很多细节没有翻译，有时间一定补上( ̀⌄ ́)</p>
 <p>主要是通过介绍一些及其简单的客户端应用来让我们理解如何创建并启动一个用SMTP协议的TCP客户端，让它能够连接到合适的邮件交换服务器，并能提交用于转发的信息。<br><a id="more"></a></p>
@@ -349,7 +345,7 @@ def main():
 application = main()
 </code></pre><h3 id="第一个SMTP客户端"><a href="#第一个SMTP客户端" class="headerlink" title="第一个SMTP客户端"></a>第一个SMTP客户端</h3><p>可能的话，创建一个 <code>smtpclient-1.tac</code> 为twistd所使用。</p>
 <p>源代码：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> twisted.<span class="built_in">application</span> import service</div><div class="line"><span class="comment"># The first line of the .tac file imports twisted.application.service , a module</span></div><div class="line"><span class="comment"># which contains many of the basic service classes and helper functions available</span></div><div class="line"><span class="comment"># in Twisted. In particular, we will be using the Application function to create</span></div><div class="line"><span class="comment"># a new application service . An application service simply acts as a central</span></div><div class="line"><span class="comment"># object on which to store certain kinds of deployment configuration.</span></div><div class="line"></div><div class="line"><span class="built_in">application</span> = service.Application(<span class="string">"SMTP Client Tutorial"</span>)</div><div class="line"></div><div class="line"><span class="comment"># The second line of the .tac file creates a new application service and binds</span></div><div class="line"><span class="comment"># it to the local name application . twistd requires this local name in each .tac</span></div><div class="line"><span class="comment"># file it runs. It uses various pieces of configuration on the object to determine</span></div><div class="line"><span class="comment"># its behavior. For example, "SMTP Client Tutorial" will be used as the name of</span></div><div class="line"><span class="comment"># the .tap file into which to serialize application state, should it be necessary</span></div><div class="line"><span class="comment"># to do so.</span></div></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> twisted.application import service</span><br><span class="line"><span class="comment"># The first line of the .tac file imports twisted.application.service , a module</span></span><br><span class="line"><span class="comment"># which contains many of the basic service classes and helper functions available</span></span><br><span class="line"><span class="comment"># in Twisted. In particular, we will be using the Application function to create</span></span><br><span class="line"><span class="comment"># a new application service . An application service simply acts as a central</span></span><br><span class="line"><span class="comment"># object on which to store certain kinds of deployment configuration.</span></span><br><span class="line"></span><br><span class="line">application = service.Application(<span class="string">"SMTP Client Tutorial"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># The second line of the .tac file creates a new application service and binds</span></span><br><span class="line"><span class="comment"># it to the local name application . twistd requires this local name in each .tac</span></span><br><span class="line"><span class="comment"># file it runs. It uses various pieces of configuration on the object to determine</span></span><br><span class="line"><span class="comment"># its behavior. For example, "SMTP Client Tutorial" will be used as the name of</span></span><br><span class="line"><span class="comment"># the .tap file into which to serialize application state, should it be necessary</span></span><br><span class="line"><span class="comment"># to do so.</span></span><br></pre></td></tr></table></figure>
 <p>运行我们的服务器，这里-n代表以非后台形式运行，-y表示在python源文件里读取applicaiton：</p>
 <pre><code>❯ twistd -ny smtpclient-1.tac
 2016-11-12T16:55:36+0800 [-] Loading smtpclient-1.tac...
@@ -668,14 +664,14 @@ smtpClientService = internet.TCPClient(&apos;localhost&apos;, 25, smtpClientFact
 smtpClientService.setServiceParent(application)
 </code></pre><p>我们来剖析一下其中的四个函数：</p>
 <ul>
-<li><code>def getMailFrom(self):</code> 这个方法用于确定 <code>reverse-path</code>  ——也被称作发件地址。这个值被用于SMTP中的 <code>MAIL</code> 命令。这个方法必须返回符合 RFC 2821 定义的一个 <code>reverse-path</code> 。简单的说，就是它可以是i 个像”alice@example.com”这样的字符串。注意只有一个发件地址被SMTP协议所允许；</li>
+<li><code>def getMailFrom(self):</code> 这个方法用于确定 <code>reverse-path</code>  ——也被称作发件地址。这个值被用于SMTP中的 <code>MAIL</code> 命令。这个方法必须返回符合 RFC 2821 定义的一个 <code>reverse-path</code> 。简单的说，就是它可以是i 个像”<a href="mailto:alice@example.com" target="_blank" rel="noopener">alice@example.com</a>”这样的字符串。注意只有一个发件地址被SMTP协议所允许；</li>
 <li><code>def getMailTo(self):</code> 和上一个方法差不多，返回一个或多个RFC 2821定义的 <code>forward-path</code> —— 转发地址，注意它必须包括至少一个地址，即使只有一个，它也将是一个列表（感觉这里好啰嗦）；</li>
 <li><code>def getMailData(self):</code> 这个也很简单，它将会返回一个包含信息内容的文件或者类文件对象。在这里，它将返回一个StringIO因为我们已经有一个包括信息的字符窜了。假使文件内容包括多行（正如邮件通常的样子），行间应该由 <code>\n</code> 来划分（正如我们经常以“rt”模式打开文本文件）：必要的newline会由 <code>SMTPClient</code> 自动转换；</li>
 <li><p><code>def sentMail(self, code, resp, numOk, addresses, log):</code> 这个方法和邮件发送没有太大关系，是用给twisted来提供信息传递成功与失败信息的；其中 <code>code</code> 是最终命令返回的状态码：</p>
 <blockquote>
 <p>For successful transactions, it will be 250. For transient failures (those which should be retried), it will be between 400 and 499, inclusive. For permanent failures (this which will never work, no matter how many times you retry them), it will be between 500 and 599.  </p>
 </blockquote>
-<p>  ❯ twistd -ny smtpclient-7.tac<br>  2016-11-12T20:06:32+0800 [-] Loading smtpclient-7.tac…<br>  2016-11-12T20:06:32+0800 [-] Loaded.<br>  2016-11-12T20:06:32+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 16.5.0 (/usr/local/opt/python/bin/python2.7 2.7.12) starting up.<br>  2016-11-12T20:06:32+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.selectreactor.SelectReactor.<br>  2016-11-12T20:06:32+0800 [<strong>builtin</strong>.SMTPClientFactory#info] Starting factory <__builtin__.smtpclientfactory instance="" at="" 0x10c04fa70=""><br>  2016-11-12T20:06:32+0800 [stdout#info] Sent 0 messages<br>  2016-11-12T20:06:32+0800 [<strong>builtin</strong>.SMTPClientFactory#info] Stopping factory <__builtin__.smtpclientfactory instance="" at="" 0x10c04fa70=""></__builtin__.smtpclientfactory></__builtin__.smtpclientfactory></p>
+<p>  ❯ twistd -ny smtpclient-7.tac<br>  2016-11-12T20:06:32+0800 [-] Loading smtpclient-7.tac…<br>  2016-11-12T20:06:32+0800 [-] Loaded.<br>  2016-11-12T20:06:32+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 16.5.0 (/usr/local/opt/python/bin/python2.7 2.7.12) starting up.<br>  2016-11-12T20:06:32+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.selectreactor.SelectReactor.<br>  2016-11-12T20:06:32+0800 [<strong>builtin</strong>.SMTPClientFactory#info] Starting factory &lt;<strong>builtin</strong>.SMTPClientFactory instance at 0x10c04fa70&gt;<br>  2016-11-12T20:06:32+0800 [stdout#info] Sent 0 messages<br>  2016-11-12T20:06:32+0800 [<strong>builtin</strong>.SMTPClientFactory#info] Stopping factory &lt;<strong>builtin</strong>.SMTPClientFactory instance at 0x10c04fa70&gt;</p>
 </li>
 </ul>
 <h3 id="第八个SMTP客户端"><a href="#第八个SMTP客户端" class="headerlink" title="第八个SMTP客户端"></a>第八个SMTP客户端</h3><p>这个版本就添加了两行代码，避免了每次发送完邮件后都要输入^C 的尴尬……</p>
@@ -761,7 +757,7 @@ smtpClientService.setServiceParent(application)
     smtpClientService.setServiceParent(application)
 
 getMailExchange(&apos;example.net&apos;).addCallback(cbMailExchange)
-</code></pre><p>深入了解 <code>Deferred</code> 已经超出了本文档的范畴，访问这里获得更多信息 <a href="https://twistedmatrix.com/documents/current/core/howto/defer.html" target="_blank" rel="external">Deferred Reference — Twisted 16.5.0 documentation</a></p>
+</code></pre><p>深入了解 <code>Deferred</code> 已经超出了本文档的范畴，访问这里获得更多信息 <a href="https://twistedmatrix.com/documents/current/core/howto/defer.html" target="_blank" rel="noopener">Deferred Reference — Twisted 16.5.0 documentation</a></p>
 <h3 id="第十一个SMTP客户端"><a href="#第十一个SMTP客户端" class="headerlink" title="第十一个SMTP客户端"></a>第十一个SMTP客户端</h3><p>我们已经准备好对邮件交换的查询。现在我们将defer换成真正的查找函数—— <code>twisted.mail.relaymanager.MXCalculator</code></p>
 <pre><code>def getMailExchange(host):
     def cbMX(mxRecord):
@@ -1120,11 +1116,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">methodology</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">research</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">c++</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">concurrency</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SDN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">network</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">summary</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1141,26 +1157,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">note</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">methodology</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">research</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SDN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">network</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">summary</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1212,14 +1208,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">workshop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">paper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">resource</a>
               </li>
              
@@ -1232,6 +1220,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">workshop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">paper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">twisted</a>
               </li>
              
@@ -1241,6 +1237,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">TLDR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">flash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">storage</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">data center</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">QoS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IX</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">data plane</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1300,19 +1320,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
+              <a href="https://gbxu.github.io" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>某川大校友</a>
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
+              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广告位招租1</a>
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
+              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广告位招租2</a>
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广告位招租3</a>
             </li>
           
         </ul>

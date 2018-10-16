@@ -6,30 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://mhxie.me">
-  <title>【Mac】Terminal改造小记 | Xie&#39;s Exploration</title>
+  <title>【Mac】Terminal改造小记 | Minghao&#39;s Exploration</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="先上主要配置，想要自己折腾的同学自己可以行动起来了。
-配置推荐：HyperTerm(hyperterm-snazzy+ hyperpower + hyperpower-plus + hyperline)+oh-my-zsh(pure+git+autojump+osx+zsh-syntax-highlighting+zsh-wakatime)+Tmux
-这里是显示效果：">
+  <meta name="description" content="先上主要配置，想要自己折腾的同学自己可以行动起来了。 配置推荐：HyperTerm(hyperterm-snazzy+ hyperpower + hyperpower-plus + hyperline)+oh-my-zsh(pure+git+autojump+osx+zsh-syntax-highlighting+zsh-wakatime)+Tmux 这里是显示效果：">
+<meta name="keywords" content="tool,mac,develop">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Mac】Terminal改造小记">
 <meta property="og:url" content="https://mhxie.me/2016/09/21/Mac Terminal Log/index.html">
-<meta property="og:site_name" content="Xie's Exploration">
-<meta property="og:description" content="先上主要配置，想要自己折腾的同学自己可以行动起来了。
-配置推荐：HyperTerm(hyperterm-snazzy+ hyperpower + hyperpower-plus + hyperline)+oh-my-zsh(pure+git+autojump+osx+zsh-syntax-highlighting+zsh-wakatime)+Tmux
-这里是显示效果：">
+<meta property="og:site_name" content="Minghao&#39;s Exploration">
+<meta property="og:description" content="先上主要配置，想要自己折腾的同学自己可以行动起来了。 配置推荐：HyperTerm(hyperterm-snazzy+ hyperpower + hyperpower-plus + hyperline)+oh-my-zsh(pure+git+autojump+osx+zsh-syntax-highlighting+zsh-wakatime)+Tmux 这里是显示效果：">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/HyperTerm.png">
 <meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/wakatime_for_terminal.png">
 <meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/tmux_config.png">
 <meta property="og:updated_time" content="2018-10-08T05:41:46.121Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Mac】Terminal改造小记">
-<meta name="twitter:description" content="先上主要配置，想要自己折腾的同学自己可以行动起来了。
-配置推荐：HyperTerm(hyperterm-snazzy+ hyperpower + hyperpower-plus + hyperline)+oh-my-zsh(pure+git+autojump+osx+zsh-syntax-highlighting+zsh-wakatime)+Tmux
-这里是显示效果：">
+<meta name="twitter:description" content="先上主要配置，想要自己折腾的同学自己可以行动起来了。 配置推荐：HyperTerm(hyperterm-snazzy+ hyperpower + hyperpower-plus + hyperline)+oh-my-zsh(pure+git+autojump+osx+zsh-syntax-highlighting+zsh-wakatime)+Tmux 这里是显示效果：">
 <meta name="twitter:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/HyperTerm.png">
   
-    <link rel="alternative" href="/atom.xml" title="Xie&#39;s Exploration" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Minghao&#39;s Exploration" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -78,11 +74,11 @@ var _hmt = _hmt || [];
 <div class="overlay" style="background: #4d4d4d"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
-		<a href="null" class="profilepic">
-			<img src="/img/daodao.jpg" class="js-avatar">
+		<a href="" class="profilepic">
+			<img src="/img/baobao.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="null">Minghao Xie</a></h1>
+		  <h1 class="header-author"><a href="">Minghao Xie</a></h1>
 		</hgroup>
 		
 		<p class="header-subtitle">Any idea or discussion is highly welcomed.</p>
@@ -99,9 +95,7 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/categories/Practice">Practice</a></li>
 	        
-				<li><a href="/categories/Comment">Comment</a></li>
-	        
-				<li><a href="/categories/Essay">Essay</a></li>
+				<li><a href="/categories/Others">Others</a></li>
 	        
 			</ul>
 		</nav>
@@ -149,7 +143,7 @@ var _hmt = _hmt || [];
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/img/daodao.jpg" class="js-avatar">
+				<img src="/img/baobao.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Minghao Xie</h1>
@@ -158,8 +152,6 @@ var _hmt = _hmt || [];
 			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Any idea or discussion is highly welcomed.<i class="icon icon-quo-right"></i></p>
 			
 			
-			
-				
 			
 				
 			
@@ -193,17 +185,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">Home</a></li>
+					<li style="width: 20%"><a href="/">Home</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">All</a></li>
+					<li style="width: 20%"><a href="/archives">All</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Theory">Theory</a></li>
+					<li style="width: 20%"><a href="/categories/Theory">Theory</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Practice">Practice</a></li>
+					<li style="width: 20%"><a href="/categories/Practice">Practice</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Comment">Comment</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Essay">Essay</a></li>
+					<li style="width: 20%"><a href="/categories/Others">Others</a></li>
 		        
 				</ul>
 			</nav>
@@ -257,20 +247,20 @@ var _hmt = _hmt || [];
 <p>好在zsh和Tmux配置好了就可以到处跑了，给自带终端加个不错的主题后，我们就把终端的选择先放一边吧。<br>放上我的主题</p>
 <h2 id="zsh配置小记"><a href="#zsh配置小记" class="headerlink" title="zsh配置小记"></a>zsh配置小记</h2><p>要用zsh怎么能不装oh-my-zsh呢（其实也就是因为它zsh才火起来的）？</p>
 <ul>
-<li>wget <a href="https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh" target="_blank" rel="external">https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh</a> -O - | sh 自动安装</li>
+<li>wget <a href="https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh" target="_blank" rel="noopener">https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh</a> -O - | sh 自动安装</li>
 <li>在<code>~/.zshrc</code>下编辑你的配置就行了，各位别忘了把terminal的启动命令换成zsh</li>
 </ul>
 <p>接下来是我的一些个性化配置</p>
 <ul>
 <li>我用的是pure主题，oh-my-zsh已经把它加入默认的主题包里，你把默认的<code>ZSH_THEME=&quot;robbyrussell&quot;</code>改成<code>ZSH_THEME=&quot;pure&quot;</code>即可</li>
-<li>但这不是最新的配置，可以去<a href="https://github.com/sindresorhus/pure" target="_blank" rel="external">pure</a>下载最新的主题，注意不要和原先的冲突（好吧，HyperTerm也是它告诉我的）</li>
+<li>但这不是最新的配置，可以去<a href="https://github.com/sindresorhus/pure" target="_blank" rel="noopener">pure</a>下载最新的主题，注意不要和原先的冲突（好吧，HyperTerm也是它告诉我的）</li>
 </ul>
 <ul>
 <li><p>要高亮命令，需要<code>brew install zsh-syntax-highlighting</code>，然后在插件里加上<code>zsh-syntax-highlighting</code>就好了；</p>
 </li>
 <li><p>要配置<code>wake-time</code>，需要sudo pip install wakatime.</p>
 </li>
-<li><p>cd ~/.oh-my-zsh/custom/plugins &amp;&amp; git clone <a href="https://github.com/wbinglee/zsh-wakatime.git" target="_blank" rel="external">https://github.com/wbinglee/zsh-wakatime.git</a></p>
+<li><p>cd ~/.oh-my-zsh/custom/plugins &amp;&amp; git clone <a href="https://github.com/wbinglee/zsh-wakatime.git" target="_blank" rel="noopener">https://github.com/wbinglee/zsh-wakatime.git</a></p>
 </li>
 <li><p>然后在插件里加入zsh-wakatime就好了，过段时间就可以看统计信息了</p>
 </li>
@@ -294,7 +284,7 @@ var _hmt = _hmt || [];
 </ul>
 <p>接下来讲讲它的配置，我换了一圈流行配置感觉还是下面这个比较搭我的terminal，其他的感觉都太臃肿太复杂了，github上star数最高那个安装就挺麻烦的…</p>
 <p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/tmux_config.png" alt=""></p>
-<p>配置文件：<br>     去<a href="https://github.com/zanshin/dotfiles/tree/master/tmux下载配置文件" target="_blank" rel="external">https://github.com/zanshin/dotfiles/tree/master/tmux下载配置文件</a><br>     重命名为.tmux.conf放在你的~目录下<br>     用brew install reattach-to-user-namespace解决在mac下的一些问题<br>     用tmux source-file ~/.tmux.conf来启动你的配置</p>
+<p>配置文件：<br>     去<a href="https://github.com/zanshin/dotfiles/tree/master/tmux下载配置文件" target="_blank" rel="noopener">https://github.com/zanshin/dotfiles/tree/master/tmux下载配置文件</a><br>     重命名为.tmux.conf放在你的~目录下<br>     用brew install reattach-to-user-namespace解决在mac下的一些问题<br>     用tmux source-file ~/.tmux.conf来启动你的配置</p>
 <p>其中一些常用配置整理：</p>
 <ul>
 <li>prefix改成了`</li>
@@ -314,7 +304,7 @@ var _hmt = _hmt || [];
 <li>这样内容就在你粘贴板上了</li>
 <li>你可以用pbpaste来查看刚刚复制的内容</li>
 </ul>
-<p>来自<a href="https://robots.thoughtbot.com/tmux-copy-paste-on-os-x-a-better-future" target="_blank" rel="external">https://robots.thoughtbot.com/tmux-copy-paste-on-os-x-a-better-future</a></p>
+<p>来自<a href="https://robots.thoughtbot.com/tmux-copy-paste-on-os-x-a-better-future" target="_blank" rel="noopener">https://robots.thoughtbot.com/tmux-copy-paste-on-os-x-a-better-future</a></p>
 <hr>
 <p>虽然时常还有些小bug，但tmux真的非常好用，可以说网络编程必备，平时经常和服务器打交道的小伙伴建议也学习一个。</p>
 <p>怎么样，有没有觉得terminal也很好玩呐~</p>
@@ -599,11 +589,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">methodology</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">research</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">c++</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">concurrency</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SDN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">network</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">summary</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -620,26 +630,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">note</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">methodology</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">research</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SDN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">network</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">summary</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -691,14 +681,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">workshop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">paper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">resource</a>
               </li>
              
@@ -711,6 +693,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">workshop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">paper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">twisted</a>
               </li>
              
@@ -720,6 +710,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">TLDR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">flash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">storage</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">data center</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">QoS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IX</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">data plane</a>
               </li>
             
             <div class="clearfix"></div>
@@ -779,19 +793,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
+              <a href="https://gbxu.github.io" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>某川大校友</a>
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
+              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广告位招租1</a>
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
+              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广告位招租2</a>
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广告位招租3</a>
             </li>
           
         </ul>

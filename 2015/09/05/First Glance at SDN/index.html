@@ -6,14 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://mhxie.me">
-  <title>初识SDN | Xie&#39;s Exploration</title>
+  <title>初识SDN | Minghao&#39;s Exploration</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="SDN是一种为了解决传统网络中各种问题，比如管理困难、维护困难、拓展性差、灵活性差等，而出现的新型的网络架构。它的核心特征是实现了控制平面和数据平面的分离、控制逻辑集中和网络可编程。它的意义在于淡化底层设备的作用，让网络硬件的设计更加简单通用，打破“厂商锁定”，并且在这之上建立一个开放的网络操作系统，让开发者进入网络服务开发的门槛更低，建立起一个大三层网络生态系统，激发网络创新，给用户带来更好的使">
+<meta name="keywords" content="SDN,network,summary">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初识SDN">
 <meta property="og:url" content="https://mhxie.me/2015/09/05/First Glance at SDN/index.html">
-<meta property="og:site_name" content="Xie's Exploration">
+<meta property="og:site_name" content="Minghao&#39;s Exploration">
 <meta property="og:description" content="SDN是一种为了解决传统网络中各种问题，比如管理困难、维护困难、拓展性差、灵活性差等，而出现的新型的网络架构。它的核心特征是实现了控制平面和数据平面的分离、控制逻辑集中和网络可编程。它的意义在于淡化底层设备的作用，让网络硬件的设计更加简单通用，打破“厂商锁定”，并且在这之上建立一个开放的网络操作系统，让开发者进入网络服务开发的门槛更低，建立起一个大三层网络生态系统，激发网络创新，给用户带来更好的使">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/sdnsdn-3layers-2.gif">
 <meta property="og:updated_time" content="2018-10-08T05:41:36.903Z">
 <meta name="twitter:card" content="summary">
@@ -21,7 +23,7 @@
 <meta name="twitter:description" content="SDN是一种为了解决传统网络中各种问题，比如管理困难、维护困难、拓展性差、灵活性差等，而出现的新型的网络架构。它的核心特征是实现了控制平面和数据平面的分离、控制逻辑集中和网络可编程。它的意义在于淡化底层设备的作用，让网络硬件的设计更加简单通用，打破“厂商锁定”，并且在这之上建立一个开放的网络操作系统，让开发者进入网络服务开发的门槛更低，建立起一个大三层网络生态系统，激发网络创新，给用户带来更好的使">
 <meta name="twitter:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/sdnsdn-3layers-2.gif">
   
-    <link rel="alternative" href="/atom.xml" title="Xie&#39;s Exploration" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Minghao&#39;s Exploration" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -70,11 +72,11 @@ var _hmt = _hmt || [];
 <div class="overlay" style="background: #4d4d4d"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
-		<a href="null" class="profilepic">
-			<img src="/img/daodao.jpg" class="js-avatar">
+		<a href="" class="profilepic">
+			<img src="/img/baobao.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="null">Minghao Xie</a></h1>
+		  <h1 class="header-author"><a href="">Minghao Xie</a></h1>
 		</hgroup>
 		
 		<p class="header-subtitle">Any idea or discussion is highly welcomed.</p>
@@ -91,9 +93,7 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/categories/Practice">Practice</a></li>
 	        
-				<li><a href="/categories/Comment">Comment</a></li>
-	        
-				<li><a href="/categories/Essay">Essay</a></li>
+				<li><a href="/categories/Others">Others</a></li>
 	        
 			</ul>
 		</nav>
@@ -141,7 +141,7 @@ var _hmt = _hmt || [];
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/img/daodao.jpg" class="js-avatar">
+				<img src="/img/baobao.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Minghao Xie</h1>
@@ -150,8 +150,6 @@ var _hmt = _hmt || [];
 			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Any idea or discussion is highly welcomed.<i class="icon icon-quo-right"></i></p>
 			
 			
-			
-				
 			
 				
 			
@@ -185,17 +183,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">Home</a></li>
+					<li style="width: 20%"><a href="/">Home</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">All</a></li>
+					<li style="width: 20%"><a href="/archives">All</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Theory">Theory</a></li>
+					<li style="width: 20%"><a href="/categories/Theory">Theory</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Practice">Practice</a></li>
+					<li style="width: 20%"><a href="/categories/Practice">Practice</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Comment">Comment</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Essay">Essay</a></li>
+					<li style="width: 20%"><a href="/categories/Others">Others</a></li>
 		        
 				</ul>
 			</nav>
@@ -233,7 +229,7 @@ var _hmt = _hmt || [];
         <p><strong>SDN</strong>是一种为了解决传统网络中各种问题，比如管理困难、维护困难、拓展性差、灵活性差等，而出现的<strong>新型</strong>的<em><strong>网络架构</strong></em>。它的核心特征是实现了控制平面和数据平面的分离、控制逻辑集中和网络可编程。它的意义在于淡化底层设备的作用，让网络硬件的设计更加简单通用，打破“<strong>厂商锁定</strong>”，并且在这之上建立一个开放的网络操作系统，让开发者进入网络服务开发的门槛更低，建立起一个大三层网络生态系统，激发网络<em><strong>创新</strong></em>，给用户带来更好的使用体验。</p>
 <a id="more"></a>
 <h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/sdnsdn-3layers-2.gif" alt=""><br><em>图片出自ONF</em></p>
-<p><a href="https://www.opennetworking.org" target="_blank" rel="external">ONF</a>提出的典型架构分为三层（从上到下依次是）：</p>
+<p><a href="https://www.opennetworking.org" target="_blank" rel="noopener">ONF</a>提出的典型架构分为三层（从上到下依次是）：</p>
 <ul>
 <li>应用层（应用平面）</li>
 <li>控制层（控制平面）</li>
@@ -566,11 +562,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">methodology</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">research</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">c++</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">concurrency</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SDN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">network</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">summary</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -587,26 +603,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">note</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">methodology</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">research</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SDN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">network</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">summary</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -658,14 +654,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">workshop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">paper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">resource</a>
               </li>
              
@@ -678,6 +666,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">workshop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">paper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">twisted</a>
               </li>
              
@@ -687,6 +683,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">TLDR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">flash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">storage</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">data center</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">QoS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IX</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">data plane</a>
               </li>
             
             <div class="clearfix"></div>
@@ -746,19 +766,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
+              <a href="https://gbxu.github.io" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>某川大校友</a>
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
+              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广告位招租1</a>
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
+              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广告位招租2</a>
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广告位招租3</a>
             </li>
           
         </ul>

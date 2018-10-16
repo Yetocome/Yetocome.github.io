@@ -6,14 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://mhxie.me">
-  <title>Prolog学习笔记（三） | Xie&#39;s Exploration</title>
+  <title>Prolog学习笔记（三） | Minghao&#39;s Exploration</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="本周的重点是AND/OR树、结构体和表。通过AND/OR树，我们可以很好地理解Prolog的证明策略；结构体是（一）里没有介绍过的类型，要注意与事实(facts)的区别；List的构造与使用让我们真正感受到了在prolog里递归的力量，你会感叹设计递归的精妙与艰辛:p">
+<meta name="keywords" content="prolog,AI,language">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Prolog学习笔记（三）">
 <meta property="og:url" content="https://mhxie.me/2015/10/05/Prolog3/index.html">
-<meta property="og:site_name" content="Xie's Exploration">
+<meta property="og:site_name" content="Minghao&#39;s Exploration">
 <meta property="og:description" content="本周的重点是AND/OR树、结构体和表。通过AND/OR树，我们可以很好地理解Prolog的证明策略；结构体是（一）里没有介绍过的类型，要注意与事实(facts)的区别；List的构造与使用让我们真正感受到了在prolog里递归的力量，你会感叹设计递归的精妙与艰辛:p">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/prologAND%3AOR%20Tree.png">
 <meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/prologlist_tree.png">
 <meta property="og:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/prologlist.png">
@@ -23,7 +25,7 @@
 <meta name="twitter:description" content="本周的重点是AND/OR树、结构体和表。通过AND/OR树，我们可以很好地理解Prolog的证明策略；结构体是（一）里没有介绍过的类型，要注意与事实(facts)的区别；List的构造与使用让我们真正感受到了在prolog里递归的力量，你会感叹设计递归的精妙与艰辛:p">
 <meta name="twitter:image" content="http://7xkwu7.com1.z0.glb.clouddn.com/prologAND%3AOR%20Tree.png">
   
-    <link rel="alternative" href="/atom.xml" title="Xie&#39;s Exploration" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Minghao&#39;s Exploration" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -72,11 +74,11 @@ var _hmt = _hmt || [];
 <div class="overlay" style="background: #4d4d4d"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
-		<a href="null" class="profilepic">
-			<img src="/img/daodao.jpg" class="js-avatar">
+		<a href="" class="profilepic">
+			<img src="/img/baobao.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="null">Minghao Xie</a></h1>
+		  <h1 class="header-author"><a href="">Minghao Xie</a></h1>
 		</hgroup>
 		
 		<p class="header-subtitle">Any idea or discussion is highly welcomed.</p>
@@ -93,9 +95,7 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/categories/Practice">Practice</a></li>
 	        
-				<li><a href="/categories/Comment">Comment</a></li>
-	        
-				<li><a href="/categories/Essay">Essay</a></li>
+				<li><a href="/categories/Others">Others</a></li>
 	        
 			</ul>
 		</nav>
@@ -143,7 +143,7 @@ var _hmt = _hmt || [];
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/img/daodao.jpg" class="js-avatar">
+				<img src="/img/baobao.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Minghao Xie</h1>
@@ -152,8 +152,6 @@ var _hmt = _hmt || [];
 			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Any idea or discussion is highly welcomed.<i class="icon icon-quo-right"></i></p>
 			
 			
-			
-				
 			
 				
 			
@@ -187,17 +185,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">Home</a></li>
+					<li style="width: 20%"><a href="/">Home</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">All</a></li>
+					<li style="width: 20%"><a href="/archives">All</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Theory">Theory</a></li>
+					<li style="width: 20%"><a href="/categories/Theory">Theory</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Practice">Practice</a></li>
+					<li style="width: 20%"><a href="/categories/Practice">Practice</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Comment">Comment</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Essay">Essay</a></li>
+					<li style="width: 20%"><a href="/categories/Others">Others</a></li>
 		        
 				</ul>
 			</nav>
@@ -273,7 +269,7 @@ var _hmt = _hmt || [];
 Passing a command
 X = write(&apos;Passing a command&apos;) ?
 true
-</code></pre><p>是不是感觉有些混乱？关于facts、predicates、functors和terms，大家可以参考stackoverflow下的一个问答：<br><a href="http://stackoverflow.com/questions/19115712/in-prolog-is-a-fact-the-same-as-a-functor" target="_blank" rel="external">http://stackoverflow.com/questions/19115712/in-prolog-is-a-fact-the-same-as-a-functor</a></p>
+</code></pre><p>是不是感觉有些混乱？关于facts、predicates、functors和terms，大家可以参考stackoverflow下的一个问答：<br><a href="http://stackoverflow.com/questions/19115712/in-prolog-is-a-fact-the-same-as-a-functor" target="_blank" rel="noopener">http://stackoverflow.com/questions/19115712/in-prolog-is-a-fact-the-same-as-a-functor</a></p>
 <p>里面的问题是：</p>
 <blockquote>
 <p>If you have for instance next line of Prolog declaration:</p>
@@ -297,7 +293,7 @@ true
 <p>所以上面的表可以表示为(可以用树来理解)：<br>.(ann,.(tennis,.(tom,.(sking,[]))))</p>
 <p><img src="http://7xkwu7.com1.z0.glb.clouddn.com/prologlist_tree.png" alt=""></p>
 <p>更为直观地表示为：<br>[Head | Tail]</p>
-<p>这其实是list的递归表示，在polog里，它的存在让许多表的操作可以优雅地以<strong><em>递归</em></strong>方式实现，应用的例子直接从下面的List操作中体现。</p>
+<p>这其实是list的递归表示，在polog里，它的存在让许多表的操作可以优雅地以<strong>_递归_</strong>方式实现，应用的例子直接从下面的List操作中体现。</p>
 <h5 id="List-操作"><a href="#List-操作" class="headerlink" title="List 操作"></a>List 操作</h5><ol>
 <li><p>concatenation（连接操作）<br> 实现：</p>
 <pre><code>conc([], L2, L2).
@@ -665,11 +661,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">methodology</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">research</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">c++</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">concurrency</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SDN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">network</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">summary</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -686,26 +702,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">note</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">methodology</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">research</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SDN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">network</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">summary</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -757,14 +753,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">workshop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">paper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">resource</a>
               </li>
              
@@ -777,6 +765,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">workshop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">paper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">twisted</a>
               </li>
              
@@ -786,6 +782,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">TLDR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">flash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">storage</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">data center</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">QoS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IX</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">data plane</a>
               </li>
             
             <div class="clearfix"></div>
@@ -845,19 +865,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
+              <a href="https://gbxu.github.io" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>某川大校友</a>
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
+              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广告位招租1</a>
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
+              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广告位招租2</a>
             </li>
           
             <li class="search-li">
-              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+              <a href="/mhxie.me" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广告位招租3</a>
             </li>
           
         </ul>
