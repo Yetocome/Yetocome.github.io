@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://mhxie.me">
-  <title>[译文] Reflex: remote flash ≈ local flash | Minghao&#39;s Exploration</title>
+  <title>[译文] ReFlex: remote flash ≈ local flash | Minghao&#39;s Exploration</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在数据中心中的，采用NVMe远程获取能够灵活扩展和高效使用Flash利用率和IOPS。然而，现有对远程Flash的获取系统要么有较大的性能开销，要么不能够分离在分享同一个Flash设备的不同客户端。我们提出一个基于软件的远程Flash获取系统ReFlex，能够提供近乎获取本地Flash一样的性能。 ReFlex使用了一个数据平面内核来高度集成网络和存储处理，并以较少的资源要求下实现低延时和高吞吐量">
-<meta name="keywords" content="translation,TLDR,flash,storage,data center,QoS,IX,data plane">
+  <meta name="description" content="在数据中心中，采用NVMe远程获取能够灵活扩展并高效使用Flash的利用率/IOPS。然而，现有系统对远程Flash的获取，要么有较大的性能开销，要么不能够为在共享Flash设备的不同客户端提供很好的隔离。我们提出一个基于软件的远程Flash获取系统——ReFlex，它提供近乎获取本地Flash一样的性能。 ReFlex使用了一个数据平面内核来高度集成网络和存储处理，并能用较少的资源同时实现低延时">
+<meta name="keywords" content="flash,storage,data center,QoS,IX,data plane,translation,TLDR">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[译文] Reflex: remote flash ≈ local flash">
+<meta property="og:title" content="[译文] ReFlex: remote flash ≈ local flash">
 <meta property="og:url" content="https://mhxie.me/2018/05/13/ReFlex-Translation/index.html">
 <meta property="og:site_name" content="Minghao&#39;s Exploration">
-<meta property="og:description" content="在数据中心中的，采用NVMe远程获取能够灵活扩展和高效使用Flash利用率和IOPS。然而，现有对远程Flash的获取系统要么有较大的性能开销，要么不能够分离在分享同一个Flash设备的不同客户端。我们提出一个基于软件的远程Flash获取系统ReFlex，能够提供近乎获取本地Flash一样的性能。 ReFlex使用了一个数据平面内核来高度集成网络和存储处理，并以较少的资源要求下实现低延时和高吞吐量">
+<meta property="og:description" content="在数据中心中，采用NVMe远程获取能够灵活扩展并高效使用Flash的利用率/IOPS。然而，现有系统对远程Flash的获取，要么有较大的性能开销，要么不能够为在共享Flash设备的不同客户端提供很好的隔离。我们提出一个基于软件的远程Flash获取系统——ReFlex，它提供近乎获取本地Flash一样的性能。 ReFlex使用了一个数据平面内核来高度集成网络和存储处理，并能用较少的资源同时实现低延时">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-16T08:09:04.020Z">
+<meta property="og:updated_time" content="2018-11-04T08:13:26.876Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[译文] Reflex: remote flash ≈ local flash">
-<meta name="twitter:description" content="在数据中心中的，采用NVMe远程获取能够灵活扩展和高效使用Flash利用率和IOPS。然而，现有对远程Flash的获取系统要么有较大的性能开销，要么不能够分离在分享同一个Flash设备的不同客户端。我们提出一个基于软件的远程Flash获取系统ReFlex，能够提供近乎获取本地Flash一样的性能。 ReFlex使用了一个数据平面内核来高度集成网络和存储处理，并以较少的资源要求下实现低延时和高吞吐量">
+<meta name="twitter:title" content="[译文] ReFlex: remote flash ≈ local flash">
+<meta name="twitter:description" content="在数据中心中，采用NVMe远程获取能够灵活扩展并高效使用Flash的利用率/IOPS。然而，现有系统对远程Flash的获取，要么有较大的性能开销，要么不能够为在共享Flash设备的不同客户端提供很好的隔离。我们提出一个基于软件的远程Flash获取系统——ReFlex，它提供近乎获取本地Flash一样的性能。 ReFlex使用了一个数据平面内核来高度集成网络和存储处理，并能用较少的资源同时实现低延时">
   
     <link rel="alternative" href="/atom.xml" title="Minghao&#39;s Exploration" type="application/atom+xml">
   
@@ -61,7 +61,7 @@ var _hmt = _hmt || [];
 
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -204,27 +204,27 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ReFlex-Translation" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-ReFlex-Translation" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      [译文] Reflex: remote flash ≈ local flash
+      [译文] ReFlex: remote flash ≈ local flash
     </h1>
   
 
         
         <a href="/2018/05/13/ReFlex-Translation/" class="archive-article-date">
-  	<time datetime="2018-05-14T02:10:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-13</time>
+  	<time datetime="2018-05-14T03:10:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在数据中心中的，采用NVMe远程获取能够灵活扩展和高效使用Flash利用率和IOPS。然而，现有对远程Flash的获取系统要么有较大的性能开销，要么不能够分离在分享同一个Flash设备的不同客户端。我们提出一个基于软件的远程Flash获取系统ReFlex，能够提供近乎获取本地Flash一样的性能。 ReFlex使用了一个数据平面内核来高度集成网络和存储处理，并以较少的资源要求下实现低延时和高吞吐量。ReFlex每个在TCP/IP网络核心能够提供多至850K的IOPS， 然而却仅仅只比获取本地Flash多花21us。ReFlex使用的QoS调度器能够为数千个远程客户端执行可忽略的时延和吞吐服务级别目标（SLO）。我们会展示ReFlex是如何允许应用去使用远程Flash却又保持本地Flash的性能。</p>
+        <p>在数据中心中，采用NVMe远程获取能够灵活扩展并高效使用Flash的利用率/IOPS。然而，现有系统对远程Flash的获取，要么有较大的性能开销，要么不能够为在共享Flash设备的不同客户端提供很好的隔离。我们提出一个基于软件的远程Flash获取系统——ReFlex，它提供近乎获取本地Flash一样的性能。 ReFlex使用了一个数据平面内核来高度集成网络和存储处理，并能用较少的资源同时实现低延时和高吞吐量。ReFlex每个在TCP/IP网络核心能够提供多至850K IOPS， 然而却仅仅只比获取本地Flash多花21us。ReFlex使用的QoS调度器能够为数千个远程客户端执行可忽略的时延和吞吐服务级别目标（SLO）。我们会展示ReFlex是如何在远程使用Flash的同时却又保证其近似本地Flash的性能。</p>
 <a id="more"></a>
 <h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h3><p>NVMe Flash设备以小于100us的延迟提供上至每秒100万次I/O操作（IOPS），令它们成为许多数据密集型在线服务的存储介质首选。然而，数据中心中部署的Flash设备往往未被充分利用，这是基于长时间跨应用不同的需求造成的。通常来说，为所有负载在CPU，内存和Flash资源直接去设计一个完美的平衡是非常困难的，这导致了过量供应和更高的拥有者开销（TCO）。和数据中心中的共享磁盘类似，通过网络对Flash的远程获取能够以一种允许获取要么在任何有空闲容量和带宽要么专门提供大规模NVMe设备的服务器的Flash获取的形式大幅提升利用率。</p>
 <p>实施对远程Flash的获取具有很大的挑战性。要实现低延迟，在服务器和客户端都要求最小化网络和存储层的开销。除了低延迟，每个服务器必须以最小的开销实现高吞吐，用一小部分CPU核心来满足1个或者多个NVMe Flash设备。此外，管理多个租户共享的Flash设备之间的干涉和对Flash设备之间不平衡的读/写行为，需要考虑一种隔离机制，以确保能够提供所有租户可预测的性能。最后，拥有对用于远程连接的共享级别、部署规模和网络协议的灵活度是非常有用的。现有的对于远程Flash获取的软件选项，例如iSCSI或给予时间的服务器，不能够满足性能预期。最近提出的硬件加速的选项，像RDMA fabric之上的NVMe，缺乏性能隔离并且只能够提供有限的部署灵活性。</p>
@@ -302,7 +302,7 @@ var _hmt = _hmt || [];
                   <div class="reward-box">
                     
                     <div class="reward-box-item">
-                      <img class="reward-img" src="/alipay.jpg">
+                      <img class="reward-img" src="/img/alipay.jpg">
                       <span class="reward-type">支付宝</span>
                     </div>
                     
@@ -323,14 +323,6 @@ var _hmt = _hmt || [];
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">translation</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">TLDR</a>
-        		</li>
-      		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">flash</a>
         		</li>
@@ -353,6 +345,14 @@ var _hmt = _hmt || [];
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">data plane</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">translation</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">TLDR</a>
         		</li>
       		
 		</ul>
@@ -433,11 +433,15 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-  
-    <a href="/2018/03/07/Deep Work/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">《深度工作》读书笔记</div>
-      <i class="icon-circle-right"></i>
+    <a href="/2018/11/03/Blog-Refactoring/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          [Top] Blog Refactoring
+        
+      </div>
     </a>
+  
   
 </nav>
 
@@ -577,130 +581,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">methodology</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">research</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">c++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">concurrency</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SDN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">network</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">summary</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">efficiency</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">work</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">plan</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">note</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tool</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">develop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">prolog</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">AI</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">language</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">VM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OpenWrt</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">router</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">translation</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">resource</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">google</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">info</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">workshop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">paper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">twisted</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">TLDR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">flash</a>
               </li>
              
@@ -723,13 +603,21 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">data plane</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">translation</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">TLDR</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:
